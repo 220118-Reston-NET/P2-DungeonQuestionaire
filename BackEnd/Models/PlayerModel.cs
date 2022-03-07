@@ -40,7 +40,7 @@ namespace ModelApi
         private string _spirteURL;
         public string SpriteURL
         {
-            get { return _spirteU; }
+            get { return _spirteURL; }
             set
             {
                 if (value != "")
@@ -58,12 +58,12 @@ namespace ModelApi
         private int _playerHP;
         public int PlayerHP
         {
-            get { return _HP; }
+            get { return _playerHP; }
             set
             {
                 if (value > 0)
                 {
-                    _HP = value;
+                    _playerHP = value;
                 }
                 else
                 {

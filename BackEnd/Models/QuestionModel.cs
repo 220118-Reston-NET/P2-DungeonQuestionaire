@@ -1,6 +1,6 @@
 namespace ModelApi
 {
-    public class Questions
+    public class Question
     {
 
         private int _questionID;

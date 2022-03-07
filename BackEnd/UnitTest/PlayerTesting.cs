@@ -1,6 +1,6 @@
 using Xunit;
 using ModelApi;
-namespace UnitTest
+namespace P2_DungeonQuestionnaire
 {
     public class PlayerTesting
     {
@@ -63,7 +63,7 @@ namespace UnitTest
 
             //Assert
             Assert.NotNull(_player.PlayerHP);
-            Asset.Equal(validPlayerHP, _player.PlayerHP);
+            Assert.Equal(validPlayerHP, _player.PlayerHP);
         }
 
         public void SetValidEnemyCurrentFighting()

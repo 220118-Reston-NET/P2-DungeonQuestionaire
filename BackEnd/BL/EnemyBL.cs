@@ -18,6 +18,7 @@ public class EnemyBL : IEnemyBL
     public Enemy AddEnemy(Enemy p_enemy)
     {
 
+
         return _repo.Add(p_enemy);
     }
 
@@ -34,5 +35,6 @@ public class EnemyBL : IEnemyBL
     public Enemy UpdateEnemy(Enemy p_enemy)
     {
         return _repo.Update(p_enemy);
+
     }
 }

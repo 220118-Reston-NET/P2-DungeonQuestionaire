@@ -1,4 +1,5 @@
 using System.Data.SqlClient;
+using ModelApi;
 
 namespace DL
 {
@@ -7,29 +8,30 @@ namespace DL
 
         public Enemy Add(Enemy p_resource)
         {
-            string sqlQuery = @"";
+            string sqlQuery = @"select * from enemy";
 
             using (SqlConnection con = new SqlConnection("STRING HERE"))
             {
                 con.Open();
 
-                SqlCommand com = SqlCommand(sqlQuery, con);
+                SqlCommand com = new SqlCommand(sqlQuery, con);
 
             }
             return p_resource;
         }
 
-        public Enemy GetAll(Enemy p_resource)
+        public List<Enemy> GetAll()
         {
+            List<Enemy> listofAllEnemy = new List<Enemy>();
             string sqlQuery = @"";
             using (SqlConnection con = new SqlConnection("STRING HERE"))
             {
                 con.Open();
 
-                SqlCommand com = SqlCommand(sqlQuery, con);
+                SqlCommand com = new SqlCommand(sqlQuery, con);
 
             }
-            return p_resource;
+            return listofAllEnemy;
         }
 
         public Enemy Update(Enemy p_resource)
@@ -39,7 +41,7 @@ namespace DL
             {
                 con.Open();
 
-                SqlCommand com = SqlCommand(sqlQuery, con);
+                SqlCommand com = new SqlCommand(sqlQuery, con);
 
             }
             return p_resource;
@@ -52,7 +54,7 @@ namespace DL
             {
                 con.Open();
 
-                SqlCommand com = SqlCommand(sqlQuery, con);
+                SqlCommand com = new SqlCommand(sqlQuery, con);
 
             }
             return p_resource;

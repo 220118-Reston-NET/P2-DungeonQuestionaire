@@ -9,15 +9,18 @@ namespace DL
         public Enemy Add(Enemy p_resource)
         {
 
-            string sqlQuery = @"insert into enemy (enemyid, enemyname, enemyspriteimgurl, enemystartinghp, enemyattack)
-            values (1, 'TestEnemyName', 'TestEnemySpriteURL', 1, 1)";
+            string sqlQuery = @"insert into Enemy 
+                                values (@enemyname, @enemyspriteimgurl, @enemystartinghp, @enemyattack)";
 
             using (SqlConnection con = new SqlConnection("STRING HERE"))
             {
                 con.Open();
-
-                SqlCommand com = new SqlCommand(sqlQuery, con);
-
+                SqlCommand command = new SqlCommand(sqlQuery, con);
+                command.Parameters.AddWithValue("@enemyname", p_resource.EnemyName);
+                command.Parameters.AddWithValue("@enemyspriteimgurl", p_resource.EnemySpriteURL);
+                command.Parameters.AddWithValue("@enemystartinghp", p_resource.EnemyStartingHP);
+                command.Parameters.AddWithValue("@enemyattack", p_resource.EnemyAttack);
+                command.ExecuteNonQuery();
             }
             return p_resource;
         }

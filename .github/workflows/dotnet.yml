@@ -98,4 +98,4 @@ jobs:
         app-name: DungeonApi
         slot-name: 'Production'
         publish-profile: $${{secrets.MYAPISECERT}}
-        package: ./BackEnd/Api/publish
+        package: /BackEnd/Api/publish

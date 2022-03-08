@@ -8,7 +8,9 @@ namespace DL
 
         public Enemy Add(Enemy p_resource)
         {
-            string sqlQuery = @"";
+
+            string sqlQuery = @"insert into enemy (enemyid, enemyname, enemyspriteimgurl, enemystartinghp, enemyattack)
+            values (1, 'TestEnemyName', 'TestEnemySpriteURL', 1, 1)";
 
             using (SqlConnection con = new SqlConnection("STRING HERE"))
             {

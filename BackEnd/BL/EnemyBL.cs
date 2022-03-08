@@ -18,6 +18,23 @@ public class EnemyBL : IEnemyBL
     public Enemy AddEnemy(Enemy p_enemy)
     {
 
-        return
+
+        return _repo.Add(p_enemy);
+    }
+
+    public Enemy DeleteEnemy(Enemy p_enemy)
+    {
+        return _repo.Delete(p_enemy);
+    }
+
+    public List<Enemy> GetAllEnemy()
+    {
+        return _repo.GetAll();
+    }
+
+    public Enemy UpdateEnemy(Enemy p_enemy)
+    {
+        return _repo.Update(p_enemy);
+
     }
 }

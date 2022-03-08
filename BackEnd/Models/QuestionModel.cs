@@ -20,32 +20,66 @@ namespace ModelApi
             }
         }
 
-        private string _questions;
-        public string Questions
+
+        private string _answer1;
+        public string Answer1
         {
-            get { return _questions; }
+            get { return _answer1; }
             set
             {
                 if (value != "")
                 {
-                    _questions = value;
+                    _answer1 = value;
                 }
                 else
                 {
-                    Console.WriteLine("Questions cannot be empty");
+                    Console.WriteLine("Answers cannot be empty");
                 }
             }
         }
 
-        private string _answers;
-        public string Answers
+        private string _answer2;
+        public string Answer2
         {
-            get { return _answers; }
+            get { return _answer2; }
             set
             {
                 if (value != "")
                 {
-                    _answers = value;
+                    _answer2 = value;
+                }
+                else
+                {
+                    Console.WriteLine("Answers cannot be empty");
+                }
+            }
+        }
+        private string _answer3;
+        public string Answer3
+        {
+            get { return _answer3; }
+            set
+            {
+                if (value != "")
+                {
+                    _answer3 = value;
+                }
+                else
+                {
+                    Console.WriteLine("Answers cannot be empty");
+                }
+            }
+        }
+
+        private string _answer4;
+        public string Answer4
+        {
+            get { return _answer4; }
+            set
+            {
+                if (value != "")
+                {
+                    _answer4 = value;
                 }
                 else
                 {

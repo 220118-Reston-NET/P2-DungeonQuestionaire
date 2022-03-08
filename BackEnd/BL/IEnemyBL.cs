@@ -6,7 +6,7 @@ namespace BL
 
         Enemy AddEnemy(Enemy p_enemy);
 
-        List<Enemy> GetAllEnemy(Enemy p_enemy);
+        List<Enemy> GetAllEnemy();
 
         Enemy UpdateEnemy(Enemy p_enemy);
 

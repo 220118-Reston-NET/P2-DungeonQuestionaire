@@ -8,7 +8,8 @@ namespace DL
 
         public Player Add(Player p_resource)
         {
-            string sqlQuery = @"select * from player";
+            string sqlQuery = @"insert into player (playername, spriteimgurl, hp, enemycurrentlyfighting, useremail,userpassword,uservictories)
+                values ('TestPlayer', 'TestIMGURL', 1, 1, 'test@email.com', 'TestPassword', 1)";
 
             using (SqlConnection con = new SqlConnection("STRING HERE"))
             {

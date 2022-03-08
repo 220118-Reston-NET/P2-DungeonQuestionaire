@@ -8,14 +8,21 @@ namespace DL
 
         public Question Add(Question p_resource)
         {
-            string sqlQuery = @"";
+            string sqlQuery = @"insert into question 
+                                values (@answer1, @answer2, @answer3, @answer4, @category, @correctanswer, @damagevalue)";
 
             using (SqlConnection con = new SqlConnection("STRING HERE"))
             {
                 con.Open();
-
-                SqlCommand com = new SqlCommand(sqlQuery, con);
-
+                SqlCommand command = new SqlCommand(sqlQuery, con);
+                command.Parameters.AddWithValue("@answer1", p_resource.Answer1);
+                command.Parameters.AddWithValue("@answer2", p_resource.Answer2);
+                command.Parameters.AddWithValue("@answer3", p_resource.Answer3);
+                command.Parameters.AddWithValue("@answer4", p_resource.Answer4);
+                command.Parameters.AddWithValue("@category", p_resource.Category);
+                command.Parameters.AddWithValue("@correctanswer", p_resource.CorrectAnswer);
+                command.Parameters.AddWithValue("@damagevalue", p_resource.DamageValue);
+                command.ExecuteNonQuery();
             }
             return p_resource;
         }

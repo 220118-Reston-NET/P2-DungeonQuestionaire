@@ -9,16 +9,22 @@ namespace DL
         public Player Add(Player p_resource)
         {
 
-            string sqlQuery = @"insert into player (playername, spriteimgurl, hp, enemycurrentlyfighting, useremail,userpassword,uservictories)
-                values ('TestPlayer', 'TestIMGURL', 1, 1, 'test@email.com', 'TestPassword', 1)";
+            string sqlQuery = @"insert into Player 
+                                values (@playername, @spriteimgurl, @hp, @enemycurrentlyfighting, @useremail, @userpassword, @uservictories)";
 
 
             using (SqlConnection con = new SqlConnection("STRING HERE"))
             {
                 con.Open();
-
-                SqlCommand com = new SqlCommand(sqlQuery, con);
-
+                SqlCommand command = new SqlCommand(sqlQuery, con);
+                command.Parameters.AddWithValue("@playername", p_resource.PlayerName);
+                command.Parameters.AddWithValue("@spriteimgurl", p_resource.SpriteURL);
+                command.Parameters.AddWithValue("@hp", p_resource.PlayerHP);
+                command.Parameters.AddWithValue("@enemycurrentlyfighting", p_resource.EnemyCurrentlyFighting);
+                command.Parameters.AddWithValue("@useremail", p_resource.UserEmail);
+                command.Parameters.AddWithValue("@userpassword", p_resource.UserPassword);
+                command.Parameters.AddWithValue("@uservictories", p_resource.UserVictories);
+                command.ExecuteNonQuery();
             }
             return p_resource;
         }
@@ -39,7 +45,7 @@ namespace DL
                             PlayerName = reader.GetString(1),
                             SpriteURL = reader.GetString(2),
                             PlayerHP = reader.GetInt32(3),
-                            EnemyCurrentFighting = reader.GetInt32(4),
+                            EnemyCurrentlyFighting = reader.GetInt32(4),
                             UserEmail = reader.GetString(5),
                             UserPassword = reader.GetString(6)
                     });

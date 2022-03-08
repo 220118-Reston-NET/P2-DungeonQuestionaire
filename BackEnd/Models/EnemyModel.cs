@@ -3,15 +3,15 @@ namespace ModelApi
     public class Enemy
     {
 
-        private int _emenyID;
+        private int _enemyID;
         public int EnemyID
         {
-            get { return _emenyID; }
+            get { return _enemyID; }
             set
             {
                 if (value > 0)
                 {
-                    _emenyID = value;
+                    _enemyID = value;
                 }
                 else
                 {

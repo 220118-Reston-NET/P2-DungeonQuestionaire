@@ -1,4 +1,5 @@
 using System.Data.SqlClient;
+using ModelApi;
 
 namespace DL
 {
@@ -7,29 +8,50 @@ namespace DL
 
         public Player Add(Player p_resource)
         {
-            string sqlQuery = @"";
+
+            string sqlQuery = @"insert into Player 
+                                values (@playername, @spriteimgurl, @hp, @enemycurrentlyfighting, @useremail, @userpassword, @uservictories)";
+
 
             using (SqlConnection con = new SqlConnection("STRING HERE"))
             {
                 con.Open();
-
-                SqlCommand com = SqlCommand(sqlQuery, con);
-
+                SqlCommand command = new SqlCommand(sqlQuery, con);
+                command.Parameters.AddWithValue("@playername", p_resource.PlayerName);
+                command.Parameters.AddWithValue("@spriteimgurl", p_resource.SpriteURL);
+                command.Parameters.AddWithValue("@hp", p_resource.PlayerHP);
+                command.Parameters.AddWithValue("@enemycurrentlyfighting", p_resource.EnemyCurrentlyFighting);
+                command.Parameters.AddWithValue("@useremail", p_resource.UserEmail);
+                command.Parameters.AddWithValue("@userpassword", p_resource.UserPassword);
+                command.Parameters.AddWithValue("@uservictories", p_resource.UserVictories);
+                command.ExecuteNonQuery();
             }
             return p_resource;
         }
 
-        public Player GetAll(Player p_resource)
+        public List<Player> GetAll()
         {
-            string sqlQuery = @"";
+            List<Player> listofAllPlayers = new List<Player>();
+            string sqlQuery = @"select * from player";
             using (SqlConnection con = new SqlConnection("STRING HERE"))
             {
                 con.Open();
-
-                SqlCommand com = SqlCommand(sqlQuery, con);
-
+                SqlCommand command = new SqlCommand(sqlQuery, con);
+                SqlDataReader reader = command.ExecuteReader();
+                while(reader.Read())
+                {
+                    listofAllPlayers.Add(new Player(){
+                            PlayerID = reader.GetInt32(0),
+                            PlayerName = reader.GetString(1),
+                            SpriteURL = reader.GetString(2),
+                            PlayerHP = reader.GetInt32(3),
+                            EnemyCurrentlyFighting = reader.GetInt32(4),
+                            UserEmail = reader.GetString(5),
+                            UserPassword = reader.GetString(6)
+                    });
+                }
             }
-            return p_resource;
+            return listofAllPlayers;
         }
 
         public Player Update(Player p_resource)
@@ -39,7 +61,7 @@ namespace DL
             {
                 con.Open();
 
-                SqlCommand com = SqlCommand(sqlQuery, con);
+                SqlCommand com = new SqlCommand(sqlQuery, con);
 
             }
             return p_resource;
@@ -52,7 +74,7 @@ namespace DL
             {
                 con.Open();
 
-                SqlCommand com = SqlCommand(sqlQuery, con);
+                SqlCommand com = new SqlCommand(sqlQuery, con);
 
             }
             return p_resource;

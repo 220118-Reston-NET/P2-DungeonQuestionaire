@@ -8,7 +8,7 @@ namespace DL
 
         public Enemy Add(Enemy p_resource)
         {
-            string sqlQuery = @"select * from enemy";
+            string sqlQuery = @"";
 
             using (SqlConnection con = new SqlConnection("STRING HERE"))
             {
@@ -23,12 +23,23 @@ namespace DL
         public List<Enemy> GetAll()
         {
             List<Enemy> listofAllEnemy = new List<Enemy>();
-            string sqlQuery = @"";
+            string sqlQuery = @"select * from enemy";
             using (SqlConnection con = new SqlConnection("STRING HERE"))
             {
                 con.Open();
 
-                SqlCommand com = new SqlCommand(sqlQuery, con);
+                SqlCommand command = new SqlCommand(sqlQuery, con);
+                SqlDataReader reader = command.ExecuteReader();
+                while(reader.Read())
+                {
+                    listofAllEnemy.Add(new Enemy(){
+                            EnemyID = reader.GetInt32(0),
+                            EnemyName = reader.GetString(1),
+                            EnemySpriteURL = reader.GetString(2),
+                            EnemyStartingHP = reader.GetInt32(3),
+                            EnemyAttack= reader.GetInt32(4),
+                    });
+                }
 
             }
             return listofAllEnemy;

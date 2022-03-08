@@ -8,7 +8,7 @@ namespace DL
 
         public Player Add(Player p_resource)
         {
-            string sqlQuery = @"select * from player";
+            string sqlQuery = @"";
 
             using (SqlConnection con = new SqlConnection("STRING HERE"))
             {
@@ -22,16 +22,27 @@ namespace DL
 
         public List<Player> GetAll()
         {
-            List<Player> listofAllQuestions = new List<Player>();
-            string sqlQuery = @"";
+            List<Player> listofAllPlayers = new List<Player>();
+            string sqlQuery = @"select * from player";
             using (SqlConnection con = new SqlConnection("STRING HERE"))
             {
                 con.Open();
-
-                SqlCommand com = new SqlCommand(sqlQuery, con);
-
+                SqlCommand command = new SqlCommand(sqlQuery, con);
+                SqlDataReader reader = command.ExecuteReader();
+                while(reader.Read())
+                {
+                    listofAllPlayers.Add(new Player(){
+                            PlayerID = reader.GetInt32(0),
+                            PlayerName = reader.GetString(1),
+                            SpriteURL = reader.GetString(2),
+                            PlayerHP = reader.GetInt32(3),
+                            EnemyCurrentFighting = reader.GetInt32(4),
+                            UserEmail = reader.GetString(5),
+                            UserPassword = reader.GetString(6)
+                    });
+                }
             }
-            return listofAllQuestions;
+            return listofAllPlayers;
         }
 
         public Player Update(Player p_resource)

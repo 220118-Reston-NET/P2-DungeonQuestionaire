@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P2-DungeonQuestionnaire", "UnitTest\P2-DungeonQuestionnaire.csproj", "{8CC825CA-B069-435A-AFE8-FFB846ED192D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BL\BL.csproj", "{B72DD380-CAC9-4BCE-86D3-2853873E68B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DL", "DL\DL.csproj", "{6CCB3C99-E982-45F3-BE8D-9819BE2E9DA9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{8CC825CA-B069-435A-AFE8-FFB846ED192D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CC825CA-B069-435A-AFE8-FFB846ED192D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CC825CA-B069-435A-AFE8-FFB846ED192D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B72DD380-CAC9-4BCE-86D3-2853873E68B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B72DD380-CAC9-4BCE-86D3-2853873E68B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B72DD380-CAC9-4BCE-86D3-2853873E68B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B72DD380-CAC9-4BCE-86D3-2853873E68B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CCB3C99-E982-45F3-BE8D-9819BE2E9DA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CCB3C99-E982-45F3-BE8D-9819BE2E9DA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CCB3C99-E982-45F3-BE8D-9819BE2E9DA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CCB3C99-E982-45F3-BE8D-9819BE2E9DA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

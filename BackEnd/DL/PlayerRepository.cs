@@ -8,10 +8,8 @@ namespace DL
 
         public Player Add(Player p_resource)
         {
-
             string sqlQuery = @"insert into Player 
                                 values (@playername, @spriteimgurl, @hp, @enemycurrentlyfighting, @useremail, @userpassword, @uservictories)";
-
 
             using (SqlConnection con = new SqlConnection("STRING HERE"))
             {
@@ -56,26 +54,36 @@ namespace DL
 
         public Player Update(Player p_resource)
         {
-            string sqlQuery = @"";
+            string sqlQuery = @"Update Player
+                                Set PlayerName = @PlayerName, SpriteImgurl = @SpriteImgurl, hp = @PlayerHP, EnemyCurrentlyFighting = @EnemyCurrentlyFighting, UserEmail = @UserEmail, UserPassword = @UserPassword, UserVictories = @UserVictories
+                                Where PlayerID = @PlayerID";
             using (SqlConnection con = new SqlConnection("STRING HERE"))
             {
                 con.Open();
-
-                SqlCommand com = new SqlCommand(sqlQuery, con);
-
+                SqlCommand command = new SqlCommand(sqlQuery, con);
+                command.Parameters.AddWithValue("@PlayerID", p_resource.PlayerID);
+                command.Parameters.AddWithValue("@PlayerName", p_resource.PlayerName);
+                command.Parameters.AddWithValue("@SpriteImgurl", p_resource.SpriteURL);
+                command.Parameters.AddWithValue("@PlayerHP", p_resource.PlayerHP);
+                command.Parameters.AddWithValue("@EnemyCurrentlyFighting", p_resource.EnemyCurrentlyFighting);
+                command.Parameters.AddWithValue("@UserEmail", p_resource.UserEmail);
+                command.Parameters.AddWithValue("@UserPassword", p_resource.UserPassword);
+                command.Parameters.AddWithValue("@UserVictories", p_resource.UserVictories);
+                command.ExecuteNonQuery();
             }
             return p_resource;
         }
 
         public Player Delete(Player p_resource)
         {
-            string sqlQuery = @"";
+            string sqlQuery = @"Delete from Player
+                                Where PlayerID = @PlayerID";
             using (SqlConnection con = new SqlConnection("STRING HERE"))
             {
                 con.Open();
-
                 SqlCommand com = new SqlCommand(sqlQuery, con);
-
+                com.Parameters.AddWithValue("@PlayerID", p_resource.PlayerID);
+                com.ExecuteNonQuery();
             }
             return p_resource;
         }

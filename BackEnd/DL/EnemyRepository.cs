@@ -52,12 +52,19 @@ namespace DL
 
         public Enemy Update(Enemy p_resource)
         {
-            string sqlQuery = @"";
+            string sqlQuery = @"Update Enemy
+                                Set EnemyName = @EnemyName, EnemySpriteImgUrl = @EnemySpriteImgurl, EnemyStartingHP = @EnemyStartingHP, EnemyAttack = @EnemyAttack
+                                Where EnemyID = @EnemyId";
             using (SqlConnection con = new SqlConnection("STRING HERE"))
             {
                 con.Open();
-
-                SqlCommand com = new SqlCommand(sqlQuery, con);
+                SqlCommand command = new SqlCommand(sqlQuery, con);
+                command.Parameters.AddWithValue("@EnemyId", p_resource.EnemyID);
+                command.Parameters.AddWithValue("@EnemyName", p_resource.EnemyName);
+                command.Parameters.AddWithValue("@EnemySpriteImgUrl", p_resource.EnemySpriteURL);
+                command.Parameters.AddWithValue("@EnemyStartingHP", p_resource.EnemyStartingHP);
+                command.Parameters.AddWithValue("@EnemyAttack", p_resource.EnemyAttack);
+                command.ExecuteNonQuery();
 
             }
             return p_resource;
@@ -65,13 +72,14 @@ namespace DL
 
         public Enemy Delete(Enemy p_resource)
         {
-            string sqlQuery = @"";
+            string sqlQuery = @"Delete from Enemy
+                                Where EnemyID = @EnemyID";
             using (SqlConnection con = new SqlConnection("STRING HERE"))
             {
                 con.Open();
-
                 SqlCommand com = new SqlCommand(sqlQuery, con);
-
+                com.Parameters.AddWithValue("@EnemyID", p_resource.EnemyID);
+                com.ExecuteNonQuery();
             }
             return p_resource;
         }

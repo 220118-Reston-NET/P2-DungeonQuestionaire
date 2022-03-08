@@ -34,11 +34,11 @@ namespace P2_DungeonQuestionnaire
             string validQuestion = "Test Question";
 
             //Act
-            _quest.Questions = validQuestion;
+            _quest.Answer1 = validQuestion;
 
             //Assert
-            Assert.NotNull(_quest.Questions);
-            Assert.Equal(validQuestion, _quest.Questions);
+            Assert.NotNull(_quest.Answer1);
+            Assert.Equal(validQuestion, _quest.Answer1);
         }
 
         [Fact]
@@ -50,11 +50,11 @@ namespace P2_DungeonQuestionnaire
             string validAnswer = "Test Answer";
 
             //Act
-            _quest.Answers = validAnswer;
+            _quest.CorrectAnswer = validAnswer;
 
             //Assert
-            Assert.NotNull(_quest.Answers);
-            Assert.Equal(validAnswer, _quest.Answers);
+            Assert.NotNull(_quest.CorrectAnswer);
+            Assert.Equal(validAnswer, _quest.CorrectAnswer);
         }
 
         [Fact]

@@ -1,4 +1,4 @@
-# YML is another markup language that is sentitive to "spaces" so careful where you tab your keywords
+# YML isanother markup language that is sentitive to "spaces" so careful where you tab your keywords
 # In this case, we are telling the Github server should do to be able to deploy our api
 name: Build, Test, and Deploy API
 

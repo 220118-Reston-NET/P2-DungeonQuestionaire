@@ -95,7 +95,7 @@ jobs:
     - name: Deploy
       uses: azure/webapps-deploy@v2
       with:
-        app-name: P2-DungeonQuestionnaire
+        app-name: DungeonApi
         slot-name: 'Production'
         publish-profile: $${{secrets.MYAPISECERT}}
         package: ./publish

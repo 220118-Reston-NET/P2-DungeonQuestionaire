@@ -6,6 +6,16 @@ namespace DL
     public class PlayerRepository : IRepository<Player>
     {
 
+        /// <summary>
+        /// PlayerRepository will require a connection string to be able to create an object out of it.
+        /// </summary>
+
+        private readonly string _connectionStrings;
+        public PlayerRepository(string p_connectionStrings){
+
+            _connectionStrings = p_connectionStrings;
+        }
+
         public Player Add(Player p_resource)
         {
 
@@ -13,7 +23,7 @@ namespace DL
                                 values (@playername, @spriteimgurl, @hp, @enemycurrentlyfighting, @useremail, @userpassword, @uservictories)";
 
 
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
                 SqlCommand command = new SqlCommand(sqlQuery, con);
@@ -33,7 +43,7 @@ namespace DL
         {
             List<Player> listofAllPlayers = new List<Player>();
             string sqlQuery = @"select * from player";
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
                 SqlCommand command = new SqlCommand(sqlQuery, con);
@@ -57,7 +67,7 @@ namespace DL
         public Player Update(Player p_resource)
         {
             string sqlQuery = @"";
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
 
@@ -70,7 +80,7 @@ namespace DL
         public Player Delete(Player p_resource)
         {
             string sqlQuery = @"";
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
 

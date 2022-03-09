@@ -29,7 +29,7 @@ namespace DL
                 command.Parameters.AddWithValue("@category", p_resource.Category);
                 command.Parameters.AddWithValue("@correctanswer", p_resource.CorrectAnswer);
                 command.Parameters.AddWithValue("@damagevalue", p_resource.DamageValue);
-                command.ExecuteNonQueryAsync();
+                await command.ExecuteNonQueryAsync();
             }
             return p_resource;
         }
@@ -81,7 +81,7 @@ namespace DL
                 command.Parameters.AddWithValue("@Category", p_resource.Category);
                 command.Parameters.AddWithValue("@CorrectAnswer", p_resource.CorrectAnswer);
                 command.Parameters.AddWithValue("@DamageValue", p_resource.DamageValue);
-                command.ExecuteNonQueryAsync();
+                await command.ExecuteNonQueryAsync();
 
             }
             return p_resource;
@@ -97,7 +97,7 @@ namespace DL
                 await con.OpenAsync();
                 SqlCommand com = new SqlCommand(sqlQuery, con);
                 com.Parameters.AddWithValue("@QuestionId", p_resource.QuestionID);
-                com.ExecuteNonQueryAsync();
+                await com.ExecuteNonQueryAsync();
             }
             return p_resource;
         }

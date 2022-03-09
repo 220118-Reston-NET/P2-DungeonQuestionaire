@@ -13,7 +13,6 @@ namespace DL
         private readonly string _connectionStrings;
         public PlayerRepository(string p_connectionStrings)
         {
-
             _connectionStrings = p_connectionStrings;
         }
 
@@ -21,8 +20,6 @@ namespace DL
         {
             string sqlQuery = @"insert into Player 
                                 values (@playername, @spriteimgurl, @hp, @enemycurrentlyfighting, @useremail, @userpassword, @uservictories)";
-
-
 
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
@@ -83,7 +80,7 @@ namespace DL
                 command.Parameters.AddWithValue("@UserEmail", p_resource.UserEmail);
                 command.Parameters.AddWithValue("@UserPassword", p_resource.UserPassword);
                 command.Parameters.AddWithValue("@UserVictories", p_resource.UserVictories);
-                command.ExecuteNonQueryAsync();
+                await command.ExecuteNonQueryAsync();
             }
             return p_resource;
         }

@@ -1,5 +1,5 @@
 using Xunit;
-using ModelApi;
+using Models;
 namespace P2_DungeonQuestionnaire
 {
     public class PlayerTesting

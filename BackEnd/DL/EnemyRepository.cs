@@ -1,10 +1,16 @@
 using System.Data.SqlClient;
-using ModelApi;
+using Models;
 
 namespace DL
 {
     public class EnemyRepository : IRepository<Enemy>
     {
+
+        private readonly string _connectionStrings;
+        public EnemyRepository(string p_connectionStrings){
+
+            _connectionStrings = p_connectionStrings;
+        }
 
         public Enemy Add(Enemy p_resource)
         {
@@ -12,7 +18,7 @@ namespace DL
             string sqlQuery = @"insert into Enemy 
                                 values (@enemyname, @enemyspriteimgurl, @enemystartinghp, @enemyattack)";
 
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
                 SqlCommand command = new SqlCommand(sqlQuery, con);
@@ -29,7 +35,7 @@ namespace DL
         {
             List<Enemy> listofAllEnemy = new List<Enemy>();
             string sqlQuery = @"select * from enemy";
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
 
@@ -52,12 +58,21 @@ namespace DL
 
         public Enemy Update(Enemy p_resource)
         {
-            string sqlQuery = @"";
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+
+            
+            string sqlQuery = @"Update Enemy
+                                Set EnemyName = @EnemyName, EnemySpriteImgUrl = @EnemySpriteImgurl, EnemyStartingHP = @EnemyStartingHP, EnemyAttack = @EnemyAttack
+                                Where EnemyID = @EnemyId";
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
-
-                SqlCommand com = new SqlCommand(sqlQuery, con);
+                SqlCommand command = new SqlCommand(sqlQuery, con);
+                command.Parameters.AddWithValue("@EnemyId", p_resource.EnemyID);
+                command.Parameters.AddWithValue("@EnemyName", p_resource.EnemyName);
+                command.Parameters.AddWithValue("@EnemySpriteImgUrl", p_resource.EnemySpriteURL);
+                command.Parameters.AddWithValue("@EnemyStartingHP", p_resource.EnemyStartingHP);
+                command.Parameters.AddWithValue("@EnemyAttack", p_resource.EnemyAttack);
+                command.ExecuteNonQuery();
 
             }
             return p_resource;
@@ -65,13 +80,15 @@ namespace DL
 
         public Enemy Delete(Enemy p_resource)
         {
-            string sqlQuery = @"";
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+
+            string sqlQuery = @"Delete from Enemy
+                                Where EnemyID = @EnemyID";
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
-
                 SqlCommand com = new SqlCommand(sqlQuery, con);
-
+                com.Parameters.AddWithValue("@EnemyID", p_resource.EnemyID);
+                com.ExecuteNonQuery();
             }
             return p_resource;
         }

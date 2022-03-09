@@ -14,6 +14,9 @@ import { UpgradetextComponent } from './upgradetext/upgradetext.component';
 import { NewSpriteChoiceComponent } from './new-sprite-choice/new-sprite-choice.component';
 import { PlayAgainComponent } from './play-again/play-again.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { QuestionsAnswersComponent } from './questions-answers/questions-answers.component';
+import { PlayerBoxComponent } from './player-box/player-box.component';
+import { EnemyBoxComponent } from './enemy-box/enemy-box.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FooterComponent,
     UpgradetextComponent,
     NewSpriteChoiceComponent,
-    PlayAgainComponent
+    PlayAgainComponent,
+    QuestionsAnswersComponent,
+    PlayerBoxComponent,
+    EnemyBoxComponent
   ],
   imports: [
     BrowserModule,

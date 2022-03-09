@@ -13,11 +13,17 @@
 }
 
 
-.border-box-gameover
+.border-box-fight
 {
     
     box-sizing:border-box;
     border: .3rem solid black;
-    width: 80vw;
-    ;
+    align-self: center;
+    width:98vw;
+    
+}
+
+button 
+{
+    max-width: 10rem;
 }

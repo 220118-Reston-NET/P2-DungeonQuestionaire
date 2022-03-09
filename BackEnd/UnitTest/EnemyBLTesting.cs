@@ -1,15 +1,17 @@
 using Moq;
 using Xunit;
-using ModelApi;
+using Models;
 using DL;
 using BL;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 namespace P2_DungeonQuestionnaire
 {
-    public class EnemyBLTesting{
+    public class EnemyBLTesting
+    {
 
         [Fact]
-        public void Should_Add_Enemy()
+        public async Task Should_Add_Enemy()
         {
             //Assert
             Enemy _expectedEnemy = new Enemy()
@@ -19,12 +21,12 @@ namespace P2_DungeonQuestionnaire
                 EnemySpriteURL = "TestURL",
                 EnemyStartingHP = 1,
                 EnemyAttack = 1,
-               
+
             };
 
-            Mock<IRepository<Enemy> _mockRepo = Mock<IRepository<Enemy>();
+            Mock<IRepository<Enemy>> _mockRepo = new Mock<IRepository<Enemy>>();
 
-            _mockRepo.Setup(repo => repo.Add(_expectedEnemy)).returns(_expectedEnemy);
+            _mockRepo.Setup(repo => repo.Add(_expectedEnemy)).ReturnsAsync(_expectedEnemy);
 
             IEnemyBL _EnemyBL = new EnemyBL(_mockRepo.Object);
 
@@ -32,23 +34,21 @@ namespace P2_DungeonQuestionnaire
             _actualEnemy = _expectedEnemy;
 
             //Act
-            _actualEnemy = _EnemyBL.AddEnemy(_actualEnemy);
+            _actualEnemy = await _EnemyBL.AddEnemy(_actualEnemy);
 
             //Assert
             Assert.Same(_expectedEnemy, _actualEnemy);
             Assert.Equal(_expectedEnemy.EnemyID, _actualEnemy.EnemyID);
             Assert.Equal(_expectedEnemy.EnemyName, _actualEnemy.EnemyName);
-            Assert.Equal(_expectedEnemy.SpriteURL, _actualEnemy.SpriteURL);
-            Assert.Equal(_expectedEnemy.EnemyHP, _actualEnemy.EnemyHP);
+            Assert.Equal(_expectedEnemy.EnemySpriteURL, _actualEnemy.EnemySpriteURL);
+            Assert.Equal(_expectedEnemy.EnemyStartingHP, _actualEnemy.EnemyStartingHP);
             Assert.Equal(_expectedEnemy.EnemyAttack, _actualEnemy.EnemyAttack);
-            Assert.Equal(_expectedEnemy.UserEmail, _actualEnemy.UserEmail);
-            Assert.Equal(_expectedEnemy.UserPassword, _actualEnemy.UserPassword);
-            Assert.Equal(_expectedEnemy.UserVictories, _actualEnemy.UserVictories);
+
         }
 
 
         [Fact]
-        public void Should_Get_All_Enemy()
+        public async Task Should_Get_All_Enemy()
         {
             //Assert
             List<Enemy> _expectedListOfEnemy = new List<Enemy>();
@@ -57,17 +57,17 @@ namespace P2_DungeonQuestionnaire
             {
                 EnemyID = 1,
                 EnemyName = "TestName",
-                EnemeySpriteURL = "TestURL",
+                EnemySpriteURL = "TestURL",
                 EnemyStartingHP = 1,
                 EnemyAttack = 1,
-               
+
             };
 
             _expectedListOfEnemy.Add(_Enemy);
 
-            Mock<IRepository<Enemy> _mockRepo = Mock<IRepository<Enemy>();
+            Mock<IRepository<Enemy>> _mockRepo = new Mock<IRepository<Enemy>>();
 
-            _mockRepo.Setup(repo => repo.GetAll()).returns(_expectedListOfEnemy);
+            _mockRepo.Setup(repo => repo.GetAll()).ReturnsAsync(_expectedListOfEnemy);
 
             IEnemyBL _EnemyBL = new EnemyBL(_mockRepo.Object);
 
@@ -75,15 +75,16 @@ namespace P2_DungeonQuestionnaire
             _actualListOfEnemy = _expectedListOfEnemy;
 
             //Act
-            _actualListOfEnemy = _EnemyBL.GetAllEnemy(_actualListOfEnemy);
+            _actualListOfEnemy = await _EnemyBL.GetAllEnemy();
 
             //Assert
-            Assert.Same(_expectedListOfEnemy,  _actualListOfEnemy);
+            Assert.Same(_expectedListOfEnemy, _actualListOfEnemy);
             Assert.Equal(_expectedListOfEnemy[0].EnemyID, _actualListOfEnemy[0].EnemyID);
             Assert.Equal(_expectedListOfEnemy[1].EnemyName, _actualListOfEnemy[1].EnemyName);
             Assert.Equal(_expectedListOfEnemy[2].EnemySpriteURL, _actualListOfEnemy[2].EnemySpriteURL);
             Assert.Equal(_expectedListOfEnemy[3].EnemyStartingHP, _actualListOfEnemy[3].EnemyStartingHP);
             Assert.Equal(_expectedListOfEnemy[4].EnemyAttack, _actualListOfEnemy[4].EnemyAttack);
-            
+
         }
     }
+}

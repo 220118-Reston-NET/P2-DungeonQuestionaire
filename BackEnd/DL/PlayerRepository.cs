@@ -35,7 +35,7 @@ namespace DL
                 command.Parameters.AddWithValue("@useremail", p_resource.UserEmail);
                 command.Parameters.AddWithValue("@userpassword", p_resource.UserPassword);
                 command.Parameters.AddWithValue("@uservictories", p_resource.UserVictories);
-                command.ExecuteNonQueryAsync();
+                await command.ExecuteNonQueryAsync();
             }
             return p_resource;
         }

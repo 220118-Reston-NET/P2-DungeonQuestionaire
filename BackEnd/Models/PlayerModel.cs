@@ -127,9 +127,9 @@ namespace Models
         public int UserVictories
         {
             get { return _userVictories; }
-            set { _userVictories = value;}
-            }
+            set { _userVictories = value; }
         }
+    }
 
 
 }

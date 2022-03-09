@@ -88,13 +88,13 @@ namespace P2_DungeonQuestionnaire
             //Assert
             Assert.Same(_expectedListOfQuestion, _actualListOfQuestion);
             Assert.Equal(_expectedListOfQuestion[0].QuestionID, _actualListOfQuestion[0].QuestionID);
-            Assert.Equal(_expectedListOfQuestion[1].Answer1, _actualListOfQuestion[1].Answer1);
-            Assert.Equal(_expectedListOfQuestion[2].Answer2, _actualListOfQuestion[2].Answer2);
-            Assert.Equal(_expectedListOfQuestion[3].Answer3, _actualListOfQuestion[3].Answer3);
-            Assert.Equal(_expectedListOfQuestion[4].Answer4, _actualListOfQuestion[4].Answer4);
-            Assert.Equal(_expectedListOfQuestion[5].Category, _actualListOfQuestion[5].Category);
-            Assert.Equal(_expectedListOfQuestion[6].CorrectAnswer, _actualListOfQuestion[6].CorrectAnswer);
-            Assert.Equal(_expectedListOfQuestion[7].DamageValue, _actualListOfQuestion[7].DamageValue);
+            Assert.Equal(_expectedListOfQuestion[0].Answer1, _actualListOfQuestion[0].Answer1);
+            Assert.Equal(_expectedListOfQuestion[0].Answer2, _actualListOfQuestion[0].Answer2);
+            Assert.Equal(_expectedListOfQuestion[0].Answer3, _actualListOfQuestion[0].Answer3);
+            Assert.Equal(_expectedListOfQuestion[0].Answer4, _actualListOfQuestion[0].Answer4);
+            Assert.Equal(_expectedListOfQuestion[0].Category, _actualListOfQuestion[0].Category);
+            Assert.Equal(_expectedListOfQuestion[0].CorrectAnswer, _actualListOfQuestion[0].CorrectAnswer);
+            Assert.Equal(_expectedListOfQuestion[0].DamageValue, _actualListOfQuestion[0].DamageValue);
 
         }
     }

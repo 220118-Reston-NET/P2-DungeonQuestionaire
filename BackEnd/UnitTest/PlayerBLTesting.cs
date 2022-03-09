@@ -86,13 +86,13 @@ namespace P2_DungeonQuestionnaire
             //Assert
             Assert.Same(_expectedListOfPlayer, _actualListOfPlayer);
             Assert.Equal(_expectedListOfPlayer[0].PlayerID, _actualListOfPlayer[0].PlayerID);
-            Assert.Equal(_expectedListOfPlayer[1].PlayerName, _actualListOfPlayer[1].PlayerName);
-            Assert.Equal(_expectedListOfPlayer[2].SpriteURL, _actualListOfPlayer[2].SpriteURL);
-            Assert.Equal(_expectedListOfPlayer[3].PlayerHP, _actualListOfPlayer[3].PlayerHP);
-            Assert.Equal(_expectedListOfPlayer[4].EnemyCurrentlyFighting, _actualListOfPlayer[4].EnemyCurrentlyFighting);
-            Assert.Equal(_expectedListOfPlayer[5].UserEmail, _actualListOfPlayer[5].UserEmail);
-            Assert.Equal(_expectedListOfPlayer[6].UserPassword, _actualListOfPlayer[6].UserPassword);
-            Assert.Equal(_expectedListOfPlayer[7].UserVictories, _actualListOfPlayer[7].UserVictories);
+            Assert.Equal(_expectedListOfPlayer[0].PlayerName, _actualListOfPlayer[0].PlayerName);
+            Assert.Equal(_expectedListOfPlayer[0].SpriteURL, _actualListOfPlayer[0].SpriteURL);
+            Assert.Equal(_expectedListOfPlayer[0].PlayerHP, _actualListOfPlayer[0].PlayerHP);
+            Assert.Equal(_expectedListOfPlayer[0].EnemyCurrentlyFighting, _actualListOfPlayer[0].EnemyCurrentlyFighting);
+            Assert.Equal(_expectedListOfPlayer[0].UserEmail, _actualListOfPlayer[0].UserEmail);
+            Assert.Equal(_expectedListOfPlayer[0].UserPassword, _actualListOfPlayer[0].UserPassword);
+            Assert.Equal(_expectedListOfPlayer[0].UserVictories, _actualListOfPlayer[0].UserVictories);
         }
     }
 }

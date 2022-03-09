@@ -80,10 +80,10 @@ namespace P2_DungeonQuestionnaire
             //Assert
             Assert.Same(_expectedListOfEnemy, _actualListOfEnemy);
             Assert.Equal(_expectedListOfEnemy[0].EnemyID, _actualListOfEnemy[0].EnemyID);
-            Assert.Equal(_expectedListOfEnemy[1].EnemyName, _actualListOfEnemy[1].EnemyName);
-            Assert.Equal(_expectedListOfEnemy[2].EnemySpriteURL, _actualListOfEnemy[2].EnemySpriteURL);
-            Assert.Equal(_expectedListOfEnemy[3].EnemyStartingHP, _actualListOfEnemy[3].EnemyStartingHP);
-            Assert.Equal(_expectedListOfEnemy[4].EnemyAttack, _actualListOfEnemy[4].EnemyAttack);
+            Assert.Equal(_expectedListOfEnemy[0].EnemyName, _actualListOfEnemy[0].EnemyName);
+            Assert.Equal(_expectedListOfEnemy[0].EnemySpriteURL, _actualListOfEnemy[0].EnemySpriteURL);
+            Assert.Equal(_expectedListOfEnemy[0].EnemyStartingHP, _actualListOfEnemy[0].EnemyStartingHP);
+            Assert.Equal(_expectedListOfEnemy[0].EnemyAttack, _actualListOfEnemy[0].EnemyAttack);
 
         }
     }

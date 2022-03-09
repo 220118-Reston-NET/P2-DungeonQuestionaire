@@ -1,15 +1,17 @@
 using Moq;
 using Xunit;
-using ModelApi;
+using Models;
 using DL;
 using BL;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 namespace P2_DungeonQuestionnaire
 {
-    public class PlayerBLTesting{
+    public class PlayerBLTesting
+    {
 
         [Fact]
-        public void Should_Add_Player()
+        public async Task Should_Add_Player()
         {
             //Assert
             Player _expectedPlayer = new Player()
@@ -24,9 +26,9 @@ namespace P2_DungeonQuestionnaire
                 UserVictories = 1
             };
 
-            Mock<IRepository<Player> _mockRepo = Mock<IRepository<Player>();
+            Mock<IRepository<Player>> _mockRepo = new Mock<IRepository<Player>>();
 
-            _mockRepo.Setup(repo => repo.Add(_expectedPlayer)).returns(_expectedPlayer);
+            _mockRepo.Setup(repo => repo.Add(_expectedPlayer)).ReturnsAsync(_expectedPlayer);
 
             IPlayerBL _playBL = new PlayerBL(_mockRepo.Object);
 
@@ -34,7 +36,7 @@ namespace P2_DungeonQuestionnaire
             _actualPlayer = _expectedPlayer;
 
             //Act
-            _actualPlayer = _playBL.AddPlayer(_actualPlayer);
+            _actualPlayer = await _playBL.AddPlayer(_actualPlayer);
 
             //Assert
             Assert.Same(_expectedPlayer, _actualPlayer);
@@ -50,7 +52,7 @@ namespace P2_DungeonQuestionnaire
 
 
         [Fact]
-        public void Should_Get_All_Player()
+        public async Task Should_Get_All_Player()
         {
             //Assert
             List<Player> _expectedListOfPlayer = new List<Player>();
@@ -69,9 +71,9 @@ namespace P2_DungeonQuestionnaire
 
             _expectedListOfPlayer.Add(_player);
 
-            Mock<IRepository<Player> _mockRepo = Mock<IRepository<Player>();
+            Mock<IRepository<Player>> _mockRepo = new Mock<IRepository<Player>>();
 
-            _mockRepo.Setup(repo => repo.GetAll()).returns(_expectedListOfPlayer);
+            _mockRepo.Setup(repo => repo.GetAll()).ReturnsAsync(_expectedListOfPlayer);
 
             IPlayerBL _playBL = new PlayerBL(_mockRepo.Object);
 
@@ -79,10 +81,10 @@ namespace P2_DungeonQuestionnaire
             _actualListOfPlayer = _expectedListOfPlayer;
 
             //Act
-            _actualListOfPlayer = _playBL.GetAllPlayer(_actualListOfPlayer);
+            _actualListOfPlayer = await _playBL.GetAllPlayer();
 
             //Assert
-            Assert.Same(_expectedListOfPlayer,  _actualListOfPlayer);
+            Assert.Same(_expectedListOfPlayer, _actualListOfPlayer);
             Assert.Equal(_expectedListOfPlayer[0].PlayerID, _actualListOfPlayer[0].PlayerID);
             Assert.Equal(_expectedListOfPlayer[1].PlayerName, _actualListOfPlayer[1].PlayerName);
             Assert.Equal(_expectedListOfPlayer[2].SpriteURL, _actualListOfPlayer[2].SpriteURL);

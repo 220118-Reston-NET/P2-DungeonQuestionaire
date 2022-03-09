@@ -11,7 +11,8 @@ namespace DL
         /// </summary>
 
         private readonly string _connectionStrings;
-        public PlayerRepository(string p_connectionStrings){
+        public PlayerRepository(string p_connectionStrings)
+        {
 
             _connectionStrings = p_connectionStrings;
         }
@@ -32,7 +33,7 @@ namespace DL
                 command.Parameters.AddWithValue("@useremail", p_resource.UserEmail);
                 command.Parameters.AddWithValue("@userpassword", p_resource.UserPassword);
                 command.Parameters.AddWithValue("@uservictories", p_resource.UserVictories);
-                await command.ExecuteNonQueryAsync();
+                command.ExecuteNonQueryAsync();
             }
             return p_resource;
         }
@@ -46,16 +47,17 @@ namespace DL
                 await con.OpenAsync();
                 SqlCommand command = new SqlCommand(sqlQuery, con);
                 SqlDataReader reader = await command.ExecuteReaderAsync();
-                while(reader.Read())
+                while (reader.Read())
                 {
-                    listofAllPlayers.Add(new Player(){
-                            PlayerID = reader.GetInt32(0),
-                            PlayerName = reader.GetString(1),
-                            SpriteURL = reader.GetString(2),
-                            PlayerHP = reader.GetInt32(3),
-                            EnemyCurrentlyFighting = reader.GetInt32(4),
-                            UserEmail = reader.GetString(5),
-                            UserPassword = reader.GetString(6)
+                    listofAllPlayers.Add(new Player()
+                    {
+                        PlayerID = reader.GetInt32(0),
+                        PlayerName = reader.GetString(1),
+                        SpriteURL = reader.GetString(2),
+                        PlayerHP = reader.GetInt32(3),
+                        EnemyCurrentlyFighting = reader.GetInt32(4),
+                        UserEmail = reader.GetString(5),
+                        UserPassword = reader.GetString(6)
                     });
                 }
             }
@@ -79,7 +81,7 @@ namespace DL
                 command.Parameters.AddWithValue("@UserEmail", p_resource.UserEmail);
                 command.Parameters.AddWithValue("@UserPassword", p_resource.UserPassword);
                 command.Parameters.AddWithValue("@UserVictories", p_resource.UserVictories);
-                await command.ExecuteNonQueryAsync();
+                command.ExecuteNonQueryAsync();
             }
             return p_resource;
         }
@@ -93,7 +95,7 @@ namespace DL
                 await con.OpenAsync();
                 SqlCommand com = new SqlCommand(sqlQuery, con);
                 com.Parameters.AddWithValue("@PlayerID", p_resource.PlayerID);
-                await com.ExecuteNonQueryAsync();
+                com.ExecuteNonQueryAsync();
             }
             return p_resource;
         }

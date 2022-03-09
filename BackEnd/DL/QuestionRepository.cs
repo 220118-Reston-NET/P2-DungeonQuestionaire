@@ -7,7 +7,8 @@ namespace DL
     {
 
         private readonly string _connectionStrings;
-        public QuestionRepository(string p_connectionStrings){
+        public QuestionRepository(string p_connectionStrings)
+        {
 
             _connectionStrings = p_connectionStrings;
         }
@@ -28,7 +29,7 @@ namespace DL
                 command.Parameters.AddWithValue("@category", p_resource.Category);
                 command.Parameters.AddWithValue("@correctanswer", p_resource.CorrectAnswer);
                 command.Parameters.AddWithValue("@damagevalue", p_resource.DamageValue);
-                await command.ExecuteNonQueryAsync();
+                command.ExecuteNonQueryAsync();
             }
             return p_resource;
         }
@@ -43,17 +44,18 @@ namespace DL
 
                 SqlCommand command = new SqlCommand(sqlQuery, con);
                 SqlDataReader reader = await command.ExecuteReaderAsync();
-                while(reader.Read())
+                while (reader.Read())
                 {
-                    listofAllQuestions.Add(new Question(){
-                            QuestionID = reader.GetInt32(0),
-                            Answer1 = reader.GetString(1),
-                            Answer2 = reader.GetString(2),
-                            Answer3 = reader.GetString(3),
-                            Answer4 = reader.GetString(4),
-                            Category = reader.GetString(5),
-                            CorrectAnswer = reader.GetString(6),
-                            DamageValue = reader.GetInt32(7)
+                    listofAllQuestions.Add(new Question()
+                    {
+                        QuestionID = reader.GetInt32(0),
+                        Answer1 = reader.GetString(1),
+                        Answer2 = reader.GetString(2),
+                        Answer3 = reader.GetString(3),
+                        Answer4 = reader.GetString(4),
+                        Category = reader.GetString(5),
+                        CorrectAnswer = reader.GetString(6),
+                        DamageValue = reader.GetInt32(7)
                     });
                 }
 
@@ -79,7 +81,7 @@ namespace DL
                 command.Parameters.AddWithValue("@Category", p_resource.Category);
                 command.Parameters.AddWithValue("@CorrectAnswer", p_resource.CorrectAnswer);
                 command.Parameters.AddWithValue("@DamageValue", p_resource.DamageValue);
-                await command.ExecuteNonQueryAsync();
+                command.ExecuteNonQueryAsync();
 
             }
             return p_resource;
@@ -95,7 +97,7 @@ namespace DL
                 await con.OpenAsync();
                 SqlCommand com = new SqlCommand(sqlQuery, con);
                 com.Parameters.AddWithValue("@QuestionId", p_resource.QuestionID);
-                await com.ExecuteNonQueryAsync();
+                com.ExecuteNonQueryAsync();
             }
             return p_resource;
         }

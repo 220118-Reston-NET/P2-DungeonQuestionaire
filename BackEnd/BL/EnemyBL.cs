@@ -16,26 +16,26 @@ public class EnemyBL : IEnemyBL
         _repo = p_repo;
     }
 
-    public Enemy AddEnemy(Enemy p_enemy)
+    public async Task<Enemy> AddEnemy(Enemy p_enemy)
     {
 
 
-        return _repo.Add(p_enemy);
+        return await _repo.Add(p_enemy);
     }
 
-    public Enemy DeleteEnemy(Enemy p_enemy)
+    public async Task<Enemy> DeleteEnemy(Enemy p_enemy)
     {
-        return _repo.Delete(p_enemy);
+        return await _repo.Delete(p_enemy);
     }
 
-    public List<Enemy> GetAllEnemy()
+    public async Task<List<Enemy>> GetAllEnemy()
     {
-        return _repo.GetAll();
+        return await _repo.GetAll();
     }
 
-    public Enemy UpdateEnemy(Enemy p_enemy)
+    public async Task<Enemy> UpdateEnemy(Enemy p_enemy)
     {
-        return _repo.Update(p_enemy);
+        return await _repo.Update(p_enemy);
 
     }
 }

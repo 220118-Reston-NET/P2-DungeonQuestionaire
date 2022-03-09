@@ -7,7 +7,8 @@ namespace DL
     {
 
         private readonly string _connectionStrings;
-        public EnemyRepository(string p_connectionStrings){
+        public EnemyRepository(string p_connectionStrings)
+        {
 
             _connectionStrings = p_connectionStrings;
         }
@@ -26,7 +27,7 @@ namespace DL
                 command.Parameters.AddWithValue("@enemyspriteimgurl", p_resource.EnemySpriteURL);
                 command.Parameters.AddWithValue("@enemystartinghp", p_resource.EnemyStartingHP);
                 command.Parameters.AddWithValue("@enemyattack", p_resource.EnemyAttack);
-                await command.ExecuteNonQueryAsync();
+                command.ExecuteNonQueryAsync();
             }
             return p_resource;
         }
@@ -41,14 +42,15 @@ namespace DL
 
                 SqlCommand command = new SqlCommand(sqlQuery, con);
                 SqlDataReader reader = await command.ExecuteReaderAsync();
-                while(reader.Read())
+                while (reader.Read())
                 {
-                    listofAllEnemy.Add(new Enemy(){
-                            EnemyID = reader.GetInt32(0),
-                            EnemyName = reader.GetString(1),
-                            EnemySpriteURL = reader.GetString(2),
-                            EnemyStartingHP = reader.GetInt32(3),
-                            EnemyAttack= reader.GetInt32(4),
+                    listofAllEnemy.Add(new Enemy()
+                    {
+                        EnemyID = reader.GetInt32(0),
+                        EnemyName = reader.GetString(1),
+                        EnemySpriteURL = reader.GetString(2),
+                        EnemyStartingHP = reader.GetInt32(3),
+                        EnemyAttack = reader.GetInt32(4),
                     });
                 }
 
@@ -58,6 +60,8 @@ namespace DL
 
         public async Task<Enemy> Update(Enemy p_resource)
         {
+
+
             string sqlQuery = @"Update Enemy
                                 Set EnemyName = @EnemyName, EnemySpriteImgUrl = @EnemySpriteImgurl, EnemyStartingHP = @EnemyStartingHP, EnemyAttack = @EnemyAttack
                                 Where EnemyID = @EnemyId";
@@ -70,7 +74,7 @@ namespace DL
                 command.Parameters.AddWithValue("@EnemySpriteImgUrl", p_resource.EnemySpriteURL);
                 command.Parameters.AddWithValue("@EnemyStartingHP", p_resource.EnemyStartingHP);
                 command.Parameters.AddWithValue("@EnemyAttack", p_resource.EnemyAttack);
-                await command.ExecuteNonQueryAsync();
+                command.ExecuteNonQueryAsync();
 
             }
             return p_resource;
@@ -86,7 +90,7 @@ namespace DL
                 await con.OpenAsync();
                 SqlCommand com = new SqlCommand(sqlQuery, con);
                 com.Parameters.AddWithValue("@EnemyID", p_resource.EnemyID);
-                await com.ExecuteNonQueryAsync();
+                com.ExecuteNonQueryAsync();
             }
             return p_resource;
         }

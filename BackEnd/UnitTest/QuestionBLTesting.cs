@@ -1,15 +1,17 @@
 using Moq;
 using Xunit;
-using ModelApi;
+using Models;
 using DL;
 using BL;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 namespace P2_DungeonQuestionnaire
 {
-    public class QuestionBLTesting{
+    public class QuestionBLTesting
+    {
 
         [Fact]
-        public void Should_Add_Question()
+        public async Task Should_Add_Question()
         {
             //Assert
             Question _expectedQuestion = new Question()
@@ -22,12 +24,12 @@ namespace P2_DungeonQuestionnaire
                 Category = "TestCategory",
                 CorrectAnswer = "TestCorrectAnswer",
                 DamageValue = 1
-               
+
             };
 
-            Mock<IRepository<Question> _mockRepo = Mock<IRepository<Question>();
+            Mock<IRepository<Question>> _mockRepo = new Mock<IRepository<Question>>();
 
-            _mockRepo.Setup(repo => repo.Add(_expectedQuestion)).returns(_expectedQuestion);
+            _mockRepo.Setup(repo => repo.Add(_expectedQuestion)).ReturnsAsync(_expectedQuestion);
 
             IQuestionBL _QuestionBL = new QuestionBL(_mockRepo.Object);
 
@@ -35,7 +37,7 @@ namespace P2_DungeonQuestionnaire
             _actualQuestion = _expectedQuestion;
 
             //Act
-            _actualQuestion = _QuestionBL.AddQuestion(_actualQuestion);
+            _actualQuestion = await _QuestionBL.AddQuestion(_actualQuestion);
 
             //Assert
             Assert.Same(_expectedQuestion, _actualQuestion);
@@ -51,7 +53,7 @@ namespace P2_DungeonQuestionnaire
 
 
         [Fact]
-        public void Should_Get_All_Question()
+        public async Task Should_Get_All_Question()
         {
             //Assert
             List<Question> _expectedListOfQuestion = new List<Question>();
@@ -66,14 +68,14 @@ namespace P2_DungeonQuestionnaire
                 Category = "TestCategory",
                 CorrectAnswer = "TestCorrectAnswer",
                 DamageValue = 1
-               
+
             };
 
             _expectedListOfQuestion.Add(_Question);
 
-            Mock<IRepository<Question> _mockRepo = Mock<IRepository<Question>();
+            Mock<IRepository<Question>> _mockRepo = new Mock<IRepository<Question>>();
 
-            _mockRepo.Setup(repo => repo.GetAll()).returns(_expectedListOfQuestion);
+            _mockRepo.Setup(repo => repo.GetAll()).ReturnsAsync(_expectedListOfQuestion);
 
             IQuestionBL _QuestionBL = new QuestionBL(_mockRepo.Object);
 
@@ -81,10 +83,10 @@ namespace P2_DungeonQuestionnaire
             _actualListOfQuestion = _expectedListOfQuestion;
 
             //Act
-            _actualListOfQuestion = _QuestionBL.GetAllQuestion(_actualListOfQuestion);
+            _actualListOfQuestion = await _QuestionBL.GetAllQuestion();
 
             //Assert
-            Assert.Same(_expectedListOfQuestion,  _actualListOfQuestion);
+            Assert.Same(_expectedListOfQuestion, _actualListOfQuestion);
             Assert.Equal(_expectedListOfQuestion[0].QuestionID, _actualListOfQuestion[0].QuestionID);
             Assert.Equal(_expectedListOfQuestion[1].Answer1, _actualListOfQuestion[1].Answer1);
             Assert.Equal(_expectedListOfQuestion[2].Answer2, _actualListOfQuestion[2].Answer2);
@@ -93,6 +95,7 @@ namespace P2_DungeonQuestionnaire
             Assert.Equal(_expectedListOfQuestion[5].Category, _actualListOfQuestion[5].Category);
             Assert.Equal(_expectedListOfQuestion[6].CorrectAnswer, _actualListOfQuestion[6].CorrectAnswer);
             Assert.Equal(_expectedListOfQuestion[7].DamageValue, _actualListOfQuestion[7].DamageValue);
-            
+
         }
     }
+}

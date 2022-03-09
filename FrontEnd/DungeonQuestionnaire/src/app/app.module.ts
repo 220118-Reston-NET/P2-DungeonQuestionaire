@@ -13,6 +13,7 @@ import { FooterComponent } from './footer/footer.component';
 import { UpgradetextComponent } from './upgradetext/upgradetext.component';
 import { NewSpriteChoiceComponent } from './new-sprite-choice/new-sprite-choice.component';
 import { PlayAgainComponent } from './play-again/play-again.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PlayAgainComponent } from './play-again/play-again.component';
     PlayAgainComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

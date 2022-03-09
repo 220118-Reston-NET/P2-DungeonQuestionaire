@@ -12,24 +12,29 @@ namespace BL
         {
             _repo = p_repo;
         }
-        public Player AddPlayer(Player p_Player)
+
+
+        public async Task<Player> AddPlayer(Player p_Player)
         {
-            return _repo.Add(p_Player);
+            return await _repo.Add(p_Player);
         }
 
-        public Player DeletePlayer(Player p_Player)
+
+        public async Task<Player> DeletePlayer(Player p_Player)
         {
-            return _repo.Delete(p_Player);
+            return await _repo.Delete(p_Player);
         }
 
-        public List<Player> GetAllPlayer()
+
+        public async Task<List<Player>> GetAllPlayer()
         {
-            return _repo.GetAll();
+            return await _repo.GetAll();
         }
 
-        public Player UpdatePlayer(Player p_Player)
+
+        public async Task<Player> UpdatePlayer(Player p_Player)
         {
-            return _repo.Update(p_Player);
+            return await _repo.Update(p_Player);
         }
     }
 }

@@ -1,5 +1,6 @@
 using DL;
 using Models;
+using BL;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +13,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IRepository<Player>>(repo => new PlayerRepository(builder.Configuration.GetConnectionString("Reference2DB")));
 builder.Services.AddScoped<IRepository<Enemy>>(repo => new EnemyRepository(builder.Configuration.GetConnectionString("Reference2DB")));
+
 builder.Services.AddScoped<IRepository<Question>>(repo => new QuestionRepository(builder.Configuration.GetConnectionString("Reference2DB")));
+builder.Services.AddScoped<IQuestionBL, QuestionBL>();
 
 var app = builder.Build();
 

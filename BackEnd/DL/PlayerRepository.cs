@@ -16,16 +16,14 @@ namespace DL
             _connectionStrings = p_connectionStrings;
         }
 
-        public Player Add(Player p_resource)
+        public async Task<Player> Add(Player p_resource)
         {
             string sqlQuery = @"insert into Player 
                                 values (@playername, @spriteimgurl, @hp, @enemycurrentlyfighting, @useremail, @userpassword, @uservictories)";
 
-
-
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
-                con.Open();
+                await con.OpenAsync();
                 SqlCommand command = new SqlCommand(sqlQuery, con);
                 command.Parameters.AddWithValue("@playername", p_resource.PlayerName);
                 command.Parameters.AddWithValue("@spriteimgurl", p_resource.SpriteURL);
@@ -34,20 +32,20 @@ namespace DL
                 command.Parameters.AddWithValue("@useremail", p_resource.UserEmail);
                 command.Parameters.AddWithValue("@userpassword", p_resource.UserPassword);
                 command.Parameters.AddWithValue("@uservictories", p_resource.UserVictories);
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync();
             }
             return p_resource;
         }
 
-        public List<Player> GetAll()
+        public async Task<List<Player>> GetAll()
         {
             List<Player> listofAllPlayers = new List<Player>();
             string sqlQuery = @"select * from player";
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
-                con.Open();
+                await con.OpenAsync();
                 SqlCommand command = new SqlCommand(sqlQuery, con);
-                SqlDataReader reader = command.ExecuteReader();
+                SqlDataReader reader = await command.ExecuteReaderAsync();
                 while(reader.Read())
                 {
                     listofAllPlayers.Add(new Player(){
@@ -64,14 +62,14 @@ namespace DL
             return listofAllPlayers;
         }
 
-        public Player Update(Player p_resource)
+        public async Task<Player> Update(Player p_resource)
         {
             string sqlQuery = @"Update Player
                                 Set PlayerName = @PlayerName, SpriteImgurl = @SpriteImgurl, hp = @PlayerHP, EnemyCurrentlyFighting = @EnemyCurrentlyFighting, UserEmail = @UserEmail, UserPassword = @UserPassword, UserVictories = @UserVictories
                                 Where PlayerID = @PlayerID";
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
-                con.Open();
+                await con.OpenAsync();
                 SqlCommand command = new SqlCommand(sqlQuery, con);
                 command.Parameters.AddWithValue("@PlayerID", p_resource.PlayerID);
                 command.Parameters.AddWithValue("@PlayerName", p_resource.PlayerName);
@@ -81,21 +79,21 @@ namespace DL
                 command.Parameters.AddWithValue("@UserEmail", p_resource.UserEmail);
                 command.Parameters.AddWithValue("@UserPassword", p_resource.UserPassword);
                 command.Parameters.AddWithValue("@UserVictories", p_resource.UserVictories);
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync();
             }
             return p_resource;
         }
 
-        public Player Delete(Player p_resource)
+        public async Task<Player> Delete(Player p_resource)
         {
             string sqlQuery = @"Delete from Player
                                 Where PlayerID = @PlayerID";
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
-                con.Open();
+                await con.OpenAsync();
                 SqlCommand com = new SqlCommand(sqlQuery, con);
                 com.Parameters.AddWithValue("@PlayerID", p_resource.PlayerID);
-                com.ExecuteNonQuery();
+                await com.ExecuteNonQueryAsync();
             }
             return p_resource;
         }

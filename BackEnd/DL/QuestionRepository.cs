@@ -12,14 +12,14 @@ namespace DL
             _connectionStrings = p_connectionStrings;
         }
 
-        public Question Add(Question p_resource)
+        public async Task<Question> Add(Question p_resource)
         {
             string sqlQuery = @"insert into question 
                                 values (@answer1, @answer2, @answer3, @answer4, @category, @correctanswer, @damagevalue)";
 
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
-                con.Open();
+                await con.OpenAsync();
                 SqlCommand command = new SqlCommand(sqlQuery, con);
                 command.Parameters.AddWithValue("@answer1", p_resource.Answer1);
                 command.Parameters.AddWithValue("@answer2", p_resource.Answer2);
@@ -28,21 +28,21 @@ namespace DL
                 command.Parameters.AddWithValue("@category", p_resource.Category);
                 command.Parameters.AddWithValue("@correctanswer", p_resource.CorrectAnswer);
                 command.Parameters.AddWithValue("@damagevalue", p_resource.DamageValue);
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync();
             }
             return p_resource;
         }
 
-        public List<Question> GetAll()
+        public async Task<List<Question>> GetAll()
         {
             List<Question> listofAllQuestions = new List<Question>();
             string sqlQuery = @"select * from question";
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
-                con.Open();
+                await con.OpenAsync();
 
                 SqlCommand command = new SqlCommand(sqlQuery, con);
-                SqlDataReader reader = command.ExecuteReader();
+                SqlDataReader reader = await command.ExecuteReaderAsync();
                 while(reader.Read())
                 {
                     listofAllQuestions.Add(new Question(){
@@ -61,14 +61,14 @@ namespace DL
             return listofAllQuestions;
         }
 
-        public Question Update(Question p_resource)
+        public async Task<Question> Update(Question p_resource)
         {
             string sqlQuery = @"Update question 
                                 Set QuestionID = @QuestionID, Answer1 = @Answer1, Answer2 = @Answer2, Answer3 = @Answer3, Answer4 = @Answer4, Category = @Category, CorrectAnswer = @CorrectAnswer, DamageValue = @DamageValue
                                 Where QuestionID = @QuestionID";
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
-                con.Open();
+                await con.OpenAsync();
                 SqlCommand com = new SqlCommand(sqlQuery, con);
                 SqlCommand command = new SqlCommand(sqlQuery, con);
                 command.Parameters.AddWithValue("@QuestionID", p_resource.QuestionID);
@@ -79,23 +79,23 @@ namespace DL
                 command.Parameters.AddWithValue("@Category", p_resource.Category);
                 command.Parameters.AddWithValue("@CorrectAnswer", p_resource.CorrectAnswer);
                 command.Parameters.AddWithValue("@DamageValue", p_resource.DamageValue);
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync();
 
             }
             return p_resource;
         }
 
-        public Question Delete(Question p_resource)
+        public async Task<Question> Delete(Question p_resource)
         {
 
             string sqlQuery = @"Delete from Question
                                 Where QuestionID = @QuestionId";
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
-                con.Open();
+                await con.OpenAsync();
                 SqlCommand com = new SqlCommand(sqlQuery, con);
                 com.Parameters.AddWithValue("@QuestionId", p_resource.QuestionID);
-                com.ExecuteNonQuery();
+                await com.ExecuteNonQueryAsync();
             }
             return p_resource;
         }

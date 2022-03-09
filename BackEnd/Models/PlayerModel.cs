@@ -1,4 +1,4 @@
-namespace ModelApi
+namespace Models
 {
     public class Player
     {
@@ -37,15 +37,15 @@ namespace ModelApi
             }
         }
 
-        private string _spirteURL;
+        private string _spriteURL;
         public string SpriteURL
         {
-            get { return _spirteURL; }
+            get { return _spriteURL; }
             set
             {
                 if (value != "")
                 {
-                    _spirteURL = value;
+                    _spriteURL = value;
                 }
                 else
                 {
@@ -72,15 +72,15 @@ namespace ModelApi
             }
         }
 
-        private int _enemyCurrentFighting;
-        public int EnemyCurrentFighting
+        private int _enemyCurrentlyFighting;
+        public int EnemyCurrentlyFighting
         {
-            get { return _enemyCurrentFighting; }
+            get { return _enemyCurrentlyFighting; }
             set
             {
                 if (value > 0)
                 {
-                    _enemyCurrentFighting = value;
+                    _enemyCurrentlyFighting = value;
                 }
                 else
                 {
@@ -123,12 +123,13 @@ namespace ModelApi
             }
         }
 
+        private int _userVictories;
+        public int UserVictories
+        {
+            get { return _userVictories; }
+            set { _userVictories = value;}
+            }
+        }
 
 
-
-
-
-
-
-    }
 }

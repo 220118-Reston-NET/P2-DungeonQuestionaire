@@ -1,4 +1,4 @@
-using ModelApi;
+using Models;
 using Xunit;
 namespace P2_DungeonQuestionnaire
 {

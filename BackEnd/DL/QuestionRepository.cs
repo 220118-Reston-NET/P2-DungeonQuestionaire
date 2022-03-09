@@ -1,21 +1,34 @@
 using System.Data.SqlClient;
-using ModelApi;
+using Models;
 
 namespace DL
 {
     public class QuestionRepository : IRepository<Question>
     {
 
+        private readonly string _connectionStrings;
+        public QuestionRepository(string p_connectionStrings){
+
+            _connectionStrings = p_connectionStrings;
+        }
+
         public Question Add(Question p_resource)
         {
-            string sqlQuery = @"";
+            string sqlQuery = @"insert into question 
+                                values (@answer1, @answer2, @answer3, @answer4, @category, @correctanswer, @damagevalue)";
 
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
-
-                SqlCommand com = new SqlCommand(sqlQuery, con);
-
+                SqlCommand command = new SqlCommand(sqlQuery, con);
+                command.Parameters.AddWithValue("@answer1", p_resource.Answer1);
+                command.Parameters.AddWithValue("@answer2", p_resource.Answer2);
+                command.Parameters.AddWithValue("@answer3", p_resource.Answer3);
+                command.Parameters.AddWithValue("@answer4", p_resource.Answer4);
+                command.Parameters.AddWithValue("@category", p_resource.Category);
+                command.Parameters.AddWithValue("@correctanswer", p_resource.CorrectAnswer);
+                command.Parameters.AddWithValue("@damagevalue", p_resource.DamageValue);
+                command.ExecuteNonQuery();
             }
             return p_resource;
         }
@@ -24,7 +37,7 @@ namespace DL
         {
             List<Question> listofAllQuestions = new List<Question>();
             string sqlQuery = @"select * from question";
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
 
@@ -50,12 +63,23 @@ namespace DL
 
         public Question Update(Question p_resource)
         {
-            string sqlQuery = @"";
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            string sqlQuery = @"Update question 
+                                Set QuestionID = @QuestionID, Answer1 = @Answer1, Answer2 = @Answer2, Answer3 = @Answer3, Answer4 = @Answer4, Category = @Category, CorrectAnswer = @CorrectAnswer, DamageValue = @DamageValue
+                                Where QuestionID = @QuestionID";
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
-
                 SqlCommand com = new SqlCommand(sqlQuery, con);
+                SqlCommand command = new SqlCommand(sqlQuery, con);
+                command.Parameters.AddWithValue("@QuestionID", p_resource.QuestionID);
+                command.Parameters.AddWithValue("@Answer1", p_resource.Answer1);
+                command.Parameters.AddWithValue("@Answer2", p_resource.Answer2);
+                command.Parameters.AddWithValue("@Answer3", p_resource.Answer3);
+                command.Parameters.AddWithValue("@Answer4", p_resource.Answer4);
+                command.Parameters.AddWithValue("@Category", p_resource.Category);
+                command.Parameters.AddWithValue("@CorrectAnswer", p_resource.CorrectAnswer);
+                command.Parameters.AddWithValue("@DamageValue", p_resource.DamageValue);
+                command.ExecuteNonQuery();
 
             }
             return p_resource;
@@ -63,13 +87,15 @@ namespace DL
 
         public Question Delete(Question p_resource)
         {
-            string sqlQuery = @"";
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+
+            string sqlQuery = @"Delete from Question
+                                Where QuestionID = @QuestionId";
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
-
                 SqlCommand com = new SqlCommand(sqlQuery, con);
-
+                com.Parameters.AddWithValue("@QuestionId", p_resource.QuestionID);
+                com.ExecuteNonQuery();
             }
             return p_resource;
         }

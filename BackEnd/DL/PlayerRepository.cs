@@ -1,24 +1,40 @@
 using System.Data.SqlClient;
-using ModelApi;
+using Models;
 
 namespace DL
 {
     public class PlayerRepository : IRepository<Player>
     {
 
+        /// <summary>
+        /// PlayerRepository will require a connection string to be able to create an object out of it.
+        /// </summary>
+
+        private readonly string _connectionStrings;
+        public PlayerRepository(string p_connectionStrings){
+
+            _connectionStrings = p_connectionStrings;
+        }
+
         public Player Add(Player p_resource)
         {
+            string sqlQuery = @"insert into Player 
+                                values (@playername, @spriteimgurl, @hp, @enemycurrentlyfighting, @useremail, @userpassword, @uservictories)";
 
-            string sqlQuery = @"insert into player (playername, spriteimgurl, hp, enemycurrentlyfighting, useremail,userpassword,uservictories)
-                values ('TestPlayer', 'TestIMGURL', 1, 1, 'test@email.com', 'TestPassword', 1)";
 
 
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
-
-                SqlCommand com = new SqlCommand(sqlQuery, con);
-
+                SqlCommand command = new SqlCommand(sqlQuery, con);
+                command.Parameters.AddWithValue("@playername", p_resource.PlayerName);
+                command.Parameters.AddWithValue("@spriteimgurl", p_resource.SpriteURL);
+                command.Parameters.AddWithValue("@hp", p_resource.PlayerHP);
+                command.Parameters.AddWithValue("@enemycurrentlyfighting", p_resource.EnemyCurrentlyFighting);
+                command.Parameters.AddWithValue("@useremail", p_resource.UserEmail);
+                command.Parameters.AddWithValue("@userpassword", p_resource.UserPassword);
+                command.Parameters.AddWithValue("@uservictories", p_resource.UserVictories);
+                command.ExecuteNonQuery();
             }
             return p_resource;
         }
@@ -27,7 +43,7 @@ namespace DL
         {
             List<Player> listofAllPlayers = new List<Player>();
             string sqlQuery = @"select * from player";
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
                 SqlCommand command = new SqlCommand(sqlQuery, con);
@@ -39,7 +55,7 @@ namespace DL
                             PlayerName = reader.GetString(1),
                             SpriteURL = reader.GetString(2),
                             PlayerHP = reader.GetInt32(3),
-                            EnemyCurrentFighting = reader.GetInt32(4),
+                            EnemyCurrentlyFighting = reader.GetInt32(4),
                             UserEmail = reader.GetString(5),
                             UserPassword = reader.GetString(6)
                     });
@@ -50,26 +66,36 @@ namespace DL
 
         public Player Update(Player p_resource)
         {
-            string sqlQuery = @"";
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            string sqlQuery = @"Update Player
+                                Set PlayerName = @PlayerName, SpriteImgurl = @SpriteImgurl, hp = @PlayerHP, EnemyCurrentlyFighting = @EnemyCurrentlyFighting, UserEmail = @UserEmail, UserPassword = @UserPassword, UserVictories = @UserVictories
+                                Where PlayerID = @PlayerID";
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
-
-                SqlCommand com = new SqlCommand(sqlQuery, con);
-
+                SqlCommand command = new SqlCommand(sqlQuery, con);
+                command.Parameters.AddWithValue("@PlayerID", p_resource.PlayerID);
+                command.Parameters.AddWithValue("@PlayerName", p_resource.PlayerName);
+                command.Parameters.AddWithValue("@SpriteImgurl", p_resource.SpriteURL);
+                command.Parameters.AddWithValue("@PlayerHP", p_resource.PlayerHP);
+                command.Parameters.AddWithValue("@EnemyCurrentlyFighting", p_resource.EnemyCurrentlyFighting);
+                command.Parameters.AddWithValue("@UserEmail", p_resource.UserEmail);
+                command.Parameters.AddWithValue("@UserPassword", p_resource.UserPassword);
+                command.Parameters.AddWithValue("@UserVictories", p_resource.UserVictories);
+                command.ExecuteNonQuery();
             }
             return p_resource;
         }
 
         public Player Delete(Player p_resource)
         {
-            string sqlQuery = @"";
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            string sqlQuery = @"Delete from Player
+                                Where PlayerID = @PlayerID";
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
-
                 SqlCommand com = new SqlCommand(sqlQuery, con);
-
+                com.Parameters.AddWithValue("@PlayerID", p_resource.PlayerID);
+                com.ExecuteNonQuery();
             }
             return p_resource;
         }

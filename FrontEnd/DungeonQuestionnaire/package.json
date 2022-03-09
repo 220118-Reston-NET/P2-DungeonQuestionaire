@@ -19,7 +19,11 @@
     "@angular/platform-browser-dynamic": "~13.2.0",
     "@angular/router": "~13.2.0",
     "@fortawesome/angular-fontawesome": "^0.10.1",
+<<<<<<< HEAD
     "@fortawesome/fontawesome-svg-core": "~1.2.36",
+=======
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+>>>>>>> d3e290c36dbd1b8871663edfc2bcdc0096ff2957
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",

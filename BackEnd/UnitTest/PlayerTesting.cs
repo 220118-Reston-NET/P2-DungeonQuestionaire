@@ -1,5 +1,5 @@
 using Xunit;
-using ModelApi;
+using Models;
 namespace P2_DungeonQuestionnaire
 {
     public class PlayerTesting
@@ -74,11 +74,11 @@ namespace P2_DungeonQuestionnaire
             int validEnemyCurrentFighting = 1;
 
             //Act
-            _player.EnemyCurrentFighting = validEnemyCurrentFighting;
+            _player.EnemyCurrentlyFighting = validEnemyCurrentFighting;
 
             //Assert
-            Assert.NotNull(_player.EnemyCurrentFighting);
-            Assert.Equal(validEnemyCurrentFighting, _player.EnemyCurrentFighting);
+            Assert.NotNull(_player.EnemyCurrentlyFighting);
+            Assert.Equal(validEnemyCurrentFighting, _player.EnemyCurrentlyFighting);
         }
 
         public void SetValidUserName()

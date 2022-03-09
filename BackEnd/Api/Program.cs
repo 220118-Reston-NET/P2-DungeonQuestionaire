@@ -13,10 +13,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IRepository<Player>>(repo => new PlayerRepository(builder.Configuration.GetConnectionString("Reference2DB")));
 builder.Services.AddScoped<IRepository<Enemy>>(repo => new EnemyRepository(builder.Configuration.GetConnectionString("Reference2DB")));
-builder.Services.AddScoped<IRepository<Question>>(repo => new QuestionRepository(builder.Configuration.
-GetConnectionString("Reference2DB")));
+builder.Services.AddScoped<IEnemyBL, EnemyBL>();
+builder.Services.AddScoped<IRepository<Question>>(repo => new QuestionRepository(builder.Configuration.GetConnectionString("Reference")));
+builder.Services.AddScoped<IQuestionBL, QuestionBL>();
 
-// builder.Services.AddScoped<IPlayerBL, PlayerBL>();
 
 var app = builder.Build();
 

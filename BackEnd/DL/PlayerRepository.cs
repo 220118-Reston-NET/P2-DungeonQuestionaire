@@ -13,7 +13,6 @@ namespace DL
         private readonly string _connectionStrings;
         public PlayerRepository(string p_connectionStrings)
         {
-
             _connectionStrings = p_connectionStrings;
         }
 
@@ -33,7 +32,7 @@ namespace DL
                 command.Parameters.AddWithValue("@useremail", p_resource.UserEmail);
                 command.Parameters.AddWithValue("@userpassword", p_resource.UserPassword);
                 command.Parameters.AddWithValue("@uservictories", p_resource.UserVictories);
-                command.ExecuteNonQueryAsync();
+                await command.ExecuteNonQueryAsync();
             }
             return p_resource;
         }
@@ -81,7 +80,7 @@ namespace DL
                 command.Parameters.AddWithValue("@UserEmail", p_resource.UserEmail);
                 command.Parameters.AddWithValue("@UserPassword", p_resource.UserPassword);
                 command.Parameters.AddWithValue("@UserVictories", p_resource.UserVictories);
-                command.ExecuteNonQueryAsync();
+                await command.ExecuteNonQueryAsync();
             }
             return p_resource;
         }

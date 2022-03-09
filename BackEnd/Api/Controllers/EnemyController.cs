@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
+using System.Data.SqlClient;
 using BL;
 using Models;
 
@@ -12,25 +12,25 @@ namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class QuestionController : ControllerBase
+    public class EnemyController : ControllerBase
     {
-        private readonly IQuestionBL _quesbl;
-        public QuestionController(IQuestionBL p_quesbl)
+        private readonly IEnemyBL _quesbl;
+        public EnemyController(IEnemyBL p_quesbl)
         {
             _quesbl = p_quesbl;
         }
 
 
         /// <summary>
-        /// Gets All Questions
+        /// Gets All Enemies
         /// </summary>
         /// <returns></returns>
-        [HttpGet("GetAllQuestions")]
-        public async Task<IActionResult> GetAllQuestions()
+        [HttpGet("GetAllEnemys")]
+        public async Task<IActionResult> GetAllEnemy()
         {
             try
             {
-                return Ok(await _quesbl.GetAllQuestion());
+                return Ok(await _quesbl.GetAllEnemy());
             }
             catch(SqlException)
             {
@@ -41,16 +41,16 @@ namespace Api.Controllers
 
         
         /// <summary>
-        /// Adds Question
+        /// Adds Enemy
         /// </summary>
-        /// <param name="p_question"></param>
+        /// <param name="p_Enemy"></param>
         /// <returns></returns>
-        [HttpPost("AddQuestion")]
-        public async Task<IActionResult> AddQuestions([FromBody]Question p_question)
+        [HttpPost("AddEnemy")]
+        public async Task<IActionResult> AddEnemys([FromBody]Enemy p_enemy)
         {
             try
             {
-                return Ok(await _quesbl.AddQuestion(p_question));
+                return Ok(await _quesbl.AddEnemy(p_enemy));
             }
             catch(SqlException)
             {
@@ -60,16 +60,16 @@ namespace Api.Controllers
 
 
         /// <summary>
-        /// Updates Question
+        /// Updates Enemy
         /// </summary>
-        /// <param name="p_question"></param>
+        /// <param name="p_Enemy"></param>
         /// <returns></returns>
-        [HttpPut("UpdateQuestion")]
-        public async Task<IActionResult> UpdateQuestion([FromBody] Question p_question)
+        [HttpPut("UpdateEnemy")]
+        public async Task<IActionResult> UpdateEnemy([FromBody] Enemy p_enemy)
         {
             try
             {
-                return Ok(await _quesbl.UpdateQuestion(p_question));
+                return Ok(await _quesbl.UpdateEnemy(p_enemy));
             }
             catch(SqlException)
             {
@@ -80,16 +80,16 @@ namespace Api.Controllers
 
 
         /// <summary>
-        /// Deletes Question
+        /// Deletes Enemy
         /// </summary>
-        /// <param name="p_question"></param>
+        /// <param name="p_Enemy"></param>
         /// <returns></returns>
-        [HttpDelete("DeleteQuestion")]
-        public async Task<IActionResult> DeleteQuestion([FromBody] Question p_question)
+        [HttpDelete("DeleteEnemy")]
+        public async Task<IActionResult> DeleteEnemy([FromBody] Enemy p_enemy)
         {
             try
             {
-                return Ok(await _quesbl.DeleteQuestion(p_question));
+                return Ok(await _quesbl.DeleteEnemy(p_enemy));
             }
             catch(SqlException)
             {
@@ -97,5 +97,9 @@ namespace Api.Controllers
             }
 
         }
+
+
+
+
     }
 }

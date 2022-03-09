@@ -90,7 +90,7 @@ namespace DL
                 await con.OpenAsync();
                 SqlCommand com = new SqlCommand(sqlQuery, con);
                 com.Parameters.AddWithValue("@EnemyID", p_resource.EnemyID);
-                com.ExecuteNonQueryAsync();
+                await com.ExecuteNonQueryAsync();
             }
             return p_resource;
         }

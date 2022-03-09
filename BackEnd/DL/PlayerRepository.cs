@@ -1,5 +1,5 @@
 using System.Data.SqlClient;
-using ModelApi;
+using Models;
 
 namespace DL
 {
@@ -21,7 +21,9 @@ namespace DL
             string sqlQuery = @"insert into Player 
                                 values (@playername, @spriteimgurl, @hp, @enemycurrentlyfighting, @useremail, @userpassword, @uservictories)";
 
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+
+
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
                 SqlCommand command = new SqlCommand(sqlQuery, con);
@@ -67,7 +69,7 @@ namespace DL
             string sqlQuery = @"Update Player
                                 Set PlayerName = @PlayerName, SpriteImgurl = @SpriteImgurl, hp = @PlayerHP, EnemyCurrentlyFighting = @EnemyCurrentlyFighting, UserEmail = @UserEmail, UserPassword = @UserPassword, UserVictories = @UserVictories
                                 Where PlayerID = @PlayerID";
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
                 SqlCommand command = new SqlCommand(sqlQuery, con);
@@ -88,7 +90,7 @@ namespace DL
         {
             string sqlQuery = @"Delete from Player
                                 Where PlayerID = @PlayerID";
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
                 SqlCommand com = new SqlCommand(sqlQuery, con);

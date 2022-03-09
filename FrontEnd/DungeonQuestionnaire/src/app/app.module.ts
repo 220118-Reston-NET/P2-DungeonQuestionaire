@@ -10,6 +10,10 @@ import { WinnerPageComponent } from './winner-page/winner-page.component';
 import { GameOverComponent } from './game-over/game-over.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FooterComponent } from './footer/footer.component';
+import { UpgradetextComponent } from './upgradetext/upgradetext.component';
+import { NewSpriteChoiceComponent } from './new-sprite-choice/new-sprite-choice.component';
+import { PlayAgainComponent } from './play-again/play-again.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -21,10 +25,14 @@ import { FooterComponent } from './footer/footer.component';
     WinnerPageComponent,
     GameOverComponent,
     NavBarComponent,
-    FooterComponent
+    FooterComponent,
+    UpgradetextComponent,
+    NewSpriteChoiceComponent,
+    PlayAgainComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

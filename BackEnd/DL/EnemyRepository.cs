@@ -1,5 +1,5 @@
 using System.Data.SqlClient;
-using ModelApi;
+using Models;
 
 namespace DL
 {
@@ -58,10 +58,12 @@ namespace DL
 
         public Enemy Update(Enemy p_resource)
         {
+
+            
             string sqlQuery = @"Update Enemy
                                 Set EnemyName = @EnemyName, EnemySpriteImgUrl = @EnemySpriteImgurl, EnemyStartingHP = @EnemyStartingHP, EnemyAttack = @EnemyAttack
                                 Where EnemyID = @EnemyId";
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
                 SqlCommand command = new SqlCommand(sqlQuery, con);
@@ -78,9 +80,10 @@ namespace DL
 
         public Enemy Delete(Enemy p_resource)
         {
+
             string sqlQuery = @"Delete from Enemy
                                 Where EnemyID = @EnemyID";
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
                 SqlCommand com = new SqlCommand(sqlQuery, con);

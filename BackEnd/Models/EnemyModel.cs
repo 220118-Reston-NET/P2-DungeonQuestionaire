@@ -1,4 +1,4 @@
-namespace ModelApi
+namespace Models
 {
     public class Enemy
     {

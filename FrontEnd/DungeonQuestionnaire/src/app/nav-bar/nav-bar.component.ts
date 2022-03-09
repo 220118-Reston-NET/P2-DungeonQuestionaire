@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,12 +10,17 @@ export class NavBarComponent implements OnInit {
   
   
   isLogin:boolean = true;
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
 
   changeVisile(){
     this.isLogin = !this.isLogin;
+  }
+
+  goToSignIn()
+  {
+    this.router.navigate(["/login"]);
   }
 }

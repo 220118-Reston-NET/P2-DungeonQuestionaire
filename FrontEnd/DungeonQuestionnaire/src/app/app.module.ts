@@ -14,6 +14,7 @@ import { UpgradetextComponent } from './upgradetext/upgradetext.component';
 import { NewSpriteChoiceComponent } from './new-sprite-choice/new-sprite-choice.component';
 import { PlayAgainComponent } from './play-again/play-again.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     BrowserModule,
     FontAwesomeModule,
+    RouterModule.forRoot([
+      {path: "login", component: LoginComponent},
+      {path: "signup", component: SignupComponent}
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

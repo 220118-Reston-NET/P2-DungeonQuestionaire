@@ -1,5 +1,6 @@
 using DL;
 using Models;
+using BL;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +16,7 @@ builder.Services.AddScoped<IRepository<Enemy>>(repo => new EnemyRepository(build
 builder.Services.AddScoped<IRepository<Question>>(repo => new QuestionRepository(builder.Configuration.
 GetConnectionString("Reference2DB")));
 
-// builder.Services.AddScoped<IPlayerBL, PlayerBL>();
+builder.Services.AddScoped<IPlayerBL, PlayerBL>();
 
 var app = builder.Build();
 

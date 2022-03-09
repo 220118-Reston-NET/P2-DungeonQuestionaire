@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using BL;
 
 using DL;
 
@@ -15,17 +16,17 @@ namespace Api.Controllers
     public class PlayerController : ControllerBase
     {
 
-        private IRepository<Player> _repo;
-        public PlayerController(IRepository<Player> p_repo)
+        private IPlayerBL _repo;
+        public PlayerController(IPlayerBL p_repo)
         {
 
             _repo = p_repo;
         }
         // GET: api/Player
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpGet("GetAllPlayer")]
+        public async Task<IActionResult> GetAllPlayer()
         {
-            return new string[] { "value1", "value2" };
+            return Ok(await _repo.GetAllPlayer());
         }
 
         // GET: api/Player/5
@@ -36,9 +37,10 @@ namespace Api.Controllers
         }
 
         // POST: api/Player
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost("AddPlayer")]
+        public async Task<IActionResult> Post([FromBody] Player p_Player)
         {
+            return Ok(await _repo.AddPlayer(p_Player));
         }
 
         // PUT: api/Player/5

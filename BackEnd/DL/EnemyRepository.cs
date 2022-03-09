@@ -6,13 +6,19 @@ namespace DL
     public class EnemyRepository : IRepository<Enemy>
     {
 
+        private readonly string _connectionStrings;
+        public EnemyRepository(string p_connectionStrings){
+
+            _connectionStrings = p_connectionStrings;
+        }
+
         public Enemy Add(Enemy p_resource)
         {
 
             string sqlQuery = @"insert into Enemy 
                                 values (@enemyname, @enemyspriteimgurl, @enemystartinghp, @enemyattack)";
 
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
                 SqlCommand command = new SqlCommand(sqlQuery, con);
@@ -29,7 +35,7 @@ namespace DL
         {
             List<Enemy> listofAllEnemy = new List<Enemy>();
             string sqlQuery = @"select * from enemy";
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
 
@@ -52,10 +58,12 @@ namespace DL
 
         public Enemy Update(Enemy p_resource)
         {
+
+            
             string sqlQuery = @"Update Enemy
                                 Set EnemyName = @EnemyName, EnemySpriteImgUrl = @EnemySpriteImgurl, EnemyStartingHP = @EnemyStartingHP, EnemyAttack = @EnemyAttack
                                 Where EnemyID = @EnemyId";
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
                 SqlCommand command = new SqlCommand(sqlQuery, con);
@@ -72,9 +80,10 @@ namespace DL
 
         public Enemy Delete(Enemy p_resource)
         {
+
             string sqlQuery = @"Delete from Enemy
                                 Where EnemyID = @EnemyID";
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
                 SqlCommand com = new SqlCommand(sqlQuery, con);

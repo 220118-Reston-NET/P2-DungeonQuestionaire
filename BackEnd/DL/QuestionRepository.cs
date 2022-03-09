@@ -6,12 +6,18 @@ namespace DL
     public class QuestionRepository : IRepository<Question>
     {
 
+        private readonly string _connectionStrings;
+        public QuestionRepository(string p_connectionStrings){
+
+            _connectionStrings = p_connectionStrings;
+        }
+
         public Question Add(Question p_resource)
         {
             string sqlQuery = @"insert into question 
                                 values (@answer1, @answer2, @answer3, @answer4, @category, @correctanswer, @damagevalue)";
 
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
                 SqlCommand command = new SqlCommand(sqlQuery, con);
@@ -31,7 +37,7 @@ namespace DL
         {
             List<Question> listofAllQuestions = new List<Question>();
             string sqlQuery = @"select * from question";
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
 
@@ -60,7 +66,7 @@ namespace DL
             string sqlQuery = @"Update question 
                                 Set QuestionID = @QuestionID, Answer1 = @Answer1, Answer2 = @Answer2, Answer3 = @Answer3, Answer4 = @Answer4, Category = @Category, CorrectAnswer = @CorrectAnswer, DamageValue = @DamageValue
                                 Where QuestionID = @QuestionID";
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
                 SqlCommand com = new SqlCommand(sqlQuery, con);
@@ -81,9 +87,10 @@ namespace DL
 
         public Question Delete(Question p_resource)
         {
+
             string sqlQuery = @"Delete from Question
                                 Where QuestionID = @QuestionId";
-            using (SqlConnection con = new SqlConnection("STRING HERE"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
                 SqlCommand com = new SqlCommand(sqlQuery, con);

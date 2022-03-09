@@ -1,4 +1,4 @@
-using ModelApi;
+using Models;
 namespace BL
 {
     public interface IPlayerBL

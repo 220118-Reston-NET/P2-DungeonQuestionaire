@@ -26,7 +26,7 @@ namespace BL
         }
 
 
-        public async Task<List<Player>> GetAllPlayer()
+        public async Task<List<Player>> GetAllPlayers()
         {
             return await _repo.GetAll();
         }

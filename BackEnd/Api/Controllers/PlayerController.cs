@@ -23,10 +23,10 @@ namespace Api.Controllers
             _repo = p_repo;
         }
         // GET: api/Player
-        [HttpGet("GetAllPlayer")]
-        public async Task<IActionResult> GetAllPlayer()
+        [HttpGet("GetAllPlayers")]
+        public async Task<IActionResult> GetAllPlayers()
         {
-            return Ok(await _repo.GetAllPlayer());
+            return Ok(await _repo.GetAllPlayers());
         }
 
         // GET: api/Player/5

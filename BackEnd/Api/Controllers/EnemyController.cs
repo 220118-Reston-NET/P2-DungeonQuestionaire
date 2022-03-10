@@ -25,12 +25,12 @@ namespace Api.Controllers
         /// Gets All Enemies
         /// </summary>
         /// <returns></returns>
-        [HttpGet("GetAllEnemys")]
-        public async Task<IActionResult> GetAllEnemy()
+        [HttpGet("GetAllEnemies")]
+        public async Task<IActionResult> GetAllEnemies()
         {
             try
             {
-                return Ok(await _quesbl.GetAllEnemy());
+                return Ok(await _quesbl.GetAllEnemies());
             }
             catch(SqlException)
             {
@@ -46,7 +46,7 @@ namespace Api.Controllers
         /// <param name="p_Enemy"></param>
         /// <returns></returns>
         [HttpPost("AddEnemy")]
-        public async Task<IActionResult> AddEnemys([FromBody]Enemy p_enemy)
+        public async Task<IActionResult> AddEnemy([FromBody]Enemy p_enemy)
         {
             try
             {

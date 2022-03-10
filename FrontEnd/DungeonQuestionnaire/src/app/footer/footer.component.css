@@ -1,0 +1,16 @@
+.footer
+{
+    background-color: lightslategray;
+    position: fixed;
+    bottom: 0rem;
+    right: auto;
+    width: 120rem;
+}
+.colum1
+{
+    position: relative ;
+    bottom: 0rem;
+    left: 6rem;
+    padding: auto;
+    margin: 0rem;
+}

@@ -85,7 +85,7 @@ namespace Api.Controllers
         /// <param name="p_question"></param>
         /// <returns></returns>
         [HttpDelete("DeleteQuestion")]
-        public async Task<IActionResult> DeleteQuestion([FromBody] Question p_question)
+        public async Task<IActionResult> DeleteQuestion(Question p_question)
         {
             try
             {

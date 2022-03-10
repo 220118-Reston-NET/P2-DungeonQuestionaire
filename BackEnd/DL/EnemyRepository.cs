@@ -89,9 +89,9 @@ namespace DL
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 await con.OpenAsync();
-                SqlCommand com = new SqlCommand(sqlQuery, con);
-                com.Parameters.AddWithValue("@EnemyID", p_resource.EnemyID);
-                await com.ExecuteNonQueryAsync();
+                SqlCommand command = new SqlCommand(sqlQuery, con);
+                command.Parameters.AddWithValue("@EnemyID", p_resource.EnemyID);
+                await command.ExecuteNonQueryAsync();
             }
             return p_resource;
         }

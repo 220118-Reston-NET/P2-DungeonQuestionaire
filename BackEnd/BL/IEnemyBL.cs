@@ -8,7 +8,7 @@ namespace BL
         Task<Enemy> AddEnemy(Enemy p_enemy);
 
 
-        Task<List<Enemy>> GetAllEnemy();
+        Task<List<Enemy>> GetAllEnemies();
 
 
         Task<Enemy> UpdateEnemy(Enemy p_enemy);

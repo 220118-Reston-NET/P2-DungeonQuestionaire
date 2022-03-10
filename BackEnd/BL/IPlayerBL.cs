@@ -6,7 +6,7 @@ namespace BL
 
         Task<Player> AddPlayer(Player p_Player);
 
-        Task<List<Player>> GetAllPlayer();
+        Task<List<Player>> GetAllPlayers();
 
         Task<Player> UpdatePlayer(Player p_Player);
 

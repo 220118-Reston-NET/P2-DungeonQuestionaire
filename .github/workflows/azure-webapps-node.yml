@@ -16,17 +16,16 @@
 # For more information on GitHub Actions for Azure: https://github.com/Azure/Actions
 # For more information on the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # For more samples to get started with GitHub Action workflows to deploy to Azure: https://github.com/Azure/actions-workflow-samples
-
 name: Angular CI/CD Pipeline
+
 on:
   push:
-       branches: [ main ]
-  pull_request:
-       branches: [ main ]
-
+    branches: [main]
+  pull_request: 
+    branches: [main]
 
 env:
-  AZURE_WEBAPP_NAME: DungeonWebTwo
+  AZURE_WEBAPP_NAME: DungeonWebTwo   # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: './FrontEnd/DungeonQuestionnaire/dist/dungeon-questionnaire'      # set this to the path to your web app project, defaults to the repository root
   NODE_VERSION: '12.x'                # set this to the node version to use
 
@@ -40,13 +39,12 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ env.NODE_VERSION }}
-      
 
-    - name: npm install, build
+    - name: npm install and build
       run: |
         npm install
         npm run build --prod
-         working-directory: ./FrontEnd/DungeonQuestionnaire
+      working-directory: ./FrontEnd/DungeonQuestionnaire
 
     - name: 'Deploy to Azure WebApp'
       id: deploy-to-webapp 

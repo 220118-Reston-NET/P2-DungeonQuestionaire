@@ -14,10 +14,10 @@ namespace Api.Controllers
     [ApiController]
     public class EnemyController : ControllerBase
     {
-        private readonly IEnemyBL _quesbl;
-        public EnemyController(IEnemyBL p_quesbl)
+        private readonly IEnemyBL _enemybl;
+        public EnemyController(IEnemyBL p_enemybl)
         {
-            _quesbl = p_quesbl;
+            _enemybl = p_enemybl;
         }
 
 
@@ -30,7 +30,7 @@ namespace Api.Controllers
         {
             try
             {
-                return Ok(await _quesbl.GetAllEnemies());
+                return Ok(await _enemybl.GetAllEnemies());
             }
             catch(SqlException)
             {
@@ -50,7 +50,7 @@ namespace Api.Controllers
         {
             try
             {
-                return Ok(await _quesbl.AddEnemy(p_enemy));
+                return Ok(await _enemybl.AddEnemy(p_enemy));
             }
             catch(SqlException)
             {
@@ -69,7 +69,7 @@ namespace Api.Controllers
         {
             try
             {
-                return Ok(await _quesbl.UpdateEnemy(p_enemy));
+                return Ok(await _enemybl.UpdateEnemy(p_enemy));
             }
             catch(SqlException)
             {
@@ -85,11 +85,11 @@ namespace Api.Controllers
         /// <param name="p_Enemy"></param>
         /// <returns></returns>
         [HttpDelete("DeleteEnemy")]
-        public async Task<IActionResult> DeleteEnemy([FromBody] Enemy p_enemy)
+        public async Task<IActionResult> DeleteEnemy(Enemy p_enemy)
         {
             try
             {
-                return Ok(await _quesbl.DeleteEnemy(p_enemy));
+                return Ok(await _enemybl.DeleteEnemy(p_enemy));
             }
             catch(SqlException)
             {

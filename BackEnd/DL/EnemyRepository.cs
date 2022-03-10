@@ -17,17 +17,18 @@ namespace DL
         {
 
             string sqlQuery = @"insert into Enemy 
-                                values (@enemyname, @enemyspriteimgurl, @enemystartinghp, @enemyattack)";
+                                values (@enemyID, @enemyname, @enemyspriteimgurl, @enemystartinghp, @enemyattack)";
 
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 await con.OpenAsync();
                 SqlCommand command = new SqlCommand(sqlQuery, con);
+                command.Parameters.AddWithValue("@enemyID", p_resource.EnemyID);
                 command.Parameters.AddWithValue("@enemyname", p_resource.EnemyName);
                 command.Parameters.AddWithValue("@enemyspriteimgurl", p_resource.EnemySpriteURL);
                 command.Parameters.AddWithValue("@enemystartinghp", p_resource.EnemyStartingHP);
                 command.Parameters.AddWithValue("@enemyattack", p_resource.EnemyAttack);
-                command.ExecuteNonQueryAsync();
+                await command.ExecuteNonQueryAsync();
             }
             return p_resource;
         }
@@ -74,7 +75,7 @@ namespace DL
                 command.Parameters.AddWithValue("@EnemySpriteImgUrl", p_resource.EnemySpriteURL);
                 command.Parameters.AddWithValue("@EnemyStartingHP", p_resource.EnemyStartingHP);
                 command.Parameters.AddWithValue("@EnemyAttack", p_resource.EnemyAttack);
-                command.ExecuteNonQueryAsync();
+                await command.ExecuteNonQueryAsync();
 
             }
             return p_resource;

@@ -30,7 +30,7 @@ namespace Api.Controllers
         {
             try
             {
-                return Ok(await _quesbl.GetAllQuestion());
+                return Ok(await _quesbl.GetAllQuestions());
             }
             catch(SqlException)
             {
@@ -46,7 +46,7 @@ namespace Api.Controllers
         /// <param name="p_question"></param>
         /// <returns></returns>
         [HttpPost("AddQuestion")]
-        public async Task<IActionResult> AddQuestions([FromBody]Question p_question)
+        public async Task<IActionResult> AddQuestion([FromBody]Question p_question)
         {
             try
             {

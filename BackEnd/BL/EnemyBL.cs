@@ -28,7 +28,7 @@ public class EnemyBL : IEnemyBL
         return await _repo.Delete(p_enemy);
     }
 
-    public async Task<List<Enemy>> GetAllEnemy()
+    public async Task<List<Enemy>> GetAllEnemies()
     {
         return await _repo.GetAll();
     }

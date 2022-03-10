@@ -83,7 +83,7 @@ namespace P2_DungeonQuestionnaire
             _actualListOfQuestion = _expectedListOfQuestion;
 
             //Act
-            _actualListOfQuestion = await _QuestionBL.GetAllQuestion();
+            _actualListOfQuestion = await _QuestionBL.GetAllQuestions();
 
             //Assert
             Assert.Same(_expectedListOfQuestion, _actualListOfQuestion);

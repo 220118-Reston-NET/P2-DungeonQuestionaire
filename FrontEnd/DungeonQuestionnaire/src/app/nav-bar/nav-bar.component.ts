@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent implements OnInit {
   
-  
+  menuLabel = "";
   isLogin:boolean = true;
   constructor(private router:Router) { }
 
@@ -22,9 +22,16 @@ export class NavBarComponent implements OnInit {
   goToSignIn()
   {
     this.router.navigate(["/login"]);
+    this.menuLabel = "Login(Main Menu)";
   }
   goToSignUp()
   {
     this.router.navigate(["/signup"]);
+    this.menuLabel = "Sign up(Main Menu)";
+  }
+
+  goToHome()
+  {
+    this.menuLabel = "Main Menu"
   }
 }

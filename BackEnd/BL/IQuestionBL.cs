@@ -6,7 +6,7 @@ namespace BL
 
         Task<Question> AddQuestion(Question p_Question);
 
-        Task<List<Question>> GetAllQuestion();
+        Task<List<Question>> GetAllQuestions();
 
         Task<Question> UpdateQuestion(Question p_Question);
 

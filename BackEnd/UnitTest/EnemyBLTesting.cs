@@ -75,7 +75,7 @@ namespace P2_DungeonQuestionnaire
             _actualListOfEnemy = _expectedListOfEnemy;
 
             //Act
-            _actualListOfEnemy = await _EnemyBL.GetAllEnemy();
+            _actualListOfEnemy = await _EnemyBL.GetAllEnemies();
 
             //Assert
             Assert.Same(_expectedListOfEnemy, _actualListOfEnemy);

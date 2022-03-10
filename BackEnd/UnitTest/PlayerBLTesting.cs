@@ -81,7 +81,7 @@ namespace P2_DungeonQuestionnaire
             _actualListOfPlayer = _expectedListOfPlayer;
 
             //Act
-            _actualListOfPlayer = await _playBL.GetAllPlayer();
+            _actualListOfPlayer = await _playBL.GetAllPlayers();
 
             //Assert
             Assert.Same(_expectedListOfPlayer, _actualListOfPlayer);

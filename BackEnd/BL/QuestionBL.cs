@@ -22,7 +22,7 @@ namespace BL
             return await _repo.Delete(p_Question);
         }
 
-        public async Task<List<Question>> GetAllQuestion()
+        public async Task<List<Question>> GetAllQuestions()
         {
             return await _repo.GetAll();
         }

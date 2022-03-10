@@ -23,4 +23,8 @@ export class NavBarComponent implements OnInit {
   {
     this.router.navigate(["/login"]);
   }
+  goToSignUp()
+  {
+    this.router.navigate(["/signup"]);
+  }
 }

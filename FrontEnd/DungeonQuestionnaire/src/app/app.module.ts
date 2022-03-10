@@ -36,7 +36,8 @@ import { RouterModule } from '@angular/router';
     FontAwesomeModule,
     RouterModule.forRoot([
       {path: "login", component: LoginComponent},
-      {path: "signup", component: SignupComponent}
+      {path: "signup", component: SignupComponent},
+      {path: "logout", component: SaveLogoutComponent}
     ])
   ],
   providers: [],

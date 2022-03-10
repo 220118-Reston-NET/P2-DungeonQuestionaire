@@ -17,13 +17,13 @@
 # For more information on the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # For more samples to get started with GitHub Action workflows to deploy to Azure: https://github.com/Azure/actions-workflow-samples
 
-name: Angular CD Pipeline
+name: Angular CI/CD Pipeline
 on:
   push:
        branches: [ main ]
   pull_request:
        branches: [ main ]
-  workflow_dispatch:
+
 
 env:
   AZURE_WEBAPP_NAME: DungeonWebTwo
@@ -40,7 +40,7 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ env.NODE_VERSION }}
-        cache: 'npm'
+      
 
     - name: npm install, build
       run: |

@@ -4,13 +4,13 @@ namespace BL
     public interface IQuestionBL
     {
 
-        Question AddQuestion(Question p_Question);
+        Task<Question> AddQuestion(Question p_Question);
 
-        List<Question> GetAllQuestion();
+        Task<List<Question>> GetAllQuestion();
 
-        Question UpdateQuestion(Question p_Question);
+        Task<Question> UpdateQuestion(Question p_Question);
 
-        Question DeleteQuestion(Question p_Question);
+        Task<Question> DeleteQuestion(Question p_Question);
 
 
 

@@ -12,24 +12,24 @@ namespace BL
 
             _repo = p_repo;
         }
-        public Question AddQuestion(Question p_Question)
+        public async Task<Question> AddQuestion(Question p_Question)
         {
-            return _repo.Add(p_Question);
+            return await _repo.Add(p_Question);
         }
 
-        public Question DeleteQuestion(Question p_Question)
+        public async Task<Question> DeleteQuestion(Question p_Question)
         {
-            return _repo.Delete(p_Question);
+            return await _repo.Delete(p_Question);
         }
 
-        public List<Question> GetAllQuestion()
+        public async Task<List<Question>> GetAllQuestion()
         {
-            return _repo.GetAll();
+            return await _repo.GetAll();
         }
 
-        public Question UpdateQuestion(Question p_Question)
+        public async Task<Question> UpdateQuestion(Question p_Question)
         {
-            return _repo.Update(p_Question);
+            return await _repo.Update(p_Question);
         }
     }
 }

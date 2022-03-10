@@ -17,6 +17,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { QuestionsAnswersComponent } from './questions-answers/questions-answers.component';
 import { PlayerBoxComponent } from './player-box/player-box.component';
 import { EnemyBoxComponent } from './enemy-box/enemy-box.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,11 @@ import { EnemyBoxComponent } from './enemy-box/enemy-box.component';
   imports: [
     BrowserModule,
     FontAwesomeModule,
+    RouterModule.forRoot([
+      {path: "login", component: LoginComponent},
+      {path: "signup", component: SignupComponent},
+      {path: "logout", component: SaveLogoutComponent}
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

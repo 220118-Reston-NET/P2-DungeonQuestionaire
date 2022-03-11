@@ -4,7 +4,7 @@
     position: fixed;
     bottom: 0rem;
     right: auto;
-    width: 120rem;
+    width: 100vw;
 }
 .colum1
 {
@@ -14,3 +14,7 @@
     padding: auto;
     margin: 0rem;
 }
+.spacer{
+    margin-bottom: 2rem;
+    visibility: hidden; 
+  }

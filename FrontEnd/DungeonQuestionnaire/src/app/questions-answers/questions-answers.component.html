@@ -1,33 +1,33 @@
 <div class="p-2 d-flex flex-column align-items-center">
     <!-- In the future will be linked to other pages- yes will go to sprite choice page -- no will display the play again component -->
     <!-- Might be converted into buttons in the future, rather than links -->
-    <h5 class="p-2">(Question) loremipsumloremi psumloremipsumloremips umloremipsum loremipsum</h5>
+    <h5 class="p-2">{{question}}</h5>
     <div class="form-check m-1">
         <input class="form-check-input"  type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
         <label class="form-check-label" for="exampleRadios1">
-          (answer1) loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum)
+          {{answer1}} 
         </label>
       </div>
       <div class="form-check m-1">
         <input class="form-check-input "   type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
         <label class="form-check-label" for="exampleRadios2">
-         (answer2) loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum)
+          {{answer2}} 
         </label>
       </div>
       <div class="form-check m-1">
         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
         <label class="form-check-label" for="exampleRadios2">
-         (answer3) loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum)
+          {{answer3}} 
         </label>
       </div>
       <div class="form-check m-1">
         <input class="form-check-input"  type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
         <label class="form-check-label" for="exampleRadios2">
-         (answer4) loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum)
+          {{answer4}} 
         </label>
       </div>
       <button class="m-2 btn btn-primary">Submit</button>
-      <p class="m-2 choice text-center column"> (QuestionAttackDamage)</p>
+      <p class="m-2 choice text-center column"> Answering this question correctly will deal {{questionAttack}} damage.</p>
     </div>
 
 

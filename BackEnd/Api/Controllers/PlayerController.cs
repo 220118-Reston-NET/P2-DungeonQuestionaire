@@ -40,19 +40,21 @@ namespace Api.Controllers
         [HttpPost("AddPlayer")]
         public async Task<IActionResult> Post([FromBody] Player p_Player)
         {
-            return Ok(await _repo.AddPlayer(p_Player));
+            return Created("Player Created Successfully", await _repo.AddPlayer(p_Player));
         }
 
         // PUT: api/Player/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("UpdatePlayer")]
+        public async Task<IActionResult> Put([FromBody] Player p_Player)
         {
+            return Ok(await _repo.UpdatePlayer(p_Player));
         }
 
         // DELETE: api/Player/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("DeletePlayer")]
+        public async Task<IActionResult> Delete(Player p_Player)
         {
+            return Ok(await _repo.DeletePlayer(p_Player));
         }
     }
 }

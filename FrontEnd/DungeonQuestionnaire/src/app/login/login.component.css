@@ -1,0 +1,41 @@
+.loginform
+{
+    width: 25%;
+    padding-top: 2rem;
+    padding-right: 2rem;
+    margin: 15px 0;
+    border: 5px outset black;
+    margin-left: 1420px;
+    text-align: left;
+    box-sizing: border-box;
+}
+#emailLabel  
+{
+    padding: 0px;
+    margin-left: 22px;
+    margin-right: 150px;
+}
+
+#staticEmail
+{
+    margin-left: 20px;
+}
+/* This field is for the password section.  */
+#passwordLabel
+{
+    padding-top: 8px;
+    margin-top: 0px;
+    margin-left: 35px;
+    padding-bottom: 0px;
+}
+#inputPassword
+{
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-left: 20px;
+    padding-bottom: 2px;
+}
+.btn btn-primary mb-3
+{
+    line-height: 2rem;
+}

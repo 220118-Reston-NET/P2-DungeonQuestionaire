@@ -16,7 +16,7 @@ namespace DL
         public async Task<Question> Add(Question p_resource)
         {
             string sqlQuery = @"insert into question 
-                                values (@answer1, @answer2, @answer3, @answer4, @category, @correctanswer, @damagevalue)";
+                                values (@answer1, @answer2, @answer3, @answer4, @category, @correctanswer, @damagevalue, @questions)";
 
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
@@ -29,6 +29,7 @@ namespace DL
                 command.Parameters.AddWithValue("@category", p_resource.Category);
                 command.Parameters.AddWithValue("@correctanswer", p_resource.CorrectAnswer);
                 command.Parameters.AddWithValue("@damagevalue", p_resource.DamageValue);
+                command.Parameters.AddWithValue("@questions", p_resource.Questions);
                 await command.ExecuteNonQueryAsync();
             }
             return p_resource;
@@ -55,7 +56,8 @@ namespace DL
                         Answer4 = reader.GetString(4),
                         Category = reader.GetString(5),
                         CorrectAnswer = reader.GetString(6),
-                        DamageValue = reader.GetInt32(7)
+                        DamageValue = reader.GetInt32(7),
+                        Questions = reader.GetString(8)
                     });
                 }
 
@@ -66,7 +68,7 @@ namespace DL
         public async Task<Question> Update(Question p_resource)
         {
             string sqlQuery = @"Update question 
-                                Set QuestionID = @QuestionID, Answer1 = @Answer1, Answer2 = @Answer2, Answer3 = @Answer3, Answer4 = @Answer4, Category = @Category, CorrectAnswer = @CorrectAnswer, DamageValue = @DamageValue
+                                Set QuestionID = @QuestionID, Answer1 = @Answer1, Answer2 = @Answer2, Answer3 = @Answer3, Answer4 = @Answer4, Category = @Category, CorrectAnswer = @CorrectAnswer, DamageValue = @DamageValue, Questions = @Questions
                                 Where QuestionID = @QuestionID";
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
@@ -81,6 +83,7 @@ namespace DL
                 command.Parameters.AddWithValue("@Category", p_resource.Category);
                 command.Parameters.AddWithValue("@CorrectAnswer", p_resource.CorrectAnswer);
                 command.Parameters.AddWithValue("@DamageValue", p_resource.DamageValue);
+                command.Parameters.AddWithValue("@Questions", p_resource.Questions);
                 await command.ExecuteNonQueryAsync();
 
             }

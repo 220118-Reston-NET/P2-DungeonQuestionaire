@@ -20,6 +20,23 @@ namespace Models
             }
         }
 
+        private string _questions;
+        public string Questions
+        {
+            get { return _questions; }
+            set 
+            {   
+                if(value != "")
+                {
+                    _questions = value;
+                }else{
+                    Console.WriteLine("Questions cannot be empty");
+                }
+                 
+            }
+        }
+        
+
 
         private string _answer1;
         public string Answer1

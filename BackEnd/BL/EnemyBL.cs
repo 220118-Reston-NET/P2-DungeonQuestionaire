@@ -9,7 +9,7 @@ namespace BL;
 public class EnemyBL : IEnemyBL
 {
 
-    private IRepository<Enemy> _repo;
+    private readonly IRepository<Enemy> _repo;
     public EnemyBL(IRepository<Enemy> p_repo)
     {
 

@@ -68,12 +68,11 @@ namespace DL
         public async Task<Question> Update(Question p_resource)
         {
             string sqlQuery = @"Update question 
-                                Set QuestionID = @QuestionID, Answer1 = @Answer1, Answer2 = @Answer2, Answer3 = @Answer3, Answer4 = @Answer4, Category = @Category, CorrectAnswer = @CorrectAnswer, DamageValue = @DamageValue, Questions = @Questions
+                                Set Answer1 = @Answer1, Answer2 = @Answer2, Answer3 = @Answer3, Answer4 = @Answer4, Category = @Category, CorrectAnswer = @CorrectAnswer, DamageValue = @DamageValue, Questions = @Questions
                                 Where QuestionID = @QuestionID";
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 await con.OpenAsync();
-                SqlCommand com = new SqlCommand(sqlQuery, con);
                 SqlCommand command = new SqlCommand(sqlQuery, con);
                 command.Parameters.AddWithValue("@QuestionID", p_resource.QuestionID);
                 command.Parameters.AddWithValue("@Answer1", p_resource.Answer1);

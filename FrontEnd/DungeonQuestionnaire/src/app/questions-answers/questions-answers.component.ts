@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FrontEndService } from '../Services/front-end.service';
+import { Question } from '../models/question.model';
 
 @Component({
   selector: 'app-questions-answers',
@@ -13,10 +15,19 @@ export class QuestionsAnswersComponent implements OnInit {
     answer4:string = "loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum";
     questionAttack:number = 0;
     
-  constructor() { }
+    listOfQuestion:Question[];
+
+  constructor(private frontEndServ: FrontEndService) { 
+    this.listOfQuestion = [];
+  }
 
   ngOnInit(): void {
-  }
+    
+    this.frontEndServ.getAllQuestions().subscribe(result => 
+      {
+      this.listOfQuestion = result;
+    }
+    )}
 
   changeQuestionsAndAnswers(): void {
 

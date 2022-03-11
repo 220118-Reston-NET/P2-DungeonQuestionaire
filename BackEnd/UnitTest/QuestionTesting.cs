@@ -20,7 +20,7 @@ namespace P2_DungeonQuestionnaire
             Assert.NotNull(_quest.QuestionID);
 
             //Assert
-            Assert.NotNull(_quest.QuestionID);
+
             Assert.Equal(validQuestionID, _quest.QuestionID);
 
         }
@@ -101,7 +101,6 @@ namespace P2_DungeonQuestionnaire
             _quest.DamageValue = validDamageValue;
 
             //Assert
-            Assert.NotNull(_quest.DamageValue);
             Assert.Equal(validDamageValue, _quest.DamageValue);
         }
     }

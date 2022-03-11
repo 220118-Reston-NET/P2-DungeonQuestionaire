@@ -6,7 +6,7 @@ namespace BL
     public class QuestionBL : IQuestionBL
     {
 
-        private IRepository<Question> _repo;
+        private readonly IRepository<Question> _repo;
         public QuestionBL(IRepository<Question> p_repo)
         {
 

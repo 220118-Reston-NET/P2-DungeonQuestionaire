@@ -17,7 +17,7 @@ namespace P2_DungeonQuestionnaire
             _enemy.EnemyID = validEnemyID;
 
             //Assert
-            Assert.NotNull(_enemy.EnemyID);
+
             Assert.Equal(validEnemyID, _enemy.EnemyID);
         }
 
@@ -65,7 +65,7 @@ namespace P2_DungeonQuestionnaire
             _enemy.EnemyStartingHP = validEnemyStartingHP;
 
             //Assert
-            Assert.NotNull(_enemy.EnemyStartingHP);
+
             Assert.Equal(validEnemyStartingHP, _enemy.EnemyStartingHP);
         }
 
@@ -81,7 +81,7 @@ namespace P2_DungeonQuestionnaire
             _enemy.EnemyAttack = validEnemyAttack;
 
             //Assert
-            Assert.NotNull(_enemy.EnemyAttack);
+
             Assert.Equal(validEnemyAttack, _enemy.EnemyAttack);
         }
 

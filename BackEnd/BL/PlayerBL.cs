@@ -6,7 +6,7 @@ namespace BL
     public class PlayerBL : IPlayerBL
     {
 
-        private IRepository<Player> _repo;
+        private readonly IRepository<Player> _repo;
 
         public PlayerBL(IRepository<Player> p_repo)
         {

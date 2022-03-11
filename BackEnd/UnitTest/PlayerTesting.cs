@@ -17,10 +17,11 @@ namespace P2_DungeonQuestionnaire
             _player.PlayerID = validPlayerID;
 
             //Assert
-            Assert.NotNull(_player.PlayerID);
+
             Assert.Equal(validPlayerID, _player.PlayerID);
         }
 
+        [Fact]
         public void SetValidPlayerName()
         {
 
@@ -36,6 +37,7 @@ namespace P2_DungeonQuestionnaire
             Assert.Equal(validPlayerName, _player.PlayerName);
         }
 
+        [Fact]
         public void SetValidSpriteURL()
         {
 
@@ -51,6 +53,7 @@ namespace P2_DungeonQuestionnaire
             Assert.Equal(validSpriteURL, _player.SpriteURL);
         }
 
+        [Fact]
         public void SetValidPlayerHP()
         {
 
@@ -62,10 +65,11 @@ namespace P2_DungeonQuestionnaire
             _player.PlayerHP = validPlayerHP;
 
             //Assert
-            Assert.NotNull(_player.PlayerHP);
+
             Assert.Equal(validPlayerHP, _player.PlayerHP);
         }
 
+        [Fact]
         public void SetValidEnemyCurrentFighting()
         {
 
@@ -77,10 +81,12 @@ namespace P2_DungeonQuestionnaire
             _player.EnemyCurrentlyFighting = validEnemyCurrentFighting;
 
             //Assert
-            Assert.NotNull(_player.EnemyCurrentlyFighting);
+
             Assert.Equal(validEnemyCurrentFighting, _player.EnemyCurrentlyFighting);
         }
 
+
+        [Fact]
         public void SetValidUserName()
         {
 
@@ -97,6 +103,8 @@ namespace P2_DungeonQuestionnaire
 
         }
 
+
+        [Fact]
         public void SetValidPassword()
         {
 

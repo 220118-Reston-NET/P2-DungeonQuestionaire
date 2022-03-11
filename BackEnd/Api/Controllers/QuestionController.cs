@@ -67,14 +67,14 @@ namespace Api.Controllers
         [HttpPut("UpdateQuestion")]
         public async Task<IActionResult> UpdateQuestion([FromBody] Question p_question)
         {
-            try
-            {
+            // try
+            // {
                 return Ok(await _quesbl.UpdateQuestion(p_question));
-            }
-            catch(SqlException)
-            {
-                return NotFound();
-            }
+            // }
+            // catch(SqlException)
+            // {
+            //     return NotFound();
+            // }
 
         }
 

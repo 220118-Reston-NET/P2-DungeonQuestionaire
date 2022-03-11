@@ -22,7 +22,10 @@ namespace Api.Controllers
 
             _repo = p_repo;
         }
-        // GET: api/Player
+        /// <summary>
+        /// Gets All Players
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("GetAllPlayers")]
         public async Task<IActionResult> GetAllPlayers()
         {
@@ -37,14 +40,12 @@ namespace Api.Controllers
             }
         }
 
-        // GET: api/Player/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
 
-        // POST: api/Player
+        /// <summary>
+        /// Add Player
+        /// </summary>
+        /// <param name="p_Player"></param>
+        /// <returns></returns>
         [HttpPost("AddPlayer")]
         public async Task<IActionResult> Post([FromBody] Player p_Player)
         {
@@ -59,7 +60,11 @@ namespace Api.Controllers
             }
         }
 
-        // PUT: api/Player/5
+        /// <summary>
+        /// Updates Player
+        /// </summary>
+        /// <param name="p_Player"></param>
+        /// <returns></returns>
         [HttpPut("UpdatePlayer")]
         public async Task<IActionResult> Put([FromBody] Player p_Player)
         {
@@ -74,7 +79,11 @@ namespace Api.Controllers
             }
         }
 
-        // DELETE: api/Player/5
+        /// <summary>
+        /// Deletes Player
+        /// </summary>
+        /// <param name="p_Player"></param>
+        /// <returns></returns>
         [HttpDelete("DeletePlayer")]
         public async Task<IActionResult> Delete(Player p_Player)
         {

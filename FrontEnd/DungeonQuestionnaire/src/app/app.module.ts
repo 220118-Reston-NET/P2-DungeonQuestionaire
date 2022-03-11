@@ -18,6 +18,7 @@ import { QuestionsAnswersComponent } from './questions-answers/questions-answers
 import { PlayerBoxComponent } from './player-box/player-box.component';
 import { EnemyBoxComponent } from './enemy-box/enemy-box.component';
 import { RouterModule } from '@angular/router';
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { RouterModule } from '@angular/router';
     PlayAgainComponent,
     QuestionsAnswersComponent,
     PlayerBoxComponent,
-    EnemyBoxComponent
+    EnemyBoxComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,12 @@ import { RouterModule } from '@angular/router';
     RouterModule.forRoot([
       {path: "login", component: LoginComponent},
       {path: "signup", component: SignupComponent},
-      {path: "logout", component: SaveLogoutComponent}
+      {path: "logout", component: SaveLogoutComponent},
+      {path: "fight", component: FightComponent},
+      {path: "winner", component: WinnerPageComponent},
+      {path: "gameover", component: GameOverComponent},
+      {path: "", component: HomepageComponent}, //Default component you want to show
+      {path: "**", component:HomepageComponent}
     ])
   ],
   providers: [],

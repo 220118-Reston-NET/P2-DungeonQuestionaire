@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FightComponent implements OnInit {
 
+  enemyName:string ="(enemyname)";
+  enemyCurrentlyFighting:number = 0;
+  enemyMaxId:number = 8;
+  
   constructor() { }
 
   ngOnInit(): void {

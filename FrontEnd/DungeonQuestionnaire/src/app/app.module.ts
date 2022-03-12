@@ -20,6 +20,7 @@ import { PlayerBoxComponent } from './player-box/player-box.component';
 import { EnemyBoxComponent } from './enemy-box/enemy-box.component';
 import { RouterModule } from '@angular/router';
 import { HomepageComponent } from './homepage/homepage.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -38,12 +39,15 @@ import { HomepageComponent } from './homepage/homepage.component';
     QuestionsAnswersComponent,
     PlayerBoxComponent,
     EnemyBoxComponent,
-    HomepageComponent
+    HomepageComponent,
+
   ],
   imports: [
     BrowserModule,
     FontAwesomeModule,
+    HttpClientModule,
     RouterModule.forRoot([
+<<<<<<< Updated upstream
       {path: "login", component: LoginComponent},
       {path: "signup", component: SignupComponent},
       {path: "logout", component: SaveLogoutComponent},
@@ -54,6 +58,17 @@ import { HomepageComponent } from './homepage/homepage.component';
       {path: "**", component:HomepageComponent}
     ]),
     HttpClientModule
+=======
+      { path: "login", component: LoginComponent },
+      { path: "signup", component: SignupComponent },
+      { path: "logout", component: SaveLogoutComponent },
+      { path: "fight", component: FightComponent },
+      { path: "winner", component: WinnerPageComponent },
+      { path: "gameover", component: GameOverComponent },
+      { path: "", component: HomepageComponent }, //Default component you want to show
+      { path: "**", component: HomepageComponent }
+    ])
+>>>>>>> Stashed changes
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -22,6 +22,7 @@ import { RouterModule } from '@angular/router';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,22 +40,24 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     QuestionsAnswersComponent,
     PlayerBoxComponent,
     EnemyBoxComponent,
-    HomepageComponent
+    HomepageComponent,
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    HttpClientModule,
     RouterModule.forRoot([
-      {path: "login", component: LoginComponent},
-      {path: "signup", component: SignupComponent},
-      {path: "logout", component: SaveLogoutComponent},
-      {path: "fight", component: FightComponent},
-      {path: "winner", component: WinnerPageComponent},
-      {path: "gameover", component: GameOverComponent},
-      {path: "", component: HomepageComponent}, //Default component you want to show
-      {path: "**", component:HomepageComponent}
+      { path: "login", component: LoginComponent },
+      { path: "signup", component: SignupComponent },
+      { path: "logout", component: SaveLogoutComponent },
+      { path: "fight", component: FightComponent },
+      { path: "winner", component: WinnerPageComponent },
+      { path: "gameover", component: GameOverComponent },
+      { path: "", component: HomepageComponent }, //Default component you want to show
+      { path: "**", component: HomepageComponent }
     ]),
     HttpClientModule
   ],

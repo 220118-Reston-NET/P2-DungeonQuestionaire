@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Player } from '../models/player.models';
 
 
 @Injectable({
@@ -8,11 +9,16 @@ import { Observable } from 'rxjs';
 })
 export class FrontEndService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getAllQuestions(): Observable<any[]>
-  {
+  getAllQuestions(): Observable<any[]> {
     return this.http.get<any[]>("https://dungeonapi.azurewebsites.net/api/Question/GetAllQuestions");
   }
-  
+
+
+
+  getAllPlayers(): Observable<Player[]> {
+
+    return this.http.get<Player[]>("https://dungeonapi.azurewebsites.net/api/Player/GetAllPlayers");
+  }
 }

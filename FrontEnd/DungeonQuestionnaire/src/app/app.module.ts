@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -20,7 +20,7 @@ import { PlayerBoxComponent } from './player-box/player-box.component';
 import { EnemyBoxComponent } from './enemy-box/enemy-box.component';
 import { RouterModule } from '@angular/router';
 import { HomepageComponent } from './homepage/homepage.component';
-import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -47,18 +47,6 @@ import { HttpClientModule } from '@angular/common/http';
     FontAwesomeModule,
     HttpClientModule,
     RouterModule.forRoot([
-<<<<<<< Updated upstream
-      {path: "login", component: LoginComponent},
-      {path: "signup", component: SignupComponent},
-      {path: "logout", component: SaveLogoutComponent},
-      {path: "fight", component: FightComponent},
-      {path: "winner", component: WinnerPageComponent},
-      {path: "gameover", component: GameOverComponent},
-      {path: "", component: HomepageComponent}, //Default component you want to show
-      {path: "**", component:HomepageComponent}
-    ]),
-    HttpClientModule
-=======
       { path: "login", component: LoginComponent },
       { path: "signup", component: SignupComponent },
       { path: "logout", component: SaveLogoutComponent },
@@ -67,8 +55,8 @@ import { HttpClientModule } from '@angular/common/http';
       { path: "gameover", component: GameOverComponent },
       { path: "", component: HomepageComponent }, //Default component you want to show
       { path: "**", component: HomepageComponent }
-    ])
->>>>>>> Stashed changes
+    ]),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

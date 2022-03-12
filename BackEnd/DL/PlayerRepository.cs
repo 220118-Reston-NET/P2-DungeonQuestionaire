@@ -19,7 +19,7 @@ namespace DL
         public async Task<Player> Add(Player p_resource)
         {
             string sqlQuery = @"insert into Player 
-                                values (@playername, @spriteimgurl, @hp, @enemycurrentlyfighting, @useremail, @userpassword, @uservictories)";
+                                values (@playername, @spriteimgurl, @hp, @useremail, @userpassword, @uservictories, @enemycurrentlyfighting)";
 
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
@@ -28,10 +28,10 @@ namespace DL
                 command.Parameters.AddWithValue("@playername", p_resource.PlayerName);
                 command.Parameters.AddWithValue("@spriteimgurl", p_resource.SpriteURL);
                 command.Parameters.AddWithValue("@hp", p_resource.PlayerHP);
-                command.Parameters.AddWithValue("@enemycurrentlyfighting", p_resource.EnemyCurrentlyFighting);
                 command.Parameters.AddWithValue("@useremail", p_resource.UserEmail);
                 command.Parameters.AddWithValue("@userpassword", p_resource.UserPassword);
                 command.Parameters.AddWithValue("@uservictories", p_resource.UserVictories);
+                command.Parameters.AddWithValue("@enemycurrentlyfighting", p_resource.EnemyCurrentlyFighting);
                 await command.ExecuteNonQueryAsync();
             }
             return p_resource;
@@ -40,7 +40,7 @@ namespace DL
         public async Task<List<Player>> GetAll()
         {
             List<Player> listofAllPlayers = new List<Player>();
-            string sqlQuery = @"select * from player";
+            string sqlQuery = @"select * from Player";
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 await con.OpenAsync();
@@ -54,9 +54,10 @@ namespace DL
                         PlayerName = reader.GetString(1),
                         SpriteURL = reader.GetString(2),
                         PlayerHP = reader.GetInt32(3),
-                        EnemyCurrentlyFighting = reader.GetInt32(4),
-                        UserEmail = reader.GetString(5),
-                        UserPassword = reader.GetString(6)
+                        UserEmail = reader.GetString(4),
+                        UserPassword = reader.GetString(5),
+                        UserVictories = reader.GetInt32(6),
+                        EnemyCurrentlyFighting = reader.GetInt32(7)
                     });
                 }
             }

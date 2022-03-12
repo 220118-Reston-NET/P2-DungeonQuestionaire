@@ -1,1 +1,21 @@
-<p>signup works!</p>
+
+<div class="loginform ">
+    <div class="email d-flex flex-column align-items-center">
+        <label for="staticEmail" id="emailLabel text-center" >Name: </label>
+        <input type="text"  id="staticEmail" value="John Doe">
+    </div>
+
+    <div class="mb-3 row d-flex flex-column align-items-center">
+        <label for="inputPassword" id="passwordLabel ">Password: </label>
+        <input type="password" class="pass-form-control" id="inputPassword" value="password">
+    </div>
+    <div class="mb-3 row d-flex flex-column align-items-center">
+        <label for="inputPassword" id="passwordLabel ">Email:</label>
+        <input type="text" class="pass-form-control" id="inputPassword" value="1-8">
+    </div>
+    <div class="col-auto d-flex flex-column">
+        <button type="submit" class="btn btn-primary mb-3 ">SignUp</button>
+        Have a account.<a class="nav-link" (click)="goToLogin()">Login here!</a>     
+    </div> 
+     
+</div>

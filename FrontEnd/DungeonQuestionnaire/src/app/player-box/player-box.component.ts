@@ -14,6 +14,7 @@ export class PlayerBoxComponent implements OnInit {
   playerSpriteUrl: string = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUqZyg896rd_E6YEm-Ghk4FnON2imS2PbHPg&usqp=CAU";
   enemyCurrentlyFighting: number = 0;
   userVictories: number = 0;
+  
 
   listOfPlayers: Player[];
 
@@ -30,6 +31,7 @@ export class PlayerBoxComponent implements OnInit {
       this.listOfPlayers = result;
 
       this.loadPlayerInfo();
+   
     })
   }
   //***Will need to be changed to a filtered listOfPlayers where user email = the one that was provided***
@@ -45,6 +47,9 @@ export class PlayerBoxComponent implements OnInit {
 
 
   }
+
+  
+  
 
 }
 

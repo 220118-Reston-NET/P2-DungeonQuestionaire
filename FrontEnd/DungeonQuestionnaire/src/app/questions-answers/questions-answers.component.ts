@@ -8,18 +8,23 @@ import { Question } from '../models/question.model';
   styleUrls: ['./questions-answers.component.css']
 })
 export class QuestionsAnswersComponent implements OnInit {
-    question:string = "(Question)";
-    answer1:string = "answer";
-    answer2:string = "answer";
-    answer3:string = "answer";
-    answer4:string = "answer";
-    correctAnswer:string = "Correct answer";
+    question:string = "";
+    answer1:string = "";
+    answer2:string = "";
+    answer3:string = "";
+    answer4:string = "";
+    correctAnswer:string = "Correct Answer ";
     questionAttack:number = 0;
     listOfQuestion:Question[];
     randomNumber:number = 0;
+    answerSelected:string = "";
+    testItem:string | null = "";
+    testNumber:number = 1000;
 
   constructor(private frontEndServ: FrontEndService) { 
     this.listOfQuestion = [];
+
+    
   }
 
   ngOnInit(): void {
@@ -28,8 +33,16 @@ export class QuestionsAnswersComponent implements OnInit {
       {
       this.listOfQuestion = result;
       this.changeQuestionsAndAnswers(0);
+      this.setSessionQuestionAttack();
+      this.getSessionQuestionAttack();
+      console.log(this.testNumber);
+      
     }
     )}
+
+  ngOnChange(): void{
+
+  }
 
    
   
@@ -40,7 +53,6 @@ export class QuestionsAnswersComponent implements OnInit {
     return this.randomNumber;
 };      
 
-  // console.log(listOfQuestion);
 
   changeQuestionsAndAnswers(rand:number): void{
 
@@ -56,10 +68,45 @@ export class QuestionsAnswersComponent implements OnInit {
     
   }
 
+  getAnswerSelection()
+  {
+        
+  }
+  setSessionQuestionAttack()
+  {
+    sessionStorage.setItem("QuestionAttack", this.questionAttack.toString() )
+  }
+
+  getSessionQuestionAttack()
+  {
+    // need Number() casting to convert string to number -- otherwise if set to string, no caste needed.
+    this.testNumber = Number(sessionStorage.getItem("QuestionAttack"))
+  }
+
+  compareAnswers()
+  {
+
+  }
+
+  decrementEnemyHP()
+  {
+    
+  }
+
+  decrementPlayerHP()
+  {
+
+  }
+
+  incrementEnemyCurrentlyFighting()
+  {
+
+  }
+
 }
 
-// We will need to pull a random question with its answers and the correct answer from the database
-// we will need to assign the correct answer to a local variable
+// We will need to pull a random question with its answers and the correct  from the database - done
+// we will need to assign the correct  to a local variable - done
 
 
 // We will need to compare the selected question with the (correctanswer) from the database -- 
@@ -69,7 +116,7 @@ export class QuestionsAnswersComponent implements OnInit {
 //             if enemy is defeated, increase (enemycurrentlyfighting) in the database by 1 and pull the enemy data for that new id
 //                 if no new enemy is found, show winner route
 
-// if false, we will need to decrease player hp (update database too) by enemy attack value and provide the correct answer to the user
+// if false, we will need to decrease player hp (update database too) by enemy attack value and provide the correct  to the user
 //         will need a check to see if player is defeated
 // submit button will need to change to "next question" or display a next question link
 // after submit button is clicked, we will need to display next question and set of answers and do this again. 

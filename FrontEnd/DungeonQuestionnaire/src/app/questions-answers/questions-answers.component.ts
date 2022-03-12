@@ -8,14 +8,15 @@ import { Question } from '../models/question.model';
   styleUrls: ['./questions-answers.component.css']
 })
 export class QuestionsAnswersComponent implements OnInit {
-    question:string = "(Question) loremipsumloremi psumloremipsumloremips umloremipsum loremipsum";
-    answer1:string = "loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum";
-    answer2:string = "loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum";
-    answer3:string = "loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum";
-    answer4:string = "loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum";
+    question:string = "(Question)";
+    answer1:string = "answer";
+    answer2:string = "answer";
+    answer3:string = "answer";
+    answer4:string = "answer";
+    correctAnswer:string = "Correct answer";
     questionAttack:number = 0;
-    
     listOfQuestion:Question[];
+    randomNumber:number = 0;
 
   constructor(private frontEndServ: FrontEndService) { 
     this.listOfQuestion = [];
@@ -26,12 +27,33 @@ export class QuestionsAnswersComponent implements OnInit {
     this.frontEndServ.getAllQuestions().subscribe(result => 
       {
       this.listOfQuestion = result;
+      this.changeQuestionsAndAnswers(0);
     }
     )}
 
-  changeQuestionsAndAnswers(): void {
+   
+  
+  
 
+  getRandomNumber(max:number) : number {
+    this.randomNumber = Math.floor((Math.random() * max))
+    return this.randomNumber;
+};      
 
+  // console.log(listOfQuestion);
+
+  changeQuestionsAndAnswers(rand:number): void{
+
+    rand = this.getRandomNumber(80);
+    this.question = this.listOfQuestion[rand].questions;
+    this.answer1 = this.listOfQuestion[rand].answer1;
+    this.answer2 = this.listOfQuestion[rand].answer2;
+    this.answer3 = this.listOfQuestion[rand].answer3;
+    this.answer4 = this.listOfQuestion[rand].answer4;
+    this.correctAnswer = this.listOfQuestion[rand].correctAnswer;
+    this.questionAttack = this.listOfQuestion[rand].damageValue;
+
+    
   }
 
 }

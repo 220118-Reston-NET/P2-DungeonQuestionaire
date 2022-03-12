@@ -20,6 +20,7 @@ import { PlayerBoxComponent } from './player-box/player-box.component';
 import { EnemyBoxComponent } from './enemy-box/enemy-box.component';
 import { RouterModule } from '@angular/router';
 import { HomepageComponent } from './homepage/homepage.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,8 @@ import { HomepageComponent } from './homepage/homepage.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     FontAwesomeModule,
     RouterModule.forRoot([
       {path: "login", component: LoginComponent},

@@ -1,4 +1,4 @@
-.loginform
+.signupform
 {
     width: 25%;
     padding-top: 2rem;
@@ -35,7 +35,12 @@
     margin-left: 20px;
     padding-bottom: 2px;
 }
+.name
+{
+    margin-left: 20px;
+}
 .btn btn-primary mb-3
 {
     line-height: 2rem;
+    
 }

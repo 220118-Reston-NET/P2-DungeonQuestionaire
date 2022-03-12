@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.sass']
+  styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
   
@@ -32,6 +32,7 @@ export class NavBarComponent implements OnInit {
 
   goToHome()
   {
+    this.router.navigate(["/home"]);
     this.menuLabel = "Main Menu"
   }
 }

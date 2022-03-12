@@ -1,1 +1,22 @@
-<p>signup works!</p>
+<form [formGroup]="playerGroup">
+    <div class="signupform ">
+        <div class="email d-flex flex-column align-items-center">
+            <label for="staticEmail" id="emailLabel text-center" >Name: </label>
+            <input type="text"  class="name" value="John Doe" formControlName="name">
+        </div>
+
+        <div class="mb-3 row d-flex flex-column align-items-center">
+            <label for="inputPassword" id="passwordLabel ">Password: </label>
+            <input type="password" class="pass-form-control" id="inputPassword" value="password" formControlName="password">
+        </div>
+        <div class="mb-3 row d-flex flex-column align-items-center">
+            <label for="inputPassword" id="passwordLabel ">Email:</label>
+            <input type="text" class="email" id="inputPassword" value="someone@here.com" formControlName="email">
+        </div>
+        <div class="col-auto d-flex flex-column">
+            <button (click)="addPlayer(playerGroup)" type="submit" class="btn btn-primary mb-3 ">SignUp</button>
+            Have an account.<a class="nav-link" (click)="goToLogin()">Login here!</a>     
+        </div> 
+        
+    </div>
+</form>

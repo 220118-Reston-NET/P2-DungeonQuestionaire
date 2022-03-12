@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FrontEndService } from '../Services/front-end.service';
 import { Question } from '../models/question.model';
 
@@ -17,9 +17,9 @@ export class QuestionsAnswersComponent implements OnInit {
     questionAttack:number = 0;
     listOfQuestion:Question[];
     randomNumber:number = 0;
-    answerSelected:string = "";
-    testItem:string | null = "";
-    testNumber:number = 1000;
+
+    @Input()
+    answer = "";
 
   constructor(private frontEndServ: FrontEndService) { 
     this.listOfQuestion = [];
@@ -34,8 +34,6 @@ export class QuestionsAnswersComponent implements OnInit {
       this.listOfQuestion = result;
       this.changeQuestionsAndAnswers(0);
       this.setSessionQuestionAttack();
-      this.getSessionQuestionAttack();
-      console.log(this.testNumber);
       
     }
     )}
@@ -68,10 +66,7 @@ export class QuestionsAnswersComponent implements OnInit {
     
   }
 
-  getAnswerSelection()
-  {
-        
-  }
+ 
   setSessionQuestionAttack()
   {
     sessionStorage.setItem("QuestionAttack", this.questionAttack.toString() )
@@ -80,12 +75,19 @@ export class QuestionsAnswersComponent implements OnInit {
   getSessionQuestionAttack()
   {
     // need Number() casting to convert string to number -- otherwise if set to string, no caste needed.
-    this.testNumber = Number(sessionStorage.getItem("QuestionAttack"))
+    this.questionAttack = Number(sessionStorage.getItem("QuestionAttack"))
   }
 
   compareAnswers()
   {
+      if(this.correctAnswer == this.answer){
+        console.log("True");
 
+      }
+      else{
+      console.log("False");
+      }
+      this.changeQuestionsAndAnswers(0);
   }
 
   decrementEnemyHP()

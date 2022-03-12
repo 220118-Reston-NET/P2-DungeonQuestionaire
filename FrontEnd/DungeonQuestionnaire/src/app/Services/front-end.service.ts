@@ -14,4 +14,5 @@ export class FrontEndService {
   {
     return this.http.get<any[]>("https://dungeonapi.azurewebsites.net/api/Question/GetAllQuestions");
   }
+  
 }

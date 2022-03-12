@@ -11,7 +11,9 @@ export class PlayerBoxComponent implements OnInit {
 
   playerName: string = "(name)";
   playerHealth: number = 40;
-  playerSpriteUrl: string = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUqZyg896rd_E6YEm-Ghk4FnON2imS2PbHPg&usqp=CAU"
+  playerSpriteUrl: string = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUqZyg896rd_E6YEm-Ghk4FnON2imS2PbHPg&usqp=CAU";
+  enemyCurrentlyFighting: number = 0;
+  userVictories: number = 0;
 
   listOfPlayers: Player[];
 
@@ -26,11 +28,23 @@ export class PlayerBoxComponent implements OnInit {
     this.frontEndServ.getAllPlayers().subscribe(result => {
       //the result of a response is then stored in our listOfPlayers Property
       this.listOfPlayers = result;
-      console.log(this.listOfPlayers);
+
+      this.loadPlayerInfo();
     })
   }
+  //***Will need to be changed to a filtered listOfPlayers where user email = the one that was provided***
+  loadPlayerInfo(): void {
 
-  loadPlayerInfo(): void { }
+    this.playerName = this.listOfPlayers[0].playerName;
+
+    this.playerHealth = this.listOfPlayers[0].playerHP;
+
+    // this.playerSpriteUrl = this.listOfPlayers[0].SpriteURL;
+    this.enemyCurrentlyFighting = this.listOfPlayers[0].enemyCurrentlyFighting;
+    this.userVictories = this.listOfPlayers[0].userVictories;
+
+
+  }
 
 }
 

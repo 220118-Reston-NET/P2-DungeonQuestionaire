@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FrontEndService } from '../Services/front-end.service';
 import { Question } from '../models/question.model';
 
@@ -17,10 +17,22 @@ export class QuestionsAnswersComponent implements OnInit {
     questionAttack:number = 0;
     listOfQuestion:Question[];
     randomNumber:number = 0;
-    answerSelected:string = "";
-    testItem:string | null = "";
-    testNumber:number = 1000;
+    currentEnemyHP: number = 0;
+    currentPlayerHP: number = 0;
+    enemyCurrentlyFighting: number = 0;
+    testNumber:number = 0;
 
+
+
+    @Input()
+    answer = "";
+
+    @Output() 
+    playerHPEmitter = new EventEmitter<number>();
+    @Output()
+    EnemyEmitter = new EventEmitter<number>();
+
+    
   constructor(private frontEndServ: FrontEndService) { 
     this.listOfQuestion = [];
 
@@ -35,12 +47,13 @@ export class QuestionsAnswersComponent implements OnInit {
       this.changeQuestionsAndAnswers(0);
       this.setSessionQuestionAttack();
       this.getSessionQuestionAttack();
-      console.log(this.testNumber);
+
       
     }
     )}
 
   ngOnChange(): void{
+
 
   }
 
@@ -65,42 +78,104 @@ export class QuestionsAnswersComponent implements OnInit {
     this.correctAnswer = this.listOfQuestion[rand].correctAnswer;
     this.questionAttack = this.listOfQuestion[rand].damageValue;
 
+    this.setSessionQuestionAttack();
+
+
+
     
   }
 
-  getAnswerSelection()
-  {
-        
-  }
+ 
   setSessionQuestionAttack()
   {
-    sessionStorage.setItem("QuestionAttack", this.questionAttack.toString() )
+    sessionStorage.setItem("questionAttack", this.questionAttack.toString() );
   }
 
   getSessionQuestionAttack()
   {
     // need Number() casting to convert string to number -- otherwise if set to string, no caste needed.
-    this.testNumber = Number(sessionStorage.getItem("QuestionAttack"))
+    this.questionAttack = Number(sessionStorage.getItem("questionAttack"));
+    this.testNumber = Number(sessionStorage.getItem("questionAttack"));
+
+  }
+
+  getSessionEnemyHP(){
+
+    this.currentEnemyHP = Number(sessionStorage.getItem("enemyHP"));
+
+  }
+
+  setSessionEnemyHP(){
+    sessionStorage.setItem("enemyHP", this.currentEnemyHP.toString() );
+  }
+
+  getSessionPlayerHP(){
+
+    this.currentPlayerHP = Number(sessionStorage.getItem("playerHP"));
+
+  }
+
+  setSessionPlayerHP(){
+    sessionStorage.setItem("playerHP", this.currentPlayerHP.toString());
+  }
+
+  getEnemyCurrentlyFighting(){
+
+    this.enemyCurrentlyFighting = Number(sessionStorage.getItem("enemyCurrentlyFighting"));
+
+  }
+
+  setSessionEnemyCurrentlyFighting(){
+
+    sessionStorage.setItem("enemyCurrentlyFighting", this.enemyCurrentlyFighting.toString());
+
   }
 
   compareAnswers()
   {
+      if(this.correctAnswer == this.answer){
+        console.log("True");
+     
+        this.decrementEnemyHP();
+
+      }
+      else{
+      console.log("False");
+      this.decrementPlayerHP();
+      }
+
+      this.changeQuestionsAndAnswers(0);
+     
+
 
   }
 
   decrementEnemyHP()
   {
     
+    this.getSessionEnemyHP();
+    this.currentEnemyHP = this.currentEnemyHP - this.questionAttack;
+    this.setSessionEnemyHP();
+    this.EnemyEmitter.emit(this.currentEnemyHP);
   }
 
   decrementPlayerHP()
   {
+    this.getSessionPlayerHP();
+    this.getSessionQuestionAttack();
+    // change to enemyattack instead of questionattack
+    this.currentPlayerHP = this.currentPlayerHP - this.questionAttack;
+    this.setSessionPlayerHP();
+    this.playerHPEmitter.emit(this.currentPlayerHP);
 
+    // if logic to handle playerhp <0 take to gameover
   }
 
   incrementEnemyCurrentlyFighting()
   {
 
+    // logic to handle incrementing and setting to sessionStorage
+    // logic to check if value is greater than 8 and if so, send to winner page and increment user victories
   }
 
 }
@@ -109,9 +184,9 @@ export class QuestionsAnswersComponent implements OnInit {
 // we will need to assign the correct  to a local variable - done
 
 
-// We will need to compare the selected question with the (correctanswer) from the database -- 
+// We will need to compare the selected question with the (correctanswer) from the database -- done
 // if true, we will need to decrease enemyhp which is stored as a variable by the question value and show the user they got it correct
-//        will need a check to see if enemy is defeated
+//        will need a check to see if enemy is defeated - mostly done
 
 //             if enemy is defeated, increase (enemycurrentlyfighting) in the database by 1 and pull the enemy data for that new id
 //                 if no new enemy is found, show winner route

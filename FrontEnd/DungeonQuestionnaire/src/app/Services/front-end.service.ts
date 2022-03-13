@@ -21,4 +21,9 @@ export class FrontEndService {
 
     return this.http.get<Player[]>("https://dungeonapi.azurewebsites.net/api/Player/GetAllPlayers");
   }
+
+  addPlayer(player:Player)
+  {
+    return this.http.post<Player[]>("https://dungeonapi.azurewebsites.net/api/Player/AddPlayer",player);
+  }
 }

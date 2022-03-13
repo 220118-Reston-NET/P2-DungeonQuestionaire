@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+// import { endianness } from 'os';
+import { Player } from '../models/player.models';
+import { FrontEndService } from '../Services/front-end.service';
+
 
 @Component({
   selector: 'app-signup',
@@ -16,7 +20,7 @@ export class SignupComponent implements OnInit {
     password: new FormControl(""),
   });
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private playerServ:FrontEndService) { }
 
   menuLabel = "";
   ngOnInit(): void {
@@ -25,7 +29,14 @@ export class SignupComponent implements OnInit {
 
   addPlayer(playerGroup:FormGroup)
   {
-      
+      let player:Player = 
+      {
+        PlayerName: playerGroup.get("name")?.value,
+        UserEmail: playerGroup.get("emial")?.value,
+        UserPassword: playerGroup.get("password")?.value
+      }
+
+      this.playerServ.addPlayer(player).subscribe(result => console.log(result));
   }
 
 

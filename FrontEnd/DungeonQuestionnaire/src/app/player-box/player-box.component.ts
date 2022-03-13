@@ -37,7 +37,7 @@ export class PlayerBoxComponent implements OnInit {
       //the result of a response is then stored in our listOfPlayers Property
       this.listOfPlayers = result;
       this.filteredListOfPlayers = result;
-      this.setSessionStorageUserEmail();
+      //this.setSessionStorageUserEmail();
       this.getSessionStorageUserEmail();
       this.filterPlayerByEmail();
       this.loadPlayerInfo();
@@ -80,9 +80,9 @@ export class PlayerBoxComponent implements OnInit {
 
   }
 
-  setSessionStorageUserEmail() {
-    sessionStorage.setItem("userEmail", "decimater@email.com");
-  }
+  // setSessionStorageUserEmail() {
+  //   sessionStorage.setItem("userEmail", "decimater@email.com");
+  // }
 
   getSessionStorageUserEmail() {
     this.userEmail = sessionStorage.getItem("userEmail");

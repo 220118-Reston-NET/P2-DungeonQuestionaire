@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { delay } from 'rxjs';
 import { Player } from '../models/player.models';
+import { FrontEndService } from '../Services/front-end.service';
 
 
 
@@ -12,33 +14,45 @@ import { Player } from '../models/player.models';
 export class LoginComponent implements OnInit {
   menuLabel = "";
   playerEmail: string = "test@email.com";
-  playerPassword:string = "default";
+  playerPassword: string = "default";
+  listOfPlayers: Player[];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private frontEndServ: FrontEndService) {
+
+    this.listOfPlayers = [];
+  }
 
   @Input()
-  email:string="";
+  email: string = "";
   @Input()
-  password:string="";
-  
+  password: string = "";
+
 
   ngOnInit(): void {
 
-    this.setSessionStoragePlayerEmail();
+    // this.setSessionStoragePlayerEmail();
   }
 
-  test(){
+  loginValidation() {
     this.playerEmail = this.email;
     this.playerPassword = this.password;
+    this.frontEndServ.getAllPlayers().subscribe(result => {
+      this.listOfPlayers = result;
+    })
+    delay(1000);
+    if (this.listOfPlayers.find(x => x.userEmail == this.playerEmail && x.userPassword == this.playerPassword)) {
 
-    // Compare to database to see if useremail and password exist
-    // If match, grab in useremail and set to session storage & reroute to fight page
-    // else clear form if no match and give message that it didn't exist
+      this.setSessionStoragePlayerEmail();
+      this.router.navigate(["/fight"]);
 
+    } else {
+
+      alert("Email or Password was invalid");
+    }
 
   }
 
-  
+
   goToSignUp() {
     this.router.navigate(["/signup"]);
     this.menuLabel = "Sign up(Main Menu)";
@@ -46,6 +60,7 @@ export class LoginComponent implements OnInit {
 
   setSessionStoragePlayerEmail() {
 
-    sessionStorage.setItem("playerEmail", this.playerEmail);
+    sessionStorage.setItem("userEmail", this.playerEmail);
   }
+
 }

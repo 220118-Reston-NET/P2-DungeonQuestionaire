@@ -104,12 +104,12 @@ export class QuestionsAnswersComponent implements OnInit {
 
   getSessionEnemyHP(){
 
-    this.currentEnemyHP = Number(sessionStorage.getItem("enemyHP"));
+    this.currentEnemyHP = Number(sessionStorage.getItem("enemyHealth"));
 
   }
 
   setSessionEnemyHP(){
-    sessionStorage.setItem("enemyHP", this.currentEnemyHP.toString() );
+    sessionStorage.setItem("enemyHealth", this.currentEnemyHP.toString() );
   }
 
   getSessionPlayerHP(){

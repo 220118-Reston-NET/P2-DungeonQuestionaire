@@ -23,7 +23,7 @@ export class FrontEndService {
 
   addPlayer(player:Player)
   {
-    return this.http.post<Player[]>("https://dungeonapi.azurewebsites.net/api/Player/AddPlayer",player);
+    return this.http.post<Player>("https://dungeonapi.azurewebsites.net/api/Player/AddPlayer",player);
   }
   getAllEnemies(): Observable<Enemy[]>
   {

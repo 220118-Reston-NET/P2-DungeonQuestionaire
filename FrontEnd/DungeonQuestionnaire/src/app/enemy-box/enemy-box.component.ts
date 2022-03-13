@@ -21,37 +21,48 @@ export class EnemyBoxComponent implements OnInit, OnChanges {
   }
 
   @Input()
-  currentEnemyHP:number= 0;
+  currentEnemyHP:number= this.enemyHealth;
   
 
   ngOnInit(): void {
 
     this.enemyServ.getAllEnemies().subscribe(result =>{
-      
       this.listofEnemies = result;
-    
-      this.loadEnemyInfo();
+      console.log(this.listofEnemies);
+      this.getEnemyCurrentlyFighting();
+      this.loadEnemyInfo(this.enemyCurrentlyFighting);
       this.setSessionAttack();
       this.setSessionEnemyName();
       this.setSessionHealth();
-
-    })
+      })
+      this.getSessionEnemyHealth();
+    
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    
-
-
-    
+  console.log(this.enemyHealth);
+  // this.getSessionEnemyHealth();
+  this.enemyHealth = this.currentEnemyHP;
+  console.log(this.enemyHealth);
+  if (this.enemyHealth <= 0) {
+    this.enemyServ.getAllEnemies().subscribe(result =>{
+    this.listofEnemies = result;
+    this.getEnemyCurrentlyFighting();
+    this.loadEnemyInfo(this.enemyCurrentlyFighting);
+    this.setSessionHealth();
+    this.setSessionEnemyName();
+    this.setSessionAttack();
+    })
   }
 
-  loadEnemyInfo(): void {
+  }
 
-    this.enemyName = this.listofEnemies[0].enemyName;
-    this.enemyHealth = this.listofEnemies[0].enemyStartingHP;
-    this.enemyAttack = this.listofEnemies[0].enemyAttack;
-    this.enemySpriteImgUrl = this.listofEnemies[0].enemySpriteURL;
-    
+  loadEnemyInfo(ecf:number): void {
+
+    this.enemyName = this.listofEnemies[ecf-1].enemyName;
+    this.enemyHealth = this.listofEnemies[ecf-1].enemyStartingHP;
+    this.enemyAttack = this.listofEnemies[ecf-1].enemyAttack;
+    this.enemySpriteImgUrl = this.listofEnemies[ecf-1].enemySpriteURL;
   }
 
   
@@ -75,5 +86,9 @@ export class EnemyBoxComponent implements OnInit, OnChanges {
     this.enemyCurrentlyFighting = Number(sessionStorage.getItem("enemyCurrentlyFighting"))
   }
 
+  getSessionEnemyHealth()
+  {
+    this.enemyHealth = Number(sessionStorage.getItem("enemyHealth"))
+  }
 
 }

@@ -2,15 +2,15 @@
     <div class="loginform ">
         <div class="email d-flex flex-column align-items-center">
             <label for="staticEmail" id="emailLabel text-center" >Email</label>
-            <input type="text"  id="staticEmail" value="email@example.com">
+            <input type="text" [(ngModel)]="email" id="staticEmail" value="email@example.com">
         </div>
     
         <div class="mb-3 row d-flex flex-column align-items-center">
             <label for="inputPassword" id="passwordLabel ">Password</label>
-            <input type="password" class="pass-form-control" id="inputPassword">
+            <input type="password" [(ngModel)] = "password" class="pass-form-control" id="inputPassword">
         </div>
         <div class="col-auto d-flex flex-column">
-            <button type="submit" class="btn btn-primary mb-3 ">Login</button>
+            <button (click)="test()" type="submit" class="btn btn-primary mb-3 ">Login</button>
 
             <!--
                 ==Things to do==

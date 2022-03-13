@@ -17,6 +17,11 @@ export class QuestionsAnswersComponent implements OnInit {
     questionAttack:number = 0;
     listOfQuestion:Question[];
     randomNumber:number = 0;
+    currentEnemyHP: number = 0;
+    currentPlayerHP: number = 0;
+    enemyCurrentlyFighting: number = 0;
+
+
 
     @Input()
     answer = "";
@@ -69,13 +74,38 @@ export class QuestionsAnswersComponent implements OnInit {
  
   setSessionQuestionAttack()
   {
-    sessionStorage.setItem("QuestionAttack", this.questionAttack.toString() )
+    sessionStorage.setItem("QuestionAttack", this.questionAttack.toString() );
   }
 
   getSessionQuestionAttack()
   {
     // need Number() casting to convert string to number -- otherwise if set to string, no caste needed.
-    this.questionAttack = Number(sessionStorage.getItem("QuestionAttack"))
+    this.questionAttack = Number(sessionStorage.getItem("QuestionAttack"));
+  }
+
+  getSessionEnemyHP(){
+
+    this.currentEnemyHP = Number(sessionStorage.getItem("enemyHP"));
+
+  }
+
+  getSessionPlayerHP(){
+
+    this.currentPlayerHP = Number(sessionStorage.getItem("PlayerHP"));
+
+
+  }
+
+  getEnemyCurrentlyFighting(){
+
+    this.enemyCurrentlyFighting = Number(sessionStorage.getItem("enemyCurrentlyFighting"));
+
+  }
+
+  setSessionEnemyCurrentlyFighting(){
+
+    sessionStorage.setItem("enemyCurrentlyFighting", this.enemyCurrentlyFighting.toString());
+
   }
 
   compareAnswers()

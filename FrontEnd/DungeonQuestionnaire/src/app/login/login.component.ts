@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
   goToSignUp() {
     this.router.navigate(["/signup"]);
     this.menuLabel = "Sign up(Main Menu)";

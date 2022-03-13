@@ -11,7 +11,7 @@ export class EnemyBoxComponent implements OnInit, OnChanges {
   enemyName:string = "(enemyname)";
   enemyHealth:number = 5;
   enemyAttack:number = 1;
-  enemySpriteImgUrl:string = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUqZyg896rd_E6YEm-Ghk4FnON2imS2PbHPg&usqp=CAU";
+  enemySpriteImgUrl:string = "https://api.open5e.com/static/img/monsters/bulette.png";
   enemyCurrentlyFighting:number = 0;
 
   listofEnemies:Enemy[];

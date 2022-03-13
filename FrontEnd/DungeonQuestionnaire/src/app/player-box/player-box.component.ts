@@ -15,6 +15,7 @@ export class PlayerBoxComponent implements OnInit {
   enemyCurrentlyFighting: number = 0;
   userVictories: number = 0;
 
+
   listOfPlayers: Player[];
 
   constructor(private frontEndServ: FrontEndService) {
@@ -62,6 +63,9 @@ export class PlayerBoxComponent implements OnInit {
 
     sessionStorage.setItem("enemyCurrentlyFighting", this.enemyCurrentlyFighting.toString());
   }
+
+
+
 
 }
 

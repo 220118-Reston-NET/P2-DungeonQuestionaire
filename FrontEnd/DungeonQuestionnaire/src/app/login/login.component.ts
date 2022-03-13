@@ -17,8 +17,8 @@ export class LoginComponent implements OnInit {
     this.menuLabel = "Sign up(Main Menu)";
   }
 
-  setSessionStoragePlayerEmail() {
+  // setSessionStoragePlayerEmail() {
 
-    sessionStorage.setItem("playerEmail", this.playerEmail);
-  }
+  //   sessionStorage.setItem("playerEmail", this.playerEmail);
+  // }
 }

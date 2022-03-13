@@ -7,14 +7,18 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   menuLabel = "";
-  constructor(private router:Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  goToSignUp()
-  {
+  goToSignUp() {
     this.router.navigate(["/signup"]);
     this.menuLabel = "Sign up(Main Menu)";
+  }
+
+  setSessionStoragePlayerEmail() {
+
+    sessionStorage.setItem("playerEmail", this.playerEmail);
   }
 }

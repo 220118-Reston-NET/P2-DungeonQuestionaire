@@ -30,6 +30,9 @@ export class PlayerBoxComponent implements OnInit {
       this.listOfPlayers = result;
 
       this.loadPlayerInfo();
+
+      this.setSessionStoragePlayerHP();
+      this.setSessionStorageEnemyCurrentlyFighting();
     })
   }
   //***Will need to be changed to a filtered listOfPlayers where user email = the one that was provided***
@@ -43,7 +46,21 @@ export class PlayerBoxComponent implements OnInit {
     this.enemyCurrentlyFighting = this.listOfPlayers[0].enemyCurrentlyFighting;
     this.userVictories = this.listOfPlayers[0].userVictories;
 
+  }
 
+  filterPlayerInfoByEmail() {
+
+
+  }
+
+  setSessionStoragePlayerHP() {
+
+    sessionStorage.setItem("playerHP", this.playerHealth.toString());
+  }
+
+  setSessionStorageEnemyCurrentlyFighting() {
+
+    sessionStorage.setItem("enemyCurrentlyFighting", this.enemyCurrentlyFighting.toString());
   }
 
 }

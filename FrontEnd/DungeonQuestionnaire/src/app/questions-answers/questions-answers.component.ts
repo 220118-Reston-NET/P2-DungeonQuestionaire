@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FrontEndService } from '../Services/front-end.service';
 import { Question } from '../models/question.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-questions-answers',
@@ -20,7 +21,8 @@ export class QuestionsAnswersComponent implements OnInit {
     currentEnemyHP: number = 0;
     currentPlayerHP: number = 0;
     enemyCurrentlyFighting: number = 0;
-    testNumber:number = 0;
+    enemyAttack: number = 0;
+    correct: string | null = ""
 
 
 
@@ -31,9 +33,10 @@ export class QuestionsAnswersComponent implements OnInit {
     playerHPEmitter = new EventEmitter<number>();
     @Output()
     EnemyEmitter = new EventEmitter<number>();
+   
 
     
-  constructor(private frontEndServ: FrontEndService) { 
+  constructor(private frontEndServ: FrontEndService, private router: Router) { 
     this.listOfQuestion = [];
 
     
@@ -47,6 +50,7 @@ export class QuestionsAnswersComponent implements OnInit {
       this.changeQuestionsAndAnswers(0);
       this.setSessionQuestionAttack();
       this.getSessionQuestionAttack();
+      this.getSessionEnemyAttack();
 
       
     }
@@ -62,14 +66,14 @@ export class QuestionsAnswersComponent implements OnInit {
   
 
   getRandomNumber(max:number) : number {
-    this.randomNumber = Math.floor((Math.random() * max))
+    this.randomNumber = 1+Math.floor((Math.random() * max))
     return this.randomNumber;
 };      
 
 
   changeQuestionsAndAnswers(rand:number): void{
 
-    rand = this.getRandomNumber(80);
+    rand = this.getRandomNumber(79);
     this.question = this.listOfQuestion[rand].questions;
     this.answer1 = this.listOfQuestion[rand].answer1;
     this.answer2 = this.listOfQuestion[rand].answer2;
@@ -95,18 +99,17 @@ export class QuestionsAnswersComponent implements OnInit {
   {
     // need Number() casting to convert string to number -- otherwise if set to string, no caste needed.
     this.questionAttack = Number(sessionStorage.getItem("questionAttack"));
-    this.testNumber = Number(sessionStorage.getItem("questionAttack"));
 
   }
 
   getSessionEnemyHP(){
 
-    this.currentEnemyHP = Number(sessionStorage.getItem("enemyHP"));
+    this.currentEnemyHP = Number(sessionStorage.getItem("enemyHealth"));
 
   }
 
   setSessionEnemyHP(){
-    sessionStorage.setItem("enemyHP", this.currentEnemyHP.toString() );
+    sessionStorage.setItem("enemyHealth", this.currentEnemyHP.toString() );
   }
 
   getSessionPlayerHP(){
@@ -119,7 +122,7 @@ export class QuestionsAnswersComponent implements OnInit {
     sessionStorage.setItem("playerHP", this.currentPlayerHP.toString());
   }
 
-  getEnemyCurrentlyFighting(){
+  getSessionEnemyCurrentlyFighting(){
 
     this.enemyCurrentlyFighting = Number(sessionStorage.getItem("enemyCurrentlyFighting"));
 
@@ -131,19 +134,26 @@ export class QuestionsAnswersComponent implements OnInit {
 
   }
 
+  getSessionEnemyAttack(){
+    this.enemyAttack = Number(sessionStorage.getItem("enemyAttack"))
+  }
+
   compareAnswers()
   {
       if(this.correctAnswer == this.answer){
-        console.log("True");
      
         this.decrementEnemyHP();
+        this.correct = "You got the last answer correct!";
+        this.checkIfAllEnemiesDefeated();
+
 
       }
       else{
-      console.log("False");
       this.decrementPlayerHP();
-      }
+      this.correct = "Your last answer was incorrect.";
+      this.checkPlayerHP();
 
+      }
       this.changeQuestionsAndAnswers(0);
      
 
@@ -152,8 +162,8 @@ export class QuestionsAnswersComponent implements OnInit {
 
   decrementEnemyHP()
   {
-    
     this.getSessionEnemyHP();
+    this.getSessionQuestionAttack();
     this.currentEnemyHP = this.currentEnemyHP - this.questionAttack;
     this.setSessionEnemyHP();
     this.EnemyEmitter.emit(this.currentEnemyHP);
@@ -162,22 +172,41 @@ export class QuestionsAnswersComponent implements OnInit {
   decrementPlayerHP()
   {
     this.getSessionPlayerHP();
-    this.getSessionQuestionAttack();
-    // change to enemyattack instead of questionattack
-    this.currentPlayerHP = this.currentPlayerHP - this.questionAttack;
+    this.getSessionEnemyAttack();
+    this.currentPlayerHP = this.currentPlayerHP - this.enemyAttack;
     this.setSessionPlayerHP();
     this.playerHPEmitter.emit(this.currentPlayerHP);
 
-    // if logic to handle playerhp <0 take to gameover
   }
 
-  incrementEnemyCurrentlyFighting()
+  checkIfAllEnemiesDefeated()
   {
-
-    // logic to handle incrementing and setting to sessionStorage
-    // logic to check if value is greater than 8 and if so, send to winner page and increment user victories
+    this.checkEnemyHPAndIncrementIfDefeat();
+    this.getSessionEnemyCurrentlyFighting();
+    if (this.enemyCurrentlyFighting >= 9) {
+      // get uservictories and increment by 1
+      // set uservictories to session
+      this.router.navigate(["/winner"]);
+      
+    }
+    
   }
 
+  checkPlayerHP(){
+    if (this.currentPlayerHP <= 0) {
+      this.router.navigate(["/gameover"]);
+
+    }
+  }
+
+  checkEnemyHPAndIncrementIfDefeat(){
+    if (this.currentEnemyHP <= 0) {
+      this.getSessionEnemyCurrentlyFighting();
+      this.enemyCurrentlyFighting = this.enemyCurrentlyFighting+1;
+      this.setSessionEnemyCurrentlyFighting();
+      
+    }
+  }
 }
 
 // We will need to pull a random question with its answers and the correct  from the database - done

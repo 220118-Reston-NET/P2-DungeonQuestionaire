@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-fight',
@@ -22,15 +22,37 @@ export class FightComponent implements OnInit {
 
     this.enemyCurrentlyFighting = Number(sessionStorage.getItem("enemyCurrentlyFighting"));
     this.enemyName = sessionStorage.getItem("enemyName");
+
+  }
+
+  ngonchanges(){
+    this.getSessionEnemyCurrentlyFighting;
+    this.getSessionEnemyName;
   }
 
   HPEventWasTriggered(hp:number){
     this.currentPlayerHP = hp;
+
   }
 
   EnemyEventWasTriggered(hp:number){
     this.currentEnemyHP = hp;
+
   }
+
+  ChangeStats(){
+    this.getSessionEnemyCurrentlyFighting();
+    this.getSessionEnemyName();
+  }
+
+  getSessionEnemyCurrentlyFighting(){
+    this.enemyCurrentlyFighting = Number(sessionStorage.getItem("enemyCurrentlyFighting"));
+  }
+
+  getSessionEnemyName(){
+    this.enemyName = sessionStorage.getItem("enemyName");
+  }
+
 
   // Add nother emitter to getEnemyCurrentlyFighting and enemyName from session storage
 

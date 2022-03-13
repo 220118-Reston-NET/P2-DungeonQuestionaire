@@ -11,7 +11,7 @@ export class EnemyBoxComponent implements OnInit {
   enemyName:string = "(enemyname)";
   enemyHealth:number = 5;
   enemyAttack:number = 1;
-  enemySpriteImgUrl:string = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUqZyg896rd_E6YEm-Ghk4FnON2imS2PbHPg&usqp=CAU";
+  enemySpriteImgUrl:string = "https://api.open5e.com/static/img/monsters/bulette.png";
   enemyCurrentlyFighting:number = 0;
 
   listofEnemies:Enemy[];
@@ -44,7 +44,7 @@ export class EnemyBoxComponent implements OnInit {
     this.enemyName = this.listofEnemies[0].enemyName;
     this.enemyHealth = this.listofEnemies[0].enemyStartingHP;
     this.enemyAttack = this.listofEnemies[0].enemyAttack;
-    // this.enemySpriteImgUrl = this.listofEnemies[0].enemySpriteImgUrl;
+    this.enemySpriteImgUrl = this.listofEnemies[0].enemySpriteURL;
     
 
   }

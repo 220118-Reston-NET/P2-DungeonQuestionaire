@@ -31,4 +31,9 @@ export class FrontEndService {
 
   }
 
+  updatePlayer(player:Player)
+  {
+    return this.http.put<Player>("https://dungeonapi.azurewebsites.net/api/Player/UpdatePlayer",player);
+  }
+
 }

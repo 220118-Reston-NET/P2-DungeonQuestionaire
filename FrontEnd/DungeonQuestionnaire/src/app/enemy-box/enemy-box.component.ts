@@ -83,12 +83,12 @@ export class EnemyBoxComponent implements OnInit, OnChanges {
 
   getEnemyCurrentlyFighting()
   {
-    this.enemyCurrentlyFighting = Number(sessionStorage.getItem("enemyCurrentlyFighting"))
+    this.enemyCurrentlyFighting = Number(sessionStorage.getItem("enemyCurrentlyFighting"));
   }
 
   getSessionEnemyHealth()
   {
-    this.enemyHealth = Number(sessionStorage.getItem("enemyHealth"))
+    this.enemyHealth = Number(sessionStorage.getItem("enemyHealth"));
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Enemy } from '../models/enemy.model';
 import { FrontEndService } from '../Services/front-end.service';
 
@@ -7,7 +7,7 @@ import { FrontEndService } from '../Services/front-end.service';
   templateUrl: './enemy-box.component.html',
   styleUrls: ['./enemy-box.component.css']
 })
-export class EnemyBoxComponent implements OnInit {
+export class EnemyBoxComponent implements OnInit, OnChanges {
   enemyName:string = "(enemyname)";
   enemyHealth:number = 5;
   enemyAttack:number = 1;
@@ -24,7 +24,6 @@ export class EnemyBoxComponent implements OnInit {
   currentEnemyHP:number= 0;
   
 
-
   ngOnInit(): void {
 
     this.enemyServ.getAllEnemies().subscribe(result =>{
@@ -39,14 +38,20 @@ export class EnemyBoxComponent implements OnInit {
     })
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    
+
+
+    
+  }
+
   loadEnemyInfo(): void {
 
     this.enemyName = this.listofEnemies[0].enemyName;
     this.enemyHealth = this.listofEnemies[0].enemyStartingHP;
     this.enemyAttack = this.listofEnemies[0].enemyAttack;
-    // this.enemySpriteImgUrl = this.listofEnemies[0].enemySpriteImgUrl;
+    this.enemySpriteImgUrl = this.listofEnemies[0].enemySpriteURL;
     
-
   }
 
   

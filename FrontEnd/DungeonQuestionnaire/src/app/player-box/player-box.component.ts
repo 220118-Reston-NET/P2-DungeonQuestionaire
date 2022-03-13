@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Player } from '../models/player.models';
 import { FrontEndService } from '../Services/front-end.service';
 
@@ -14,6 +14,9 @@ export class PlayerBoxComponent implements OnInit {
   playerSpriteUrl: string = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUqZyg896rd_E6YEm-Ghk4FnON2imS2PbHPg&usqp=CAU";
   enemyCurrentlyFighting: number = 0;
   userVictories: number = 0;
+
+  @Input()
+  currentPlayerHP:number = 0;
 
 
   listOfPlayers: Player[];
@@ -33,6 +36,7 @@ export class PlayerBoxComponent implements OnInit {
       this.loadPlayerInfo();
 
       this.setSessionStoragePlayerHP();
+      this.currentPlayerHP = this.playerHealth;
       this.setSessionStorageEnemyCurrentlyFighting();
     })
   }
@@ -50,7 +54,7 @@ export class PlayerBoxComponent implements OnInit {
     this.userVictories = this.listOfPlayers[0].userVictories;
 
   }
-
+  
   filterPlayerInfoByEmail() {
 
 
@@ -80,5 +84,7 @@ export class PlayerBoxComponent implements OnInit {
 
 
 }
+
+
 
 

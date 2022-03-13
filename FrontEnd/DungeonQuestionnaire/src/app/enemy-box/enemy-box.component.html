@@ -1,5 +1,7 @@
-<div>
-    <img width=25% [src]="enemySpriteImgUrl" alt="Enemy's current sprite" />
+<div class="outer-div">
+    <div class="img-container d-flex flex-column align-items-center">
+    <img [src]="enemySpriteImgUrl" alt="Enemy's current sprite" />
+    </div>
     <p class="m-2 choice text-center column"> {{enemyName}}</p>
     <p class="m-2 choice text-center column"> HP: {{enemyHealth}}</p>
     <p class="m-2 choice text-center column"> Attack: {{enemyAttack}}</p>

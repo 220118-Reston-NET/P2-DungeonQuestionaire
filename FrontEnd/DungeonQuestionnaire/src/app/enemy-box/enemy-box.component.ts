@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Enemy } from '../models/enemy.model';
 import { FrontEndService } from '../Services/front-end.service';
 
@@ -19,6 +19,11 @@ export class EnemyBoxComponent implements OnInit {
 
     this.listofEnemies = [];
   }
+
+  @Input()
+  currentEnemyHP:number= 0;
+  
+
 
   ngOnInit(): void {
 

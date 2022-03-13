@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Player } from '../models/player.models';
+
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -7,9 +11,12 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   menuLabel = "";
+  playerEmail: string = "test@email.com";
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+
+    this.setSessionStoragePlayerEmail();
   }
 
   goToSignUp() {
@@ -17,8 +24,8 @@ export class LoginComponent implements OnInit {
     this.menuLabel = "Sign up(Main Menu)";
   }
 
-  // setSessionStoragePlayerEmail() {
+  setSessionStoragePlayerEmail() {
 
-  //   sessionStorage.setItem("playerEmail", this.playerEmail);
-  // }
+    sessionStorage.setItem("playerEmail", this.playerEmail);
+  }
 }

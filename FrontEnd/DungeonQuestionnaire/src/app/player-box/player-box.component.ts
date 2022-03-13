@@ -36,6 +36,8 @@ export class PlayerBoxComponent implements OnInit {
       this.setSessionStorageEnemyCurrentlyFighting();
     })
   }
+
+
   //***Will need to be changed to a filtered listOfPlayers where user email = the one that was provided***
   loadPlayerInfo(): void {
 
@@ -62,6 +64,14 @@ export class PlayerBoxComponent implements OnInit {
   setSessionStorageEnemyCurrentlyFighting() {
 
     sessionStorage.setItem("enemyCurrentlyFighting", this.enemyCurrentlyFighting.toString());
+  }
+
+  getSessionStoragePlayerHP() {
+    this.playerHealth = Number(sessionStorage.getItem("playerHP"));
+  }
+
+  getSessionStorageEnemyCurrentlyFighting() {
+    this.enemyCurrentlyFighting = Number(sessionStorage.getItem("enemyCurrentlyFighting"));
   }
 
 

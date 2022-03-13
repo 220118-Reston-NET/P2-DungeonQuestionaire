@@ -1,10 +1,10 @@
 export interface Player {
-    PlayerID: number,
-    PlayerName: string,
-    PlayerHP: number,
-    EnemyCurrentlyFighting: number,
-    UserEmail: string,
-    UserPassword: string,
-    UserVictories: number,
-    SpriteURL: string
+    playerID: number,
+    playerName: string,
+    playerHP: number,
+    enemyCurrentlyFighting: number,
+    userEmail: string,
+    userPassword: string,
+    userVictories: number,
+    spriteURL: string
 }

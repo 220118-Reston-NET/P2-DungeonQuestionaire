@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-// import { endianness } from 'os';
 import { Player } from '../models/player.models';
 import { FrontEndService } from '../Services/front-end.service';
 
@@ -16,25 +15,37 @@ export class SignupComponent implements OnInit {
 //only add to the form group if you updated the signup page
   playerGroup = new FormGroup ({
     name: new FormControl(""),
+    playerHp: new FormControl(40),
+    enemyFight: new FormControl(1),
     email: new FormControl("someone@here.com"),
     password: new FormControl(""),
+    userVictories: new FormControl(1),
+    spriteURL: new FormControl("testurl")
   });
 
   constructor(private router:Router, private playerServ:FrontEndService) { }
 
   menuLabel = "";
+
+ 
   ngOnInit(): void {
   
   }
 
-  addPlayer(playerGroup:FormGroup)
+  addPlayer(p_playerGroup:FormGroup)
   {
       let player:Player = 
       {
-        PlayerName: playerGroup.get("name")?.value,
-        UserEmail: playerGroup.get("emial")?.value,
-        UserPassword: playerGroup.get("password")?.value
+        
+        playerName:p_playerGroup.get("name")?.value,
+        spriteURL: p_playerGroup.get("spriteURL")?.value,
+        playerHP: p_playerGroup.get("playerHp")?.value,
+        userEmail: p_playerGroup.get("email")?.value,
+        userPassword: p_playerGroup.get("password")?.value,
+        userVictories: p_playerGroup.get("userVictories")?.value,
+        enemyCurrentlyFighting: p_playerGroup.get("enemyFight")?.value,
       }
+      console.log(player);
 
       this.playerServ.addPlayer(player).subscribe(result => console.log(result));
   }

@@ -1,5 +1,5 @@
 export interface Player {
-    playerID: number,
+    playerID?: number,
     playerName: string,
     playerHP: number,
     enemyCurrentlyFighting: number,

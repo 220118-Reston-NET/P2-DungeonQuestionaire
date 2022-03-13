@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Player } from '../models/player.models';
 import { FrontEndService } from '../Services/front-end.service';
 
@@ -14,6 +14,12 @@ export class PlayerBoxComponent implements OnInit {
   playerSpriteUrl: string = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUqZyg896rd_E6YEm-Ghk4FnON2imS2PbHPg&usqp=CAU";
   enemyCurrentlyFighting: number = 0;
   userVictories: number = 0;
+  userEmail: string | null = "";
+  //userEmail: string | null = "decimater@email.com";
+  filteredListOfPlayers: Player[];
+
+  @Input()
+  currentPlayerHP: number = 0;
 
 
   listOfPlayers: Player[];
@@ -21,6 +27,7 @@ export class PlayerBoxComponent implements OnInit {
   constructor(private frontEndServ: FrontEndService) {
     //getAllPlayers() method gives an observable that has a subscibe method to start the http request and then handle x amount of responses
     this.listOfPlayers = [];
+    this.filteredListOfPlayers = [];
   };
 
 
@@ -29,14 +36,36 @@ export class PlayerBoxComponent implements OnInit {
     this.frontEndServ.getAllPlayers().subscribe(result => {
       //the result of a response is then stored in our listOfPlayers Property
       this.listOfPlayers = result;
-
+      this.filteredListOfPlayers = result;
+      this.setSessionStorageUserEmail();
+      this.getSessionStorageUserEmail();
+      this.filterPlayerByEmail();
       this.loadPlayerInfo();
-
       this.setSessionStoragePlayerHP();
+      this.currentPlayerHP = this.playerHealth;
       this.setSessionStorageEnemyCurrentlyFighting();
+      this.setSessionStoragePlayerName();
+      this.setSessionStorageUserVictories();
     })
+
+
+
   }
 
+
+  filterPlayerByEmail() {
+    //let email = this.getSessionStorageUserEmail();
+
+    this.listOfPlayers = this.listOfPlayers.filter(x => x.userEmail == this.userEmail);
+  }
+
+  performFilter(filter: string): Player[] {
+    let tempListOfPlayer: Player[];
+
+    tempListOfPlayer = this.listOfPlayers.filter((player: Player) => player.userEmail.indexOf(filter) != -1)
+
+    return tempListOfPlayer;
+  }
 
   //***Will need to be changed to a filtered listOfPlayers where user email = the one that was provided***
   loadPlayerInfo(): void {
@@ -51,9 +80,12 @@ export class PlayerBoxComponent implements OnInit {
 
   }
 
-  filterPlayerInfoByEmail() {
+  setSessionStorageUserEmail() {
+    sessionStorage.setItem("userEmail", "decimater@email.com");
+  }
 
-
+  getSessionStorageUserEmail() {
+    this.userEmail = sessionStorage.getItem("userEmail");
   }
 
   setSessionStoragePlayerHP() {
@@ -64,6 +96,14 @@ export class PlayerBoxComponent implements OnInit {
   setSessionStorageEnemyCurrentlyFighting() {
 
     sessionStorage.setItem("enemyCurrentlyFighting", this.enemyCurrentlyFighting.toString());
+  }
+
+  setSessionStorageUserVictories() {
+    sessionStorage.setItem("userVictories", this.userVictories.toString());
+  }
+
+  setSessionStoragePlayerName() {
+    sessionStorage.setItem("playerName", this.playerName);
   }
 
   getSessionStoragePlayerHP() {
@@ -80,5 +120,7 @@ export class PlayerBoxComponent implements OnInit {
 
 
 }
+
+
 
 

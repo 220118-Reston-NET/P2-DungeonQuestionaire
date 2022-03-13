@@ -3,31 +3,31 @@
     <!-- Might be converted into buttons in the future, rather than links -->
     <h5 class="p-2">{{question}}</h5>
     <div class="form-check m-1">
-        <input class="form-check-input" type="radio" name="answers" id="answer1" value="option1" checked>
+        <input class="form-check-input" [(ngModel)]="answer" type="radio" name="answers" id="answer1" [value]="answer1" checked>
         <label class="form-check-label">
           {{answer1}} 
         </label>
       </div>
       <div class="form-check m-1">
-        <input class="form-check-input " type="radio" name="answers" id="answer2" value="option2">
+        <input class="form-check-input " [(ngModel)]="answer" type="radio" name="answers" id="answer2" [value]="answer2">
         <label class="form-check-label">
           {{answer2}} 
         </label>
       </div>
       <div class="form-check m-1">
-        <input class="form-check-input" type="radio" name="answers" id="answer3" value="option3">
+        <input class="form-check-input" [(ngModel)]="answer" type="radio" name="answers" id="answer3" [value]="answer3">
         <label class="form-check-label">
           {{answer3}} 
         </label>
       </div>
       <div class="form-check m-1">
-        <input class="form-check-input" type="radio" name="answers" id="answer4" value="option4">
+        <input class="form-check-input"  [(ngModel)]="answer" type="radio" name="answers" id="answer4" [value]="answer4">
         <label class="form-check-label">
           {{answer4}} 
         </label>
       </div>
-      <button class="m-2 btn btn-primary">Submit</button>
-      <p class="m-2 choice text-center column"> Answering this question correctly will deal {{questionAttack}} damage.</p>
+      <button (click)="compareAnswers()" class="m-2 btn btn-primary">Submit</button>
+      <p class="m-2 choice text-center column"> {{testNumber}} Answering this question correctly will deal {{questionAttack}} damage.</p>
     </div>
 
 

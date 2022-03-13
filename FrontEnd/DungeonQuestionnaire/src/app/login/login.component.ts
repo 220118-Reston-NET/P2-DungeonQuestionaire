@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
     this.setSessionStoragePlayerEmail();
   }
 
+  
   goToSignUp() {
     this.router.navigate(["/signup"]);
     this.menuLabel = "Sign up(Main Menu)";

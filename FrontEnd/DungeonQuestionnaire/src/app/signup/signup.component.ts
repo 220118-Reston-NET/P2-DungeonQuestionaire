@@ -19,7 +19,7 @@ export class SignupComponent implements OnInit {
     enemyFight: new FormControl(1),
     email: new FormControl("someone@here.com"),
     password: new FormControl(""),
-    userVictories: new FormControl(1),
+    userVictories: new FormControl(0),
     spriteURL: new FormControl("testurl")
   });
 

@@ -8,7 +8,7 @@ namespace BL
 
         Task<List<Player>> GetAllPlayers();
 
-        Task<Player> UpdatePlayer(Player p_Player);
+        Task UpdatePlayer(string SpriteImgurl, int PlayerHP, int EnemyCurrentlyFighting, string UserEmail, int UserVictories);
 
         Task<Player> DeletePlayer(Player p_Player);
 

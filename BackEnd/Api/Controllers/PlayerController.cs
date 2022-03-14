@@ -66,11 +66,12 @@ namespace Api.Controllers
         /// <param name="p_Player"></param>
         /// <returns></returns>
         [HttpPut("UpdatePlayer")]
-        public async Task<IActionResult> Put([FromBody] Player p_Player)
+        public async Task<IActionResult> Put(string SpriteImgurl, int PlayerHP, int EnemyCurrentlyFighting, string UserEmail, int UserVictories)
         {
             try
             {
-                return Ok(await _repo.UpdatePlayer(p_Player));
+                await _repo.UpdatePlayer(SpriteImgurl, PlayerHP, EnemyCurrentlyFighting, UserEmail, UserVictories);
+                return Ok("Player Updated Successfully");
 
             }
             catch (SqlException)

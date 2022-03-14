@@ -31,9 +31,12 @@ export class FrontEndService {
 
   }
 
-  updatePlayer(player:Player)
+  updatePlayer(SpriteImgurl:string,PlayerHP:number, enemyCurrentlyFighting:number, UserEmail:string, UserVictories:number)
   {
-    return this.http.put<Player>("https://dungeonapi.azurewebsites.net/api/Player/UpdatePlayer",player);
-  }
+    // let body:any = {SpriteImgurl,PlayerHP, enemyCurrentlyFighting, UserEmail, UserVictories};
 
+    let url:string = ("https://dungeonapi.azurewebsites.net/api/Player/UpdatePlayer?SpriteImgurl=" + SpriteImgurl + "&PlayerHP=" + PlayerHP + "&EnemyCurrentlyFighting=" + enemyCurrentlyFighting + "&UserEmail=" + UserEmail + "&UserVictories=" + UserVictories)
+    return this.http.put(url, "body");
+  }
+  // ?SpriteImgurl=www.google.com&PlayerHP=41&EnemyCurrentlyFighting=6&UserEmail=string&UserVictories=6
 }

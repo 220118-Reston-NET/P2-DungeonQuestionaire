@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Player } from '../models/player.models';
 import { FrontEndService } from '../Services/front-end.service';
@@ -17,26 +18,19 @@ export class SaveLogoutComponent implements OnInit {
   userPassword: string  = "";
   userVictories: number = 0;
   spriteURL: string  = "";
-  FilteredPlayerID:number | undefined = 0;
 
   listofPlayers: Player[];
 
-  constructor(private savelogout:FrontEndService) { 
+  constructor(private savelogout:FrontEndService, private router:Router) { 
 
     this.listofPlayers = [];
     
   }
   
   ngOnInit(): void {
-    
-    this.savelogout.getAllPlayers().subscribe(result =>{
-      this.listofPlayers = result;
-      this.setSessionData(); //Just to hard code properties for Testing
+   
       this.getSessionData();
-      this.getPlayerDataDB();
       this.setUpdatePlayer();
-      
-    })
     
   }
 
@@ -44,51 +38,25 @@ getSessionData(){
 
   this.playerHP = Number(sessionStorage.getItem("playerHP"));
   this.userVictories = Number(sessionStorage.getItem("userVictories"));
-  this.userVictories = 8000;
-  this.setSessionData();
-  this.userEmail = sessionStorage.getItem("playerEmail");
+  this.userEmail = sessionStorage.getItem("userEmail");
   this.enemyCurrentlyFighting = Number(sessionStorage.getItem("enemyCurrentlyFighting"));
   this.spriteURL = (sessionStorage.getItem("spriteURL"));
-  this.playerName = (sessionStorage.getItem("playerName"));
 
 }
 
-setSessionData()
-{
-  sessionStorage.setItem("playerEmail", "someone@here.com")
-  sessionStorage.setItem("spriteURL", "someone@here.com")
-}
-
-
-getPlayerDataDB()
-{
-  
-  this.listofPlayers = this.listofPlayers.filter(x => x.userEmail == this.userEmail);
-  console.log(this.listofPlayers);
-  console.log(this.FilteredPlayerID);
-  this.FilteredPlayerID = this.listofPlayers[0].playerID;
-  this.userPassword = this.listofPlayers[0].userPassword;
-  console.log(this.FilteredPlayerID);
-}
 
 setUpdatePlayer()
 {
-  let PlayerUpdateObject: Player = {
 
-    playerID : this.FilteredPlayerID,
-    playerName : this.playerName,
-    spriteURL : this.spriteURL,
-    playerHP : this.playerHP,
-    userEmail : this.userEmail,
-    userPassword : this.userPassword,
-    userVictories : this.userVictories,
-    enemyCurrentlyFighting : this.enemyCurrentlyFighting,
-    
-  };
+  this.savelogout.updatePlayer(this.spriteURL, this.playerHP, this.enemyCurrentlyFighting, this.userEmail, this.userVictories).subscribe(result => console.log(result));
   
-  this.savelogout.updatePlayer(PlayerUpdateObject).subscribe(result => console.log(result));
 
 }
 
+goToHome()
+{
+  sessionStorage.clear();
+  this.router.navigate(["/login"])
+}
 
 }

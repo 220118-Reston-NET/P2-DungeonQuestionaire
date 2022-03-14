@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
       }
   
     })
-    delay(1000);
+    
     
   }
 

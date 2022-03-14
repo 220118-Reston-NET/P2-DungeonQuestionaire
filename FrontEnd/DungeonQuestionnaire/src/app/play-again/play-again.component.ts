@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { delay } from 'rxjs';
+import { Player } from '../models/player.models';
+import { FrontEndService } from '../Services/front-end.service';
 
 @Component({
   selector: 'app-play-again',
@@ -7,16 +10,29 @@ import { Router } from '@angular/router';
   styleUrls: ['./play-again.component.css']
 })
 export class PlayAgainComponent implements OnInit {
+  playerID: number = 0;
+  playerName: string  = "";
+  playerHP: number = 0;
+  enemyCurrentlyFighting: number = 0;
+  userEmail: string  = "";
+  userPassword: string  = "";
+  userVictories: number = 0;
+  spriteURL: string  = "";
+  listofPlayers: Player[];
+  constructor(private savelogout:FrontEndService, private router:Router) { 
 
-  constructor(private router:Router) { }
+    this.listofPlayers = [];
+    
+  }
 
   ngOnInit(): void {
   }
 
   changeToPlayAgain(){
+    this.getResetData();
+    this.setUpdatePlayer();
+    delay(500);
     this.router.navigate(["/fight"]);
-    // this can take us to a reset stats and update player, then back to fight page.
-
   }
 
   goBackToLoginPage(){
@@ -24,5 +40,19 @@ export class PlayAgainComponent implements OnInit {
     this.router.navigate(["/login"]);
 
   }
+
+  getResetData(){
+    this.playerHP = 40;
+    this.userVictories = Number(sessionStorage.getItem("userVictories"));
+    this.userEmail = sessionStorage.getItem("userEmail");
+    this.enemyCurrentlyFighting = 1;
+    this.spriteURL = (sessionStorage.getItem("spriteURL"));
+  }
+  
+  setUpdatePlayer()
+  {
+    this.savelogout.updatePlayer(this.spriteURL, this.playerHP, this.enemyCurrentlyFighting, this.userEmail, this.userVictories).subscribe(result => console.log(result));
+  }
+  
 
 }

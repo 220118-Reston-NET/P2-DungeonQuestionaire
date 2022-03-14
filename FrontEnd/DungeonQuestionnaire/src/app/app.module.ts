@@ -21,6 +21,7 @@ import { EnemyBoxComponent } from './enemy-box/enemy-box.component';
 import { RouterModule } from '@angular/router';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RewardComponent } from './reward/reward.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PlayerBoxComponent,
     EnemyBoxComponent,
     HomepageComponent,
+    RewardComponent,
 
   ],
   imports: [
@@ -55,7 +57,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       { path: "logout", component: SaveLogoutComponent },
       { path: "fight", component: FightComponent },
       { path: "winner", component: WinnerPageComponent },
-      { path: "reward", component: NewSpriteChoiceComponent},
+      { path: "reward", component: RewardComponent},
       { path: "gameover", component: GameOverComponent },
       { path: "", component: HomepageComponent }, //Default component you want to show
       { path: "**", component: HomepageComponent }

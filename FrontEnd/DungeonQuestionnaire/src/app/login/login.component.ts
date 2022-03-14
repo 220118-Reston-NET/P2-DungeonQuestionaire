@@ -38,18 +38,20 @@ export class LoginComponent implements OnInit {
     this.playerPassword = this.password;
     this.frontEndServ.getAllPlayers().subscribe(result => {
       this.listOfPlayers = result;
+
+      if (this.listOfPlayers.find(x => x.userEmail == this.playerEmail && x.userPassword == this.playerPassword)) {
+
+        this.setSessionStoragePlayerEmail();
+        this.router.navigate(["/fight"]);
+  
+      } else {
+  
+        alert("Email or Password was invalid");
+      }
+  
     })
     delay(1000);
-    if (this.listOfPlayers.find(x => x.userEmail == this.playerEmail && x.userPassword == this.playerPassword)) {
-
-      this.setSessionStoragePlayerEmail();
-      this.router.navigate(["/fight"]);
-
-    } else {
-
-      alert("Email or Password was invalid");
-    }
-
+    
   }
 
 

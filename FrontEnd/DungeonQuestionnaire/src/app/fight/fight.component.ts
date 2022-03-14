@@ -15,6 +15,7 @@ export class FightComponent implements OnInit {
 
 
   constructor() { }
+  
 
 
   
@@ -26,8 +27,7 @@ export class FightComponent implements OnInit {
   }
 
   ngonchanges(){
-    this.getSessionEnemyCurrentlyFighting;
-    this.getSessionEnemyName;
+
   }
 
   HPEventWasTriggered(hp:number){
@@ -53,7 +53,10 @@ export class FightComponent implements OnInit {
     this.enemyName = sessionStorage.getItem("enemyName");
   }
 
+  changeECF(ecf:number){
+    this.enemyCurrentlyFighting = ecf;
+    this.getSessionEnemyName;
+  }
 
-  // Add nother emitter to getEnemyCurrentlyFighting and enemyName from session storage
 
 }

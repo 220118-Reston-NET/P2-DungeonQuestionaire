@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Enemy } from '../models/enemy.model';
 import { FrontEndService } from '../Services/front-end.service';
 
@@ -22,6 +22,11 @@ export class EnemyBoxComponent implements OnInit, OnChanges {
 
   @Input()
   currentEnemyHP:number= this.enemyHealth;
+  @Output()
+  ECFEmitter = new EventEmitter<number>();
+
+
+  
   
 
   ngOnInit(): void {
@@ -52,6 +57,7 @@ export class EnemyBoxComponent implements OnInit, OnChanges {
     this.setSessionHealth();
     this.setSessionEnemyName();
     this.setSessionAttack();
+    this.ECFEmitter.emit(this.enemyCurrentlyFighting);
     })
   }
 

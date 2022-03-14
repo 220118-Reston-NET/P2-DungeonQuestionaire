@@ -23,7 +23,7 @@ export class QuestionsAnswersComponent implements OnInit {
     enemyCurrentlyFighting: number = 0;
     enemyAttack: number = 0;
     correct: string | null = ""
-
+    userVictories:number = 0;
 
 
     @Input()
@@ -139,11 +139,11 @@ export class QuestionsAnswersComponent implements OnInit {
   }
 
   getSessionUserVictories(){
-
+    this.userVictories = Number(sessionStorage.getItem("userVictories"));
   }
 
   setSessionUserVictories(){
-
+    sessionStorage.setItem("userVictories" , this.userVictories.toString());
   }
 
   compareAnswers()
@@ -192,8 +192,9 @@ export class QuestionsAnswersComponent implements OnInit {
     this.checkEnemyHPAndIncrementIfDefeat();
     this.getSessionEnemyCurrentlyFighting();
     if (this.enemyCurrentlyFighting >= 9) {
-      // get uservictories and increment by 1
-      // set uservictories to session
+      this.getSessionUserVictories();
+      this.userVictories += 1;
+      this.setSessionUserVictories();
       this.router.navigate(["/winner"]);
       
     }
@@ -214,5 +215,9 @@ export class QuestionsAnswersComponent implements OnInit {
       this.setSessionEnemyCurrentlyFighting();
       
     }
+  }
+
+  saveAndLogout(){
+    this.router.navigate(["/logout"])
   }
 }

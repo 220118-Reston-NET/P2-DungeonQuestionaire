@@ -24,3 +24,22 @@
     width: 80vw;
     ;
 }
+
+.outer-div {
+    border:black solid .1rem;
+    padding:1rem;
+    height:16rem;
+    width: 100%;
+    margin-right:.5rem;
+
+}
+
+.img-container {
+    height: 8rem;
+    width: 8rem;
+}
+
+img {
+   max-width: 100%;
+    max-height: 100%;
+}

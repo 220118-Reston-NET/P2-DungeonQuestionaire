@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Player } from '../models/player.models';
@@ -20,8 +20,17 @@ export class SignupComponent implements OnInit {
     email: new FormControl("someone@test.com", [Validators.required,Validators.email]),
     password: new FormControl(""),
     userVictories: new FormControl(0),
-    spriteURL: new FormControl("testurl")
+    spriteURL: new FormControl("")
   });
+
+
+
+
+  get playerSprite()
+  {
+    return this.playerGroup.get("playerSprite")
+
+  }
   get email() 
   {
     return this.playerGroup.get("email");
@@ -34,12 +43,29 @@ export class SignupComponent implements OnInit {
   {
     return this.playerGroup.get("password");
   }
+
+  get spriteURL()
+  {
+    if(this.playerGroup.get("playerSprite-male"))
+    {
+      return console.log("Male Selected");
+    }
+    else if(this.playerGroup.get("playerSprite-female"))
+    {
+      return console.log("Female Selected");
+    }
+  }
   constructor(private router:Router, private playerServ:FrontEndService) { this.listOfPlayers = []; }
 
   playerEmail:string = "";
   menuLabel = "";
   listOfPlayers: Player[];
+  
+  
+  
  
+
+
   ngOnInit(): void {
   
   }
@@ -67,12 +93,10 @@ export class SignupComponent implements OnInit {
         if (this.listOfPlayers.find(x => x.userEmail != this.playerEmail)) 
         {
           this.setSessionStoragePlayerEmail();
+          this.router.navigate(["/fight"]);
           this.playerServ.addPlayer(player).subscribe(result => console.log(result));
         }
-        else
-        {
-            alert;
-        }
+        
         })
       
       
@@ -80,6 +104,7 @@ export class SignupComponent implements OnInit {
   setSessionStoragePlayerEmail() {
 
     sessionStorage.setItem("userEmail", this.playerEmail);
+    
   }
 
   goToLogin()

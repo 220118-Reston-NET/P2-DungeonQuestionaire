@@ -15,6 +15,15 @@
             <span *ngIf="email?.touched && email?.errors?.['required']" style="color:red">Needs an email address to login!</span>
             <span *ngIf="email?.touched && email?.errors?.['email']" style="color: red">Please keep it in email format</span>
         </div>
+        <div class="mb-3 row d-flex flex-column align-items-center">
+            <label for="inputPassword" id="passwordLabel ">Avatar:</label>
+            <ul>
+                <input class="playerSprite-male" type="radio" id="male" formControlName="spriteURL"  name="spriteURL" value="../assets/images/Male-0.png"><label style="margin-left:5px">Male</label>
+                <img src="../assets/images/Male-0.png"/>
+             <input class="playerSprite-female"  type="radio" id="female" formControlName="spriteURL" name="spriteURL" value="../assets/images/Female-0.png"><label style="margin-left:5px">Female</label>   
+            <img src="../assets/images/Female-0.png"/></ul>
+                
+        </div>
         <div class="col-auto d-flex flex-column">
             <button (click)="addPlayer(playerGroup)" type="submit" class="btn btn-primary mb-3 ">SignUp</button>
             Have an account.<a class="nav-link" (click)="goToLogin()">Login here!</a>     

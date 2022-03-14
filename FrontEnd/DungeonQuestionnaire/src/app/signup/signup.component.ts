@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Player } from '../models/player.models';
 import { FrontEndService } from '../Services/front-end.service';
@@ -17,21 +17,33 @@ export class SignupComponent implements OnInit {
     name: new FormControl(""),
     playerHp: new FormControl(40),
     enemyFight: new FormControl(1),
-    email: new FormControl("someone@here.com"),
+    email: new FormControl("someone@test.com", [Validators.required,Validators.email]),
     password: new FormControl(""),
     userVictories: new FormControl(0),
     spriteURL: new FormControl("testurl")
   });
+  get email() 
+  {
+    return this.playerGroup.get("email");
+  }
+  get name()
+  {
+    return this.playerGroup.get("name");
+  }
+  get password()
+  {
+    return this.playerGroup.get("password");
+  }
+  constructor(private router:Router, private playerServ:FrontEndService) { this.listOfPlayers = []; }
 
-  constructor(private router:Router, private playerServ:FrontEndService) { }
-
+  playerEmail:string = "";
   menuLabel = "";
-
+  listOfPlayers: Player[];
  
   ngOnInit(): void {
   
   }
-
+  
   addPlayer(p_playerGroup:FormGroup)
   {
       let player:Player = 
@@ -47,11 +59,28 @@ export class SignupComponent implements OnInit {
       }
       console.log(player);
 
-      this.playerServ.addPlayer(player).subscribe(result => console.log(result));
+      
 
+      this.playerServ.getAllPlayers().subscribe(result => {
+        this.listOfPlayers = result;
+  
+        if (this.listOfPlayers.find(x => x.userEmail != this.playerEmail)) 
+        {
+          this.setSessionStoragePlayerEmail();
+          this.playerServ.addPlayer(player).subscribe(result => console.log(result));
+        }
+        else
+        {
+            alert;
+        }
+        })
+      
       
   }
+  setSessionStoragePlayerEmail() {
 
+    sessionStorage.setItem("userEmail", this.playerEmail);
+  }
 
   goToLogin()
   {

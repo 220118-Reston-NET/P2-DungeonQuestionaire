@@ -7,11 +7,13 @@
 
         <div class="mb-3 row d-flex flex-column align-items-center">
             <label for="inputPassword" id="passwordLabel ">Password: </label>
-            <input type="text" class="pass-form-control" id="inputPassword" value="password" formControlName="password">
+            <input type="password" class="pass-form-control" id="inputPassword" value="password" formControlName="password">
         </div>
         <div class="mb-3 row d-flex flex-column align-items-center">
             <label for="inputPassword" id="passwordLabel ">Email:</label>
             <input type="text" class="email" id="inputPassword" value="someone@here.com" formControlName="email">
+            <span *ngIf="email?.touched && email?.errors?.['required']" style="color:red">Needs an email address to login!</span>
+            <span *ngIf="email?.touched && email?.errors?.['email']" style="color: red">Please keep it in email format</span>
         </div>
         <div class="col-auto d-flex flex-column">
             <button (click)="addPlayer(playerGroup)" type="submit" class="btn btn-primary mb-3 ">SignUp</button>

@@ -48,6 +48,8 @@ export class SignupComponent implements OnInit {
       console.log(player);
 
       this.playerServ.addPlayer(player).subscribe(result => console.log(result));
+
+      
   }
 
 

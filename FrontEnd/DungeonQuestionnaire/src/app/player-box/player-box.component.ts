@@ -11,7 +11,7 @@ export class PlayerBoxComponent implements OnInit {
 
   playerName: string = "(name)";
   playerHealth: number = 40;
-  playerSpriteUrl: string = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUqZyg896rd_E6YEm-Ghk4FnON2imS2PbHPg&usqp=CAU";
+  playerSpriteUrl: string = "../assets/images/Male-0.png";
   enemyCurrentlyFighting: number = 0;
   userVictories: number = 0;
   userEmail: string | null = "";
@@ -56,7 +56,7 @@ export class PlayerBoxComponent implements OnInit {
   filterPlayerByEmail() {
     //let email = this.getSessionStorageUserEmail();
 
-    this.listOfPlayers = this.listOfPlayers.filter(x => x.userEmail == this.userEmail);
+    this.filteredListOfPlayers = this.listOfPlayers.filter(x => x.userEmail == this.userEmail);
   }
 
   performFilter(filter: string): Player[] {
@@ -70,11 +70,12 @@ export class PlayerBoxComponent implements OnInit {
   //***Will need to be changed to a filtered listOfPlayers where user email = the one that was provided***
   loadPlayerInfo(): void {
 
-    this.playerName = this.listOfPlayers[0].playerName;
+    this.playerName = this.filteredListOfPlayers[0].playerName;
 
-    this.playerHealth = this.listOfPlayers[0].playerHP;
+    this.playerHealth = this.filteredListOfPlayers[0].playerHP;
 
-    // this.playerSpriteUrl = this.listOfPlayers[0].SpriteURL;
+    this.playerSpriteUrl = this.filteredListOfPlayers[0].spriteURL;
+
     this.enemyCurrentlyFighting = this.listOfPlayers[0].enemyCurrentlyFighting;
     this.userVictories = this.listOfPlayers[0].userVictories;
 

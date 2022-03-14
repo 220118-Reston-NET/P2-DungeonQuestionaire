@@ -28,6 +28,8 @@ namespace DL
         /// <returns></returns>
         Task<T> Delete(T p_resource);
 
+        Task Update(string SpriteImgurl, int PlayerHP, int EnemyCurrentlyFighting, string UserEmail, int UserVictories);
+
     }
 
 }

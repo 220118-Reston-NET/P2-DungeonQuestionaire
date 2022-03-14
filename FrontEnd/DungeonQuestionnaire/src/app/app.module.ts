@@ -55,6 +55,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       { path: "logout", component: SaveLogoutComponent },
       { path: "fight", component: FightComponent },
       { path: "winner", component: WinnerPageComponent },
+      { path: "reward", component: NewSpriteChoiceComponent},
       { path: "gameover", component: GameOverComponent },
       { path: "", component: HomepageComponent }, //Default component you want to show
       { path: "**", component: HomepageComponent }

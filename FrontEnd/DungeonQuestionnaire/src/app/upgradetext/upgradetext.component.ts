@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-upgradetext',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpgradetextComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
 
-}
+  redeem(){
+    this.router.navigate(["/reward"])
+  }
+
+  logout(){
+    sessionStorage.clear();
+    this.router.navigate(["/login"]);
+
+  }
+  }
+

@@ -5,14 +5,19 @@
         
 
         <h4 class=" character-defeat text-center">Your character information has been saved!</h4>
-        <p>Total Wins: (Totalwins)</p>
+        <p>Total Wins: {{userVictories}}</p>
         
         <div class="text-center d-flex flex-column align-items-center">
 
-        <app-player-box></app-player-box>
-        <button class="btn btn-primary m-3">Home</button>
+            <div class="outer-div">
+                <div class="img-container d-flex flex-column align-items-center">
+                    <img [src]="spriteURL" alt="Player's chosen sprite" />
+                </div>
+                <p class="m-2 choice text-center column"> {{playerName}}</p>
+                <p class="m-2 choice text-center column"> HP: {{playerHP}}</p>
             </div>
-
+        <button (click)="goToHome()" class="btn btn-primary m-3">Home</button>
+            </div>
 
 </div>
 

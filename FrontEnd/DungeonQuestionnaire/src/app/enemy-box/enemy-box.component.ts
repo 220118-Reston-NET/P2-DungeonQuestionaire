@@ -33,7 +33,6 @@ export class EnemyBoxComponent implements OnInit, OnChanges {
 
     this.enemyServ.getAllEnemies().subscribe(result =>{
       this.listofEnemies = result;
-      console.log(this.listofEnemies);
       this.getEnemyCurrentlyFighting();
       this.loadEnemyInfo(this.enemyCurrentlyFighting);
       this.setSessionAttack();
@@ -45,10 +44,7 @@ export class EnemyBoxComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-  console.log(this.enemyHealth);
-  // this.getSessionEnemyHealth();
   this.enemyHealth = this.currentEnemyHP;
-  console.log(this.enemyHealth);
   if (this.enemyHealth <= 0) {
     this.enemyServ.getAllEnemies().subscribe(result =>{
     this.listofEnemies = result;
@@ -64,7 +60,6 @@ export class EnemyBoxComponent implements OnInit, OnChanges {
   }
 
   loadEnemyInfo(ecf:number): void {
-
     this.enemyName = this.listofEnemies[ecf-1].enemyName;
     this.enemyHealth = this.listofEnemies[ecf-1].enemyStartingHP;
     this.enemyAttack = this.listofEnemies[ecf-1].enemyAttack;

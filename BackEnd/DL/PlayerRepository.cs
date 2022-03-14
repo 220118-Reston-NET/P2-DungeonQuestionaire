@@ -64,26 +64,23 @@ namespace DL
             return listofAllPlayers;
         }
 
-        public async Task<Player> Update(Player p_resource)
+        public async Task Update(string SpriteImgurl, int PlayerHP, int EnemyCurrentlyFighting, string UserEmail, int UserVictories)
         {
             string sqlQuery = @"Update Player
-                                Set PlayerName = @PlayerName, SpriteImgurl = @SpriteImgurl, hp = @PlayerHP, EnemyCurrentlyFighting = @EnemyCurrentlyFighting, UserEmail = @UserEmail, UserPassword = @UserPassword, UserVictories = @UserVictories
-                                Where PlayerID = @PlayerID";
+                                Set SpriteImgurl = @SpriteImgurl, hp = @PlayerHP, EnemyCurrentlyFighting = @EnemyCurrentlyFighting,  UserVictories = @UserVictories
+                                Where UserEmail = @UserEmail";
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 await con.OpenAsync();
                 SqlCommand command = new SqlCommand(sqlQuery, con);
-                command.Parameters.AddWithValue("@PlayerID", p_resource.PlayerID);
-                command.Parameters.AddWithValue("@PlayerName", p_resource.PlayerName);
-                command.Parameters.AddWithValue("@SpriteImgurl", p_resource.SpriteURL);
-                command.Parameters.AddWithValue("@PlayerHP", p_resource.PlayerHP);
-                command.Parameters.AddWithValue("@EnemyCurrentlyFighting", p_resource.EnemyCurrentlyFighting);
-                command.Parameters.AddWithValue("@UserEmail", p_resource.UserEmail);
-                command.Parameters.AddWithValue("@UserPassword", p_resource.UserPassword);
-                command.Parameters.AddWithValue("@UserVictories", p_resource.UserVictories);
+                command.Parameters.AddWithValue("@SpriteImgurl", SpriteImgurl );
+                command.Parameters.AddWithValue("@PlayerHP", PlayerHP);
+                command.Parameters.AddWithValue("@EnemyCurrentlyFighting", EnemyCurrentlyFighting);
+                command.Parameters.AddWithValue("@UserEmail", UserEmail);
+                command.Parameters.AddWithValue("@UserVictories", UserVictories);
                 await command.ExecuteNonQueryAsync();
             }
-            return p_resource;
+            
         }
 
         public async Task<Player> Delete(Player p_resource)
@@ -100,6 +97,9 @@ namespace DL
             return p_resource;
         }
 
-
+        public Task<Player> Update(Player p_resource)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -96,6 +96,9 @@ namespace DL
             return p_resource;
         }
 
-
+        public Task Update(string SpriteImgurl, int PlayerHP, int EnemyCurrentlyFighting, string UserEmail, int UserVictories)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

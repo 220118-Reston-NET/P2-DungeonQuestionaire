@@ -32,9 +32,9 @@ namespace BL
         }
 
 
-        public async Task<Player> UpdatePlayer(Player p_Player)
+        public async Task UpdatePlayer(string SpriteImgurl, int PlayerHP, int EnemyCurrentlyFighting, string UserEmail, int UserVictories)
         {
-            return await _repo.Update(p_Player);
+            await _repo.Update(SpriteImgurl, PlayerHP, EnemyCurrentlyFighting, UserEmail, UserVictories);
         }
     }
 }

@@ -44,7 +44,7 @@ getSessionData(){
 
   this.playerHP = Number(sessionStorage.getItem("playerHP"));
   this.userVictories = Number(sessionStorage.getItem("userVictories"));
-  this.userVictories = 9000;
+  this.userVictories = 8000;
   this.setSessionData();
   this.userEmail = sessionStorage.getItem("playerEmail");
   this.enemyCurrentlyFighting = Number(sessionStorage.getItem("enemyCurrentlyFighting"));

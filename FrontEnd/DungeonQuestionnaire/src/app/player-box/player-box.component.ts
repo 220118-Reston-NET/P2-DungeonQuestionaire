@@ -70,42 +70,52 @@ export class PlayerBoxComponent implements OnInit {
   }
 
   changeSpriteImageOnPage() {
-    if(this.userVictories==1 && this.playerSpriteUrl== "../assets/images/Male-0.png"){
+    if(this.userVictories==1 && this.playerSpriteUrl== "Male"){
       this.viewSpriteURL = "../assets/images/Male-1.png";
       this.setSessionViewSpriteURL();
     }
-    else if (this.userVictories==2 && this.playerSpriteUrl== "../assets/images/Male-0.png"){
+    else if (this.userVictories==2 && this.playerSpriteUrl== "Male"){
       this.viewSpriteURL = "../assets/images/Male-2.png";
       this.setSessionViewSpriteURL();
 
     }
-    else if (this.userVictories==3 && this.playerSpriteUrl== "../assets/images/Male-0.png"){
+    else if (this.userVictories==3 && this.playerSpriteUrl== "Male"){
       this.viewSpriteURL = "../assets/images/Male-3.png";
       this.setSessionViewSpriteURL();
 
     }
-    else if (this.userVictories>=4 && this.playerSpriteUrl== "../assets/images/Male-0.png"){
+    else if (this.userVictories>=4 && this.playerSpriteUrl== "Male"){
       this.viewSpriteURL = "../assets/images/Male-4.png";
       this.setSessionViewSpriteURL();
 
     }
-    else if (this.userVictories==1 && this.playerSpriteUrl== "../assets/images/Female-0.png"){
+    else if (this.userVictories==1 && this.playerSpriteUrl== "Female"){
       this.viewSpriteURL = "../assets/images/Female-1.png";
       this.setSessionViewSpriteURL();
 
     }
-    else if (this.userVictories==2 && this.playerSpriteUrl== "../assets/images/Female-0.png"){
+    else if (this.userVictories==2 && this.playerSpriteUrl== "Female"){
       this.viewSpriteURL = "../assets/images/Female-2.png";
       this.setSessionViewSpriteURL();
 
     }
-    else if (this.userVictories==3 && this.playerSpriteUrl== "../assets/images/Female-0.png"){
+    else if (this.userVictories==3 && this.playerSpriteUrl== "Female"){
       this.viewSpriteURL = "../assets/images/Female-3.png";
       this.setSessionViewSpriteURL();
 
     }
-    else if (this.userVictories>=4 && this.playerSpriteUrl== "../assets/images/Female-0.png"){
+    else if (this.userVictories>=4 && this.playerSpriteUrl== "Female"){
       this.viewSpriteURL = "../assets/images/Female-4.png";
+      this.setSessionViewSpriteURL();
+
+    }
+    else if (this.userVictories == 0 && this.playerSpriteUrl== "Male"){
+      this.viewSpriteURL = "../assets/images/Male-0.png";
+      this.setSessionViewSpriteURL();
+
+    }
+    else if (this.userVictories == 0 && this.playerSpriteUrl== "Female"){
+      this.viewSpriteURL = "../assets/images/Female-0.png";
       this.setSessionViewSpriteURL();
 
     }else{

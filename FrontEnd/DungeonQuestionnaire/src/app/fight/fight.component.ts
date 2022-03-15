@@ -24,13 +24,13 @@ export class FightComponent implements OnInit {
 
     this.enemyCurrentlyFighting = Number(sessionStorage.getItem("enemyCurrentlyFighting"));
     this.enemyName = sessionStorage.getItem("enemyName");
-    this.router.navigate(["/fight"]);
 
   }
 
   ngonchanges(){
 
   }
+
 
   HPEventWasTriggered(hp:number){
     this.currentPlayerHP = hp;

@@ -1,18 +1,20 @@
 <form [formGroup]="playerGroup">
     <div class="signupform ">
         <div class="email d-flex flex-column align-items-center">
-            <label for="staticEmail" id="emailLabel text-center" >Name: </label>
+            <label for="staticEmail" id="emailLabel text-center" >Username: </label>
             <input type="text"  class="name" value="John Doe" formControlName="name">
+            <span *ngIf="name?.touched && name?.errors?.['required']" style="color:red">Required</span>
         </div>
 
         <div class="mb-3 row d-flex flex-column align-items-center">
             <label for="inputPassword" id="passwordLabel ">Password: </label>
             <input type="password" class="pass-form-control" id="inputPassword" value="password" formControlName="password">
+            <span *ngIf="password?.touched && password?.errors?.['required']" style="color:red">Required</span>
         </div>
         <div class="mb-3 row d-flex flex-column align-items-center">
             <label for="inputPassword" id="passwordLabel ">Email:</label>
             <input type="text" class="email" id="inputPassword" value="someone@here.com" formControlName="email">
-            <span *ngIf="email?.touched && email?.errors?.['required']" style="color:red">Needs an email address to login!</span>
+            <span *ngIf="email?.touched && email?.errors?.['required']" style="color:red">Required</span>
             <span *ngIf="email?.touched && email?.errors?.['email']" style="color: red">Please keep it in email format</span>
         </div>
         <div class="mb-3 row d-flex flex-column align-items-center">

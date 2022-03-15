@@ -14,11 +14,11 @@ import { FrontEndService } from '../Services/front-end.service';
 export class SignupComponent implements OnInit {
 //only add to the form group if you updated the signup page
   playerGroup = new FormGroup ({
-    name: new FormControl(""),
+    name: new FormControl("",[Validators.required]),
     playerHp: new FormControl(40),
     enemyFight: new FormControl(1),
     email: new FormControl("someone@test.com", [Validators.required,Validators.email]),
-    password: new FormControl(""),
+    password: new FormControl("",[Validators.required]),
     userVictories: new FormControl(0),
     spriteURL: new FormControl("")
   });
@@ -60,11 +60,6 @@ export class SignupComponent implements OnInit {
   playerEmail:string = "";
   menuLabel = "";
   listOfPlayers: Player[];
-  
-  
-  
- 
-
 
   ngOnInit(): void {
   
@@ -93,7 +88,7 @@ export class SignupComponent implements OnInit {
         if (this.listOfPlayers.find(x => x.userEmail != this.playerEmail)) 
         {
           this.setSessionStoragePlayerEmail();
-          this.router.navigate(["/fight"]);
+          this.router.navigate(["/homepage"]);
           this.playerServ.addPlayer(player).subscribe(result => console.log(result));
         }
         

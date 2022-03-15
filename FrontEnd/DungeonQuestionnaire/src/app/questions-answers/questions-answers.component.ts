@@ -149,22 +149,32 @@ export class QuestionsAnswersComponent implements OnInit {
 
   compareAnswers()
   {
+    
       if(this.correctAnswer == this.answer){
      
         this.decrementEnemyHP();
         this.correct = "You got the last answer correct!";
         this.checkIfAllEnemiesDefeated();
+        this.changeQuestionsAndAnswers(0);
+        this.answer = this.hidden;
 
 
       }
+      
+      else if (this.answer == this.hidden){
+        this.correct = "Please select an answer!"
+      }
+
       else{
-      this.decrementPlayerHP();
-      this.correct = "Your last answer was incorrect.";
-      this.checkPlayerHP();
-
-      }
-      this.changeQuestionsAndAnswers(0);
-      this.answer = this.hidden;
+        this.decrementPlayerHP();
+        this.correct = "Your last answer was incorrect.";
+        this.checkPlayerHP();
+        this.changeQuestionsAndAnswers(0);
+        this.answer = this.hidden;
+  
+        }
+      // this.changeQuestionsAndAnswers(0);
+      // this.answer = this.hidden;
      
 
 

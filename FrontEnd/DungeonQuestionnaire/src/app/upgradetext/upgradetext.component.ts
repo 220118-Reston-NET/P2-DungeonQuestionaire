@@ -22,11 +22,7 @@ export class UpgradetextComponent implements OnInit {
   ngOnInit(): void {
     this.getSessionData();
 
-    // switch case to update this.spriteURL depending on this.userVictories
-    this.spriteURL= "../assets/images/Female-2.png"
-
-
-    this.setUpdatePlayer();
+    
 
   }
 
@@ -40,10 +36,7 @@ export class UpgradetextComponent implements OnInit {
   
   }
 
-  setUpdatePlayer()
-  {
-    this.frontEndServ.updatePlayer(this.spriteURL, this.playerHP, this.enemyCurrentlyFighting, this.userEmail, this.userVictories).subscribe(result => console.log(result));
-  }
+  
 
 
 

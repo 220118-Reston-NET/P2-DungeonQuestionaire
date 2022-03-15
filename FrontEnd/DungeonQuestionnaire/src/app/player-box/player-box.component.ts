@@ -11,10 +11,12 @@ export class PlayerBoxComponent implements OnInit {
 
   playerName: string = "(name)";
   playerHealth: number = 40;
-  playerSpriteUrl: string = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUqZyg896rd_E6YEm-Ghk4FnON2imS2PbHPg&usqp=CAU";
+  playerSpriteUrl: string = "";
   enemyCurrentlyFighting: number = 0;
   userVictories: number = 0;
   userEmail: string | null = "";
+
+  viewSpriteURL:string = "";
 
   @Input()
   currentPlayerHP: number = 0;
@@ -42,6 +44,10 @@ export class PlayerBoxComponent implements OnInit {
       this.setSessionStoragePlayerName();
       this.setSessionStorageUserVictories();
       this.setSessionSpriteURL();
+      this.changeSpriteImageOnPage();
+      
+      this.getSessionSpriteURL();
+
     })
 
 
@@ -61,6 +67,51 @@ export class PlayerBoxComponent implements OnInit {
     this.enemyCurrentlyFighting = this.listOfPlayers[0].enemyCurrentlyFighting;
     this.userVictories = this.listOfPlayers[0].userVictories;
 
+  }
+
+  changeSpriteImageOnPage() {
+    if(this.userVictories==1 && this.playerSpriteUrl== "../assets/images/Male-0.png"){
+      this.viewSpriteURL = "../assets/images/Male-1.png";
+      this.setSessionViewSpriteURL();
+    }
+    else if (this.userVictories==2 && this.playerSpriteUrl== "../assets/images/Male-0.png"){
+      this.viewSpriteURL = "../assets/images/Male-2.png";
+      this.setSessionViewSpriteURL();
+
+    }
+    else if (this.userVictories==3 && this.playerSpriteUrl== "../assets/images/Male-0.png"){
+      this.viewSpriteURL = "../assets/images/Male-3.png";
+      this.setSessionViewSpriteURL();
+
+    }
+    else if (this.userVictories>=4 && this.playerSpriteUrl== "../assets/images/Male-0.png"){
+      this.viewSpriteURL = "../assets/images/Male-4.png";
+      this.setSessionViewSpriteURL();
+
+    }
+    else if (this.userVictories==1 && this.playerSpriteUrl== "../assets/images/Female-0.png"){
+      this.viewSpriteURL = "../assets/images/Female-1.png";
+      this.setSessionViewSpriteURL();
+
+    }
+    else if (this.userVictories==2 && this.playerSpriteUrl== "../assets/images/Female-0.png"){
+      this.viewSpriteURL = "../assets/images/Female-2.png";
+      this.setSessionViewSpriteURL();
+
+    }
+    else if (this.userVictories==3 && this.playerSpriteUrl== "../assets/images/Female-0.png"){
+      this.viewSpriteURL = "../assets/images/Female-3.png";
+      this.setSessionViewSpriteURL();
+
+    }
+    else if (this.userVictories>=4 && this.playerSpriteUrl== "../assets/images/Female-0.png"){
+      this.viewSpriteURL = "../assets/images/Female-4.png";
+      this.setSessionViewSpriteURL();
+
+    }else{
+    this.viewSpriteURL = this.playerSpriteUrl;
+    this.setSessionViewSpriteURL();
+    }
   }
 
   getSessionStorageUserEmail() {
@@ -99,6 +150,15 @@ export class PlayerBoxComponent implements OnInit {
   }
 
 
+
+  getSessionSpriteURL()
+  {
+    this.viewSpriteURL = sessionStorage.getItem("viewSpriteURL");
+  }
+
+  setSessionViewSpriteURL(){
+    sessionStorage.setItem("viewSpriteURL", this.viewSpriteURL);
+  }
 
 
 

@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
 })
 export class QuestionsAnswersComponent implements OnInit {
     question:string = "";
-    answer1:string = "";
-    answer2:string = "";
-    answer3:string = "";
-    answer4:string = "";
+    answer1:string = "loading";
+    answer2:string = "loading.";
+    answer3:string = "loading..";
+    answer4:string = "loading...";
     correctAnswer:string = "Correct Answer ";
     questionAttack:number = 0;
     listOfQuestion:Question[];
@@ -24,10 +24,11 @@ export class QuestionsAnswersComponent implements OnInit {
     enemyAttack: number = 0;
     correct: string | null = ""
     userVictories:number = 0;
+    hidden = ""
 
 
     @Input()
-    answer = "";
+    answer = this.hidden;
 
     @Output() 
     playerHPEmitter = new EventEmitter<number>();
@@ -148,21 +149,31 @@ export class QuestionsAnswersComponent implements OnInit {
 
   compareAnswers()
   {
+    
       if(this.correctAnswer == this.answer){
      
         this.decrementEnemyHP();
         this.correct = "You got the last answer correct!";
         this.checkIfAllEnemiesDefeated();
+        this.changeQuestionsAndAnswers(0);
+        this.answer = this.hidden;
 
 
       }
+      
+      else if (this.answer == this.hidden){
+        this.correct = "Please select an answer!"
+      }
+
       else{
-      this.decrementPlayerHP();
-      this.correct = "Your last answer was incorrect.";
-      this.checkPlayerHP();
-
-      }
-      this.changeQuestionsAndAnswers(0);
+        this.decrementPlayerHP();
+        this.correct = "Your last answer was incorrect.";
+        this.checkPlayerHP();
+        this.changeQuestionsAndAnswers(0);
+        this.answer = this.hidden;
+  
+        }
+     
      
 
 

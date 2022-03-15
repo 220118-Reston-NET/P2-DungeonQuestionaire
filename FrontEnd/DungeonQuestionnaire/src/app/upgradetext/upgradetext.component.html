@@ -4,14 +4,13 @@
         <h3 class="p-1 choice text-center column"> You've won an upgrade!</h3>
         <div class="outer-div">
             <div class="img-container d-flex flex-column align-items-center">
-                <img [src]="spriteURL" alt="Player's chosen sprite"  />
+                <img [src]="viewSpriteURL" alt="Player's chosen sprite"  />
             </div>
             <p class="m-2 choice text-center column"> {{playerName}}</p>
         </div>
         
     </div>
-
-
+    <h6>If You're happy with your new sprite, Play Again and Save!</h6>
     <div class="d-flex flex-row">
         
         <app-play-again></app-play-again>

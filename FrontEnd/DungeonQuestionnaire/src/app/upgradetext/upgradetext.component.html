@@ -2,12 +2,19 @@
 
     <div class="flex-column"> 
         <h3 class="p-1 choice text-center column"> You've won an upgrade!</h3>
-        <h3 class="choice text-center column"> Redeem now or save for later and logout?</h3>
+        <div class="outer-div">
+            <div class="img-container d-flex flex-column align-items-center">
+                <img [src]="spriteURL" alt="Player's chosen sprite"  />
+            </div>
+            <p class="m-2 choice text-center column"> {{playerName}}</p>
+        </div>
+        
     </div>
+
 
     <div class="d-flex flex-row">
         
-        <a (click)="redeem()"><h3 class="p-4">Redeem</h3></a>
+        <!-- <a (click)="redeem()"><h3 class="p-4">Redeem</h3></a> -->
         <a (click)="logout()"><h3 class="p-4">Logout</h3></a>
     </div>
     

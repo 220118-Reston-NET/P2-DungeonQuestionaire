@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fight',
@@ -14,7 +15,7 @@ export class FightComponent implements OnInit {
   currentEnemyHP:number = 0;
 
 
-  constructor() { }
+  constructor(private router:Router) { }
   
 
 
@@ -23,6 +24,7 @@ export class FightComponent implements OnInit {
 
     this.enemyCurrentlyFighting = Number(sessionStorage.getItem("enemyCurrentlyFighting"));
     this.enemyName = sessionStorage.getItem("enemyName");
+    this.router.navigate(["/fight"]);
 
   }
 

@@ -19,6 +19,8 @@ export class SaveLogoutComponent implements OnInit {
   userVictories: number = 0;
   spriteURL: string  = "";
 
+ viewSpriteURL:string =""
+
   listofPlayers: Player[];
 
   constructor(private savelogout:FrontEndService, private router:Router) { 
@@ -41,6 +43,7 @@ getSessionData(){
   this.userEmail = sessionStorage.getItem("userEmail");
   this.enemyCurrentlyFighting = Number(sessionStorage.getItem("enemyCurrentlyFighting"));
   this.spriteURL = (sessionStorage.getItem("spriteURL"));
+  this.viewSpriteURL = sessionStorage.getItem("viewSpriteURL");
 
 }
 

@@ -173,8 +173,7 @@ export class QuestionsAnswersComponent implements OnInit {
         this.answer = this.hidden;
   
         }
-      // this.changeQuestionsAndAnswers(0);
-      // this.answer = this.hidden;
+     
      
 
 

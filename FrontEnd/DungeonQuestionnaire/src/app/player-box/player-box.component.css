@@ -9,10 +9,12 @@
 
 .img-container {
     height: 10rem;
-    width: 10rem;
+    width: 8rem;
 }
 
 img {
-   max-width: 100%;
+    min-width: 125%;
+   max-width: 125%;
     max-height: 100%;
 }
+

@@ -17,9 +17,10 @@
 {
     
     box-sizing:border-box;
-    border: .3rem solid black;
+    border: .2rem solid black;
     align-self: center;
-    width:98vw;
+    width:100vw;
+    
     
 }
 
@@ -27,3 +28,17 @@ button
 {
     max-width: 10rem;
 }
+
+
+@media screen and (min-width: 800px) {
+    .border-box-fight {
+        width:75vw;
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    .border-box-fight {
+        width:65vw;
+    }
+  }
+

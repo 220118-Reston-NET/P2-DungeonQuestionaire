@@ -3,7 +3,6 @@
 }
 
 .outer-div {
-    border:black solid .1rem;
     padding:1rem;
     height:16rem;
     width: 100%;
@@ -12,13 +11,13 @@
 }
 
 .img-container {
-    height: 10rem;
-    width: 8rem;
+    height: 200rem;
+    width: 14rem;
 }
 
 img {
-    min-width: 115%;
-   max-width: 115%;
+    min-width: 107%;
+   max-width: 107%;
     max-height: 100%;
 }
 

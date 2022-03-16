@@ -1,5 +1,8 @@
 .game-over {
     margin: 3rem;
+    width: fit-content;
+    background-color: white;
+
 }
 
 .character-defeat{
@@ -20,7 +23,8 @@
 {
     
     box-sizing:border-box;
-    border: .3rem solid black;
+    border: .3rem solid red;
     width: 80vw;
-    ;
+    background-color: white;
+
 }

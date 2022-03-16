@@ -1,10 +1,14 @@
 .game-over {
     margin: 3rem;
+    width: max-content;
+    background-color: white;
 }
 
 .character-defeat{
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
+    width: max-content;
+    background-color: white;
 }
 
 
@@ -22,7 +26,7 @@
     box-sizing:border-box;
     border: .3rem solid black;
     width: 80vw;
-    ;
+    background-color: white;
 }
 
 .outer-div {
@@ -31,6 +35,7 @@
     height:16rem;
     width: 100%;
     margin-right:.5rem;
+    background-color: white;
 
 }
 

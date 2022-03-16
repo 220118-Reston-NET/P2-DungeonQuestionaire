@@ -1,9 +1,11 @@
 .outer-div {
-    border:black solid .1rem;
+    border:blue solid .1rem;
     padding:1rem;
     height:16rem;
     width: 100%;
     margin-right:.5rem;
+    background-color: white;
+
 
 }
 
@@ -13,8 +15,8 @@
 }
 
 img {
-    min-width: 115%;
-   max-width: 115%;
+    min-width: 120%;
+   max-width: 120%;
     max-height: 100%;
 }
 

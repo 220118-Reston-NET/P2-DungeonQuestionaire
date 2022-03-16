@@ -72,7 +72,7 @@ Monster Trivia is an interactive learning and fantasy gaming experience focused 
 1. Users must direct their browsers to the website URL [https://dungeonwebtwo.azurewebsites.net/](https://dungeonwebtwo.azurewebsites.net/) 
 2. Users create an account by signing up and choosing their avatar. From this point the interactive gaming experience is initiated and the user is directed until logical game conclusion.
 ---
-- ![Running Ng Serve](.\FrontEnd\DungeonQuestionnaire\src\assets\images\homescreen.png)
+- ![Homescreen](./FrontEnd/DungeonQuestionnaire/src/assets/images/homescreen.png)
 ---
 
 ## Running Locally From a Cloned Repository
@@ -80,28 +80,28 @@ Monster Trivia is an interactive learning and fantasy gaming experience focused 
 2. Create a project directory or change directory to your desired directory for insertion
 3. Navigate to the Main Page of the Repository and click Code. You will receive this URL: [https://github.com/220118-Reston-NET/P2-DungeonQuestionnaire.git](https://github.com/220118-Reston-NET/P2-DungeonQuestionnaire.git)  
 ---
-- ![Grabbing the Repo Code](.\FrontEnd\DungeonQuestionnaire\src\assets\images\clone_git.png)
+- ![Grabbing the Repo Code](./FrontEnd/DungeonQuestionnaire/src/assets/images/clone_git.png)
 ---
 4. Open Git Bash or Powershell, and type in "`git clone https://github.com/220118-Reston-NET/P2-DungeonQuestionnaire.git`." Press Enter to clone the repository into your directory. The Project files are now transferred.
 5. NodeJS and NPM should be installed on the operating system you are using to properly serve the angular application.
 - For **Unix** users, travel to the bash command line and type in `sudo apt update` and then `sudo apt install nodejs npm`. Once done, verify installation by running `node --version`. A version output should generate. Installation of Node Package Manager and NodeJS is now complete. 
 - For **Windows** users, NodeJS may be downloaded from their website, [https://nodejs.org/en/download/](https://nodejs.org/en/download/). NodeJS also installs NPM which is a package manager for Node. Type in `node -v`, and if installed correctly a version number will be output.
 ---
-- ![Checking Node Version](.\FrontEnd\DungeonQuestionnaire\src\assets\images\node_example.png)
+- ![Checking Node Version](./FrontEnd/DungeonQuestionnaire/src/assets/images/node_example.png)
 ---
 6. Angular must be installed on your system into order to run the application locally.
 - For **Unix** users, you will need to travel to your bash command line and type `sudo install -g angular-cli` in order to install angular.  Type in `ng --version` to verify a version output and successful installation.
 - For **Windows** users on the command line, you will need to type `npm install -g @angular/cli` in order to install angular. Type in `ng --version` to verify a version output and successful installation. Windows users will more than likely need to change their OS execution security policy. This is done by running powershell in an administration account and typing in `Set-ExecutionPolicy RemoteSigned` and selecting `"Y"` as the choice. This will alow Angular to run, but keep in mind this may leave some systems vulnerable to malicious scripts if their system has been compromised; proceed with caution or use the web application if concerns exist.
 ---
-- ![Checking Angular Version](.\FrontEnd\DungeonQuestionnaire\src\assets\images\angular_version.png)
+- ![Checking Angular Version](./FrontEnd/DungeonQuestionnaire/src/assets/images/angular_version.png)
 ---
 7. Now that we have installed the proper tools, you must make sure you are in the main root directory of the project folder and type in `ng serve` on either **Windows** command line or **Unix** Bash command line. This will start a local development server. You will need to travel to the localhost link indicated by the command line.
 ---
-- ![Running Ng Serve](.\FrontEnd\DungeonQuestionnaire\src\assets\images\ng_serve.png)
+- ![Running Ng serve](./FrontEnd/DungeonQuestionnaire/src/assets/images/ng_serve.png)
 ---
 8. Users create an account by signing up and choosing their avatar. From this point the interactive gaming experience is initiated and the user is directed until logical game conclusion.
 ---
-- ![Running Ng Serve](.\FrontEnd\DungeonQuestionnaire\src\assets\images\homescreen.png)
+- ![Homescreen](./FrontEnd/DungeonQuestionnaire/src/assets/images/homescreen.png)
 ---
 
 

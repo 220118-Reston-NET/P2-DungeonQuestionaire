@@ -78,7 +78,7 @@ export class SignupComponent implements OnInit {
         userVictories: p_playerGroup.get("userVictories")?.value,
         enemyCurrentlyFighting: p_playerGroup.get("enemyFight")?.value,
       }
-      console.log(player);
+      
 
       
 

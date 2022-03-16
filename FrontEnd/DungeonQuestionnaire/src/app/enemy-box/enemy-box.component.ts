@@ -22,13 +22,14 @@ export class EnemyBoxComponent implements OnInit, OnChanges {
 
   @Input()
   currentEnemyHP:number= this.enemyHealth;
+  // emits enemyCurrentlyFighting to parent
   @Output()
   ECFEmitter = new EventEmitter<number>();
 
 
   
   
-
+// initializes all the values we need for the enemy box and sets sessionStorage to use elsewhere
   ngOnInit(): void {
 
     this.enemyServ.getAllEnemies().subscribe(result =>{
@@ -43,6 +44,7 @@ export class EnemyBoxComponent implements OnInit, OnChanges {
     
   }
 
+  //watches for changes to update the parameters to this component and the parent
   ngOnChanges(changes: SimpleChanges): void {
   this.enemyHealth = this.currentEnemyHP;
   if (this.enemyHealth <= 0) {
@@ -59,6 +61,7 @@ export class EnemyBoxComponent implements OnInit, OnChanges {
 
   }
 
+  // provides the values of the enemyCurrentlyFighting -1 to target specifically a value in the enemy array corresponding to it. 
   loadEnemyInfo(ecf:number): void {
     this.enemyName = this.listofEnemies[ecf-1].enemyName;
     this.enemyHealth = this.listofEnemies[ecf-1].enemyStartingHP;
@@ -66,7 +69,7 @@ export class EnemyBoxComponent implements OnInit, OnChanges {
     this.enemySpriteImgUrl = this.listofEnemies[ecf-1].enemySpriteURL;
   }
 
-  
+  // utilizes sessionStorage to communicate insensitive data across components without a service
   setSessionAttack()
   {
     sessionStorage.setItem("enemyAttack", this.enemyAttack.toString() );

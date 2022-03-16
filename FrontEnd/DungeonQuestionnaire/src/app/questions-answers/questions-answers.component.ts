@@ -160,11 +160,11 @@ export class QuestionsAnswersComponent implements OnInit {
 
 
       }
-      
+      // uses a hidden element to clear the binding to the answers visibly
       else if (this.answer == this.hidden){
         this.correct = "Please select an answer!"
       }
-
+      // if player was wrong, they will take damage and display a message to the user that the answer was incorrect, if they fall below zero health, they will be taken to the gameover page, if they are still alive, new questions will be provided
       else{
         this.decrementPlayerHP();
         this.correct = "Your last answer was incorrect.";
@@ -178,7 +178,7 @@ export class QuestionsAnswersComponent implements OnInit {
 
 
   }
-
+// checks enemy health, and sends enemy hp to the enemybox
   decrementEnemyHP()
   {
     this.getSessionEnemyHP();
@@ -188,6 +188,7 @@ export class QuestionsAnswersComponent implements OnInit {
     this.EnemyEmitter.emit(this.currentEnemyHP);
   }
 
+  // checks player health and sends the hp to the playerbox
   decrementPlayerHP()
   {
     this.getSessionPlayerHP();
@@ -197,7 +198,7 @@ export class QuestionsAnswersComponent implements OnInit {
     this.playerHPEmitter.emit(this.currentPlayerHP);
 
   }
-
+// increments enemy if it's hp is below zero and if all 8 enemies in db are defeated, sends to winner page
   checkIfAllEnemiesDefeated()
   {
     this.checkEnemyHPAndIncrementIfDefeat();
@@ -211,7 +212,7 @@ export class QuestionsAnswersComponent implements OnInit {
     }
     
   }
-
+//  the actual function to check hp and reroute to gameover if below zero
   checkPlayerHP(){
     if (this.currentPlayerHP <= 0) {
       this.router.navigate(["/gameover"]);
@@ -219,6 +220,7 @@ export class QuestionsAnswersComponent implements OnInit {
     }
   }
 
+  //  the actual function to check enemy hp and increment the enemy if it's defeated
   checkEnemyHPAndIncrementIfDefeat(){
     if (this.currentEnemyHP <= 0) {
       this.getSessionEnemyCurrentlyFighting();

@@ -11,6 +11,8 @@ export class HomepageComponent implements OnInit {
   constructor(private router:Router) { }
 
   ngOnInit(): void {
+    localStorage.clear();
+
   }
 
   goToSignUp()

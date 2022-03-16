@@ -35,9 +35,9 @@ export class FrontEndService {
   {
     let body:any = {SpriteImgurl,PlayerHP, enemyCurrentlyFighting, UserEmail, UserVictories};
 
+    // concatenates a url that we can pass to make an API call for update player
     let url:string = ("https://dungeonapi.azurewebsites.net/api/Player/UpdatePlayer?SpriteImgurl=" + SpriteImgurl + "&PlayerHP=" + PlayerHP + "&EnemyCurrentlyFighting=" + enemyCurrentlyFighting + "&UserEmail=" + UserEmail + "&UserVictories=" + UserVictories)
     console.log(url);
     return this.http.put(url, body);
   }
-  // ?SpriteImgurl=www.google.com&PlayerHP=41&EnemyCurrentlyFighting=6&UserEmail=string&UserVictories=6
 }

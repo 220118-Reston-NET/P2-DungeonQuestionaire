@@ -28,9 +28,11 @@ export class PlayAgainComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // runs all functions needed to reset char data and update to db
   changeToPlayAgain(){
     this.getResetData();
     this.setUpdatePlayer();
+    this.clearLocal();
     delay(500);
     this.router.navigate(["/fight"]);
   }
@@ -41,6 +43,7 @@ export class PlayAgainComponent implements OnInit {
 
   }
 
+  // gets and sets the reset data we will use to play again
   getResetData(){
     this.playerHP = 40;
     this.userVictories = Number(sessionStorage.getItem("userVictories"));
@@ -49,10 +52,15 @@ export class PlayAgainComponent implements OnInit {
     this.spriteURL = (sessionStorage.getItem("spriteURL"));
   }
   
+  // api call to update player to play again
   setUpdatePlayer()
   {
     this.savelogout.updatePlayer(this.spriteURL, this.playerHP, this.enemyCurrentlyFighting, this.userEmail, this.userVictories).subscribe(result => console.log(result));
   }
   
+  // this is needed to ensure the reloads on the fight page happen
+  clearLocal(){
+    localStorage.clear();
+  }
 
 }

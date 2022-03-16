@@ -1,5 +1,7 @@
 .game-over {
     margin: 3rem;
+    width: max-content;
+    background-color: white;
 }
 
 .character-defeat{
@@ -17,9 +19,11 @@
 {
     
     box-sizing:border-box;
-    border: .2rem solid black;
+    border: .2rem solid green;
     align-self: center;
     width:100vw;
+    background-color: white;
+
     
     
 }

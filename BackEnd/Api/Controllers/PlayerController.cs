@@ -31,11 +31,13 @@ namespace Api.Controllers
         {
             try
             {
+                Log.Information("Successfully retrieved a list of all players information from the database");
                 return Ok(await _repo.GetAllPlayers());
 
             }
             catch (SqlException)
             {
+                Log.Information("Failed to retrieve a list of all players information from the database");
                 return NotFound();
             }
         }
@@ -51,11 +53,13 @@ namespace Api.Controllers
         {
             try
             {
+                Log.Information("Successfully added a new player's information to the database");
                 return Created("Player Created Successfully", await _repo.AddPlayer(p_Player));
 
             }
             catch (SqlException)
             {
+                Log.Information("Failed to add a new player's information to the database");
                 return NotFound();
             }
         }
@@ -70,12 +74,14 @@ namespace Api.Controllers
         {
             try
             {
+                Log.Information("Successfully updated player's information in the database");
                 await _repo.UpdatePlayer(SpriteImgurl, PlayerHP, EnemyCurrentlyFighting, UserEmail, UserVictories);
                 return Ok("Player Updated Successfully");
 
             }
             catch (SqlException)
             {
+                Log.Information("Failed to update player's information int he database");
                 return NotFound();
             }
         }
@@ -90,11 +96,13 @@ namespace Api.Controllers
         {
             try
             {
+                Log.Information("Successfully deleted player's information in the database");
                 return Ok(await _repo.DeletePlayer(p_Player));
 
             }
             catch (SqlException)
             {
+                Log.Information("Failed to delete player's information in the database");
                 return NotFound();
             }
         }

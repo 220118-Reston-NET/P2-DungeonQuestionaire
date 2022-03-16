@@ -30,10 +30,12 @@ namespace Api.Controllers
         {
             try
             {
+                Log.Information("Successfully retrieved a list of all questions from the database");
                 return Ok(await _quesbl.GetAllQuestions());
             }
             catch(SqlException)
             {
+                Log.Information("Failed to retrieve a list of all questions from the database");
                 return NotFound();
             }
         }
@@ -50,10 +52,12 @@ namespace Api.Controllers
         {
             try
             {
+                Log.Information("Successfully added a question to the database");
                 return Ok(await _quesbl.AddQuestion(p_question));
             }
             catch(SqlException)
             {
+                Log.Information("Failed to add a question to the database");
                 return NotFound();
             }
         }
@@ -67,14 +71,16 @@ namespace Api.Controllers
         [HttpPut("UpdateQuestion")]
         public async Task<IActionResult> UpdateQuestion([FromBody] Question p_question)
         {
-            // try
-            // {
+            try
+            {
+                Log.Information("Successfully updated question information in the database");
                 return Ok(await _quesbl.UpdateQuestion(p_question));
-            // }
-            // catch(SqlException)
-            // {
-            //     return NotFound();
-            // }
+            }
+            catch(SqlException)
+            {
+                Log.Information("Failed to update question information in the database");
+                return NotFound();
+            }
 
         }
 
@@ -89,10 +95,12 @@ namespace Api.Controllers
         {
             try
             {
+                Log.Information("Successfully deleted question information from the database");
                 return Ok(await _quesbl.DeleteQuestion(p_question));
             }
             catch(SqlException)
             {
+                Log.Information("Failed to delete question information from the database");
                 return NotFound();
             }
 

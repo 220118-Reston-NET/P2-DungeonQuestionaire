@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-fight',
@@ -15,16 +16,33 @@ export class FightComponent implements OnInit {
   currentEnemyHP:number = 0;
 
 
-  constructor(private router:Router) { }
-  
+  constructor(private router:Router) {
+    
+   }
+   
 
 
-  
+  // gets the session storage so that interpolation has correct values
   ngOnInit(): void {
 
     this.enemyCurrentlyFighting = Number(sessionStorage.getItem("enemyCurrentlyFighting"));
     this.enemyName = sessionStorage.getItem("enemyName");
-    this.router.navigate(["/fight"]);
+    // first refresh to update the children
+    if(!localStorage.getItem("reload"))
+    window.location.reload()
+    this.router.navigate(["/fight"])
+    .then(() => {
+      localStorage.setItem("reload", "1")
+    });
+    // delay needed to fully load the children
+    delay(1000);
+    //second refresh to update the fight html interpolations
+    if(!localStorage.getItem("refresh"))
+    window.location.reload()
+    this.router.navigate(["/fight"])
+    .then(() => {
+      localStorage.setItem("refresh", "1")
+    });
 
   }
 
@@ -32,6 +50,7 @@ export class FightComponent implements OnInit {
 
   }
 
+// updated by the eventEmitters from the children
   HPEventWasTriggered(hp:number){
     this.currentPlayerHP = hp;
 
@@ -55,7 +74,8 @@ export class FightComponent implements OnInit {
     this.enemyName = sessionStorage.getItem("enemyName");
   }
 
-  changeECF(ecf:number){
+// updated by the eventEmitter from the child
+changeECF(ecf:number){
     this.enemyCurrentlyFighting = ecf;
     this.getSessionEnemyName;
   }

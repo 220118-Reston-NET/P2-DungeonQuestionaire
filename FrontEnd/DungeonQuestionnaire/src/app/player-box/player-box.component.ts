@@ -45,7 +45,6 @@ export class PlayerBoxComponent implements OnInit {
       this.setSessionStorageUserVictories();
       this.setSessionSpriteURL();
       this.changeSpriteImageOnPage();
-      
       this.getSessionSpriteURL();
 
     })
@@ -54,11 +53,12 @@ export class PlayerBoxComponent implements OnInit {
 
   }
 
-
+// filters the listofplayers down to the useremail we got from the login
   filterPlayerByEmail() {
     this.listOfPlayers = this.listOfPlayers.filter(x => x.userEmail == this.userEmail);
   }
 
+  // loads the only player that is in the player list
   loadPlayerInfo(): void {
 
     this.playerName = this.listOfPlayers[0].playerName;
@@ -69,43 +69,54 @@ export class PlayerBoxComponent implements OnInit {
 
   }
 
+  // sets image based on gender saved and user victories
   changeSpriteImageOnPage() {
-    if(this.userVictories==1 && this.playerSpriteUrl== "../assets/images/Male-0.png"){
+    if(this.userVictories==1 && this.playerSpriteUrl== "Male"){
       this.viewSpriteURL = "../assets/images/Male-1.png";
       this.setSessionViewSpriteURL();
     }
-    else if (this.userVictories==2 && this.playerSpriteUrl== "../assets/images/Male-0.png"){
+    else if (this.userVictories==2 && this.playerSpriteUrl== "Male"){
       this.viewSpriteURL = "../assets/images/Male-2.png";
       this.setSessionViewSpriteURL();
 
     }
-    else if (this.userVictories==3 && this.playerSpriteUrl== "../assets/images/Male-0.png"){
+    else if (this.userVictories==3 && this.playerSpriteUrl== "Male"){
       this.viewSpriteURL = "../assets/images/Male-3.png";
       this.setSessionViewSpriteURL();
 
     }
-    else if (this.userVictories>=4 && this.playerSpriteUrl== "../assets/images/Male-0.png"){
+    else if (this.userVictories>=4 && this.playerSpriteUrl== "Male"){
       this.viewSpriteURL = "../assets/images/Male-4.png";
       this.setSessionViewSpriteURL();
 
     }
-    else if (this.userVictories==1 && this.playerSpriteUrl== "../assets/images/Female-0.png"){
+    else if (this.userVictories==1 && this.playerSpriteUrl== "Female"){
       this.viewSpriteURL = "../assets/images/Female-1.png";
       this.setSessionViewSpriteURL();
 
     }
-    else if (this.userVictories==2 && this.playerSpriteUrl== "../assets/images/Female-0.png"){
+    else if (this.userVictories==2 && this.playerSpriteUrl== "Female"){
       this.viewSpriteURL = "../assets/images/Female-2.png";
       this.setSessionViewSpriteURL();
 
     }
-    else if (this.userVictories==3 && this.playerSpriteUrl== "../assets/images/Female-0.png"){
+    else if (this.userVictories==3 && this.playerSpriteUrl== "Female"){
       this.viewSpriteURL = "../assets/images/Female-3.png";
       this.setSessionViewSpriteURL();
 
     }
-    else if (this.userVictories>=4 && this.playerSpriteUrl== "../assets/images/Female-0.png"){
+    else if (this.userVictories>=4 && this.playerSpriteUrl== "Female"){
       this.viewSpriteURL = "../assets/images/Female-4.png";
+      this.setSessionViewSpriteURL();
+
+    }
+    else if (this.userVictories == 0 && this.playerSpriteUrl== "Male"){
+      this.viewSpriteURL = "../assets/images/Male-0.png";
+      this.setSessionViewSpriteURL();
+
+    }
+    else if (this.userVictories == 0 && this.playerSpriteUrl== "Female"){
+      this.viewSpriteURL = "../assets/images/Female-0.png";
       this.setSessionViewSpriteURL();
 
     }else{

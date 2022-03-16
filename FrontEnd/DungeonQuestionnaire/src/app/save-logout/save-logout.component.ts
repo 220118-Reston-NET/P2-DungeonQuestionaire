@@ -36,6 +36,7 @@ export class SaveLogoutComponent implements OnInit {
     
   }
 
+  // gets the data that will be needed to update the player info in the db
 getSessionData(){
 
   this.playerHP = Number(sessionStorage.getItem("playerHP"));
@@ -47,7 +48,7 @@ getSessionData(){
 
 }
 
-
+// does the call to update the player in the db
 setUpdatePlayer()
 {
 

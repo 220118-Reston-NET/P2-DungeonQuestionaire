@@ -30,10 +30,12 @@ namespace Api.Controllers
         {
             try
             {
+                Log.Information("Successfully retrieved a list of all enemies from enemies.");
                 return Ok(await _enemybl.GetAllEnemies());
             }
             catch(SqlException)
             {
+                Log.Information("Failed to retrieve a list of enemies from database");
                 return NotFound();
             }
         }
@@ -50,10 +52,12 @@ namespace Api.Controllers
         {
             try
             {
+                Log.Information("Successfully added an enemy to the database");
                 return Ok(await _enemybl.AddEnemy(p_enemy));
             }
             catch(SqlException)
             {
+                Log.Information("Failed to add an enemy to the database");
                 return NotFound();
             }
         }
@@ -69,10 +73,12 @@ namespace Api.Controllers
         {
             try
             {
+                Log.Information("Successfully updated an enemy's information in the database");
                 return Ok(await _enemybl.UpdateEnemy(p_enemy));
             }
             catch(SqlException)
             {
+                Log.Information("Failed to update an enemy's information in the database");
                 return NotFound();
             }
 
@@ -89,10 +95,12 @@ namespace Api.Controllers
         {
             try
             {
+                Log.Information("Successfully deleted an enemy's information from the database");
                 return Ok(await _enemybl.DeleteEnemy(p_enemy));
             }
             catch(SqlException)
             {
+                Log.Information("Failed to delete an enemy's information fromt he database");
                 return NotFound();
             }
 
